@@ -16,21 +16,5 @@ public class Bloque {
    */
   public Bloque(String curso, int id) {
     this.curso = curso;
-    this.id = id;
-  }
-
-  public String getCurso() {
-    return curso;
-  }
-
-  public void setCurso(String curso) {
-    this.curso = curso;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-  
-  
-  
+   } this.id = id;
 }
