@@ -8,6 +8,8 @@ package logicadenegocios;
 public class Cursos {
   private String codigoCurso;
   private String nombreCurso;
+  private int cantidadCreditos;
+  private int horasLectivas;
 
   /**
    * 
