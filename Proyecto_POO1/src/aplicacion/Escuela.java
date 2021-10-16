@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import javax.swing.ButtonGroup;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Josue
@@ -20,6 +21,7 @@ public class Escuela extends javax.swing.JFrame {
     btnGr = new ButtonGroup();
     btnGr.add(rbNo);
     btnGr.add(rbSi);
+    cargarTabla();
   }
 
   /**
@@ -33,7 +35,7 @@ public class Escuela extends javax.swing.JFrame {
 
     jLabel1 = new javax.swing.JLabel();
     jScrollPane1 = new javax.swing.JScrollPane();
-    tblAlumnos = new javax.swing.JTable();
+    tblCarreras = new javax.swing.JTable();
     jPanel1 = new javax.swing.JPanel();
     jLabel2 = new javax.swing.JLabel();
     txtNombreCarrera = new javax.swing.JTextField();
@@ -56,7 +58,7 @@ public class Escuela extends javax.swing.JFrame {
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Registro de Escuela o Área Academica");
 
-    tblAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+    tblCarreras.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
 
       },
@@ -79,7 +81,7 @@ public class Escuela extends javax.swing.JFrame {
         return canEdit [columnIndex];
       }
     });
-    jScrollPane1.setViewportView(tblAlumnos);
+    jScrollPane1.setViewportView(tblCarreras);
 
     jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Ecuela o Área Academica", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
@@ -247,6 +249,7 @@ public class Escuela extends javax.swing.JFrame {
       ps.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro guardado");
       limpiar();
+      cargarTabla();
     }catch(SQLException e){
       JOptionPane.showMessageDialog(null,e.toString());
     }
@@ -257,6 +260,35 @@ public class Escuela extends javax.swing.JFrame {
     txtCodigoCarrera.setText("");
     txtIdPlan.setText("");
     btnGr.clearSelection(); 
+  }
+  
+  private void cargarTabla(){
+    DefaultTableModel modeloTabla = (DefaultTableModel) tblCarreras.getModel();
+    modeloTabla.setRowCount(0);
+    
+    PreparedStatement ps;
+    ResultSet rs;
+    ResultSetMetaData rsmd;
+    int columnas;
+    
+    try{
+      Connection con = Conexion.getConexion();
+      ps = con.prepareStatement("SELECT nombreCarrera, codigoCarrera, tieneEscuela, idPlan from EscuelaOArea");
+    
+      rs = ps.executeQuery();
+      rsmd = rs.getMetaData();
+      columnas = rsmd.getColumnCount();
+      
+      while(rs.next()){
+        Object[] fila = new Object[columnas];
+        for(int indice=0; indice<columnas; indice++){
+          fila[indice]=rs.getObject(indice+1);
+        }
+        modeloTabla.addRow(fila);
+      }
+    }catch(SQLException e){
+      JOptionPane.showMessageDialog(null,e);
+    }
   }
   
   /**
@@ -308,7 +340,7 @@ public class Escuela extends javax.swing.JFrame {
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JRadioButton rbNo;
   private javax.swing.JRadioButton rbSi;
-  private javax.swing.JTable tblAlumnos;
+  private javax.swing.JTable tblCarreras;
   private javax.swing.JTextField txtCodigoCarrera;
   private javax.swing.JTextField txtIdPlan;
   private javax.swing.JTextField txtNombreCarrera;
