@@ -12,4 +12,5 @@ public class EscuelaOArea {
   private String nombreCarrera;
   private boolean tieneEscuela;
   
+  
 }

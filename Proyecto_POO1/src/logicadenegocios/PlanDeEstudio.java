@@ -14,4 +14,5 @@ public class PlanDeEstudio {
   private int cantidadCursos=0;
   private int cantidadCreditos=0;
   
+  
 }

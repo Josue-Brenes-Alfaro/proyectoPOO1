@@ -10,4 +10,5 @@ package logicadenegocios;
 public class Requisitos {
   
   
+  
 }

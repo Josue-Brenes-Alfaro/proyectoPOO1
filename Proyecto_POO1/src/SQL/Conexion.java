@@ -2,6 +2,7 @@ package SQL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.*;
 /**
  *
  * @author Josue
@@ -11,15 +12,12 @@ public class Conexion {
     String conexionURL = "jbdc:sqlserver:localhost\\SQLEXPRESS"
         +"database=Proyecto_POO1"
         +"loginTimeout=30";
-//**
 
-    
     try{
       Connection con = DriverManager.getConnection(conexionURL);
       return con;
-    }catch(SQLException ex){// hay problemas con la excepcion
+    }catch(SQLException ex){
       System.out.println(ex.toString());
-      
       return null;
     }
   }

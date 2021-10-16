@@ -15,4 +15,5 @@ public class Cursos {
   private int numBloque;
   private int cantidadCursos=0;
   
+  
 }
