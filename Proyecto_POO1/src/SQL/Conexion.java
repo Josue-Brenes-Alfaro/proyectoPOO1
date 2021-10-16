@@ -11,12 +11,15 @@ public class Conexion {
     String conexionURL = "jbdc:sqlserver:localhost\\SQLEXPRESS"
         +"database=Proyecto_POO1"
         +"loginTimeout=30";
+//**
+
     
     try{
       Connection con = DriverManager.getConnection(conexionURL);
       return con;
-    }catch(SQLException ex){
+    }catch(SQLException ex){// hay problemas con la excepcion
       System.out.println(ex.toString());
+      
       return null;
     }
   }
