@@ -9,8 +9,10 @@ import java.sql.*;
  */
 public class Conexion {
   public static Connection getConexion(){
-    String conexionURL = "jbdc:sqlserver:localhost\\SQLEXPRESS"
+    String conexionURL = "jbdc:sqlserver://localhost\\SQLEXPRESS"
         +"database=Proyecto_POO1"
+        +"user="
+        +"password="
         +"loginTimeout=30";
 
     try{
