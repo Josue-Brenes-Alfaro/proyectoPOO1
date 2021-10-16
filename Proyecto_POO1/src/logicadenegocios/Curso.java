@@ -7,13 +7,12 @@ package logicadenegocios;
  * @author Josue
  * @version 1.0
  */
-public class Cursos {
+public class Curso {
   private String codigoCurso;
   private String nombreCurso;
   private int cantidadCreditos;
   private int horasLectivas;
   private int numBloque;
   private int cantidadCursos=0;
-  
   
 }

@@ -1,5 +1,7 @@
 package logicadenegocios;
 
+import java.util.ArrayList;
+
 /**
  * 
  * @author Alejandra
@@ -11,6 +13,9 @@ public class EscuelaOArea {
   private String codigoCarrera;
   private String nombreCarrera;
   private boolean tieneEscuela;
-  
-  
+  private ArrayList<Curso> misCursos;
+
+  public void agregarCurso(Curso pCurso) {
+    misCursos.add(pCurso);
+  }
 }
