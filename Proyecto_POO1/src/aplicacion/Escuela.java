@@ -4,17 +4,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.ButtonGroup;
 /**
  *
  * @author Josue
  */
 public class Escuela extends javax.swing.JFrame {
 
+  ButtonGroup btnGr;
   /**
    * Creates new form Escuela
    */
   public Escuela() {
     initComponents();
+    btnGr = new ButtonGroup();
+    btnGr.add(rbNo);
+    btnGr.add(rbSi);
   }
 
   /**
@@ -241,11 +246,19 @@ public class Escuela extends javax.swing.JFrame {
       ps.setString(4, idPlan);
       ps.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro guardado");
+      limpiar();
     }catch(SQLException e){
       JOptionPane.showMessageDialog(null,e.toString());
     }
   }//GEN-LAST:event_btnGuardarActionPerformed
 
+  private void limpiar(){
+    txtNombreCarrera.setText("");
+    txtCodigoCarrera.setText("");
+    txtIdPlan.setText("");
+    btnGr.clearSelection(); 
+  }
+  
   /**
    * @param args the command line arguments
    */
