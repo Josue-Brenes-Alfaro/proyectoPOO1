@@ -4,9 +4,9 @@ import logicadenegocios.EscuelaOArea;
 import logicadenegocios.Requisito; 
 /**
  * Esta es una abstraccion de la clase Cursos con fines academicos
- * @author Alejandra
- * @author Paola
- * @author Josue
+ * @author Alejandra Merino
+ * @author Paola López
+ * @author Josué Brenes
  * @version 1.0
  */
 public class Curso {
