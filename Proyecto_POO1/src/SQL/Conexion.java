@@ -4,15 +4,21 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
- *
+ * Clase para la conexión de la base de datos SQL
+ * @author Alejandra
+ * @author Paola
  * @author Josue
+ * @version 1.0
  */
 public class Conexion {
-  
+  /**
+   * Método para realizar la conexión a la base de datos Proyecto_POO1
+   * @return con conexión con la base de datos Proyecto_POO1
+   */
   public static Connection getConexion(){
-    String connectionUrl = "jbdc:sqlserver://DESKTOP-7ARB7AC\\SQLEXPRESS:1433;"
-        +"databaseName=Proyecto_POO1;"
-        +"IntegratedSecurity=true;";  
+    //Error en la conexión a la base de datos
+    String connectionUrl = "jbdc:sqlserver://localhost\\SQLEXPRESS:1433;"
+        +"databaseName=Proyecto_POO1;";
     try {
       System.out.println(connectionUrl);
       Connection con = DriverManager.getConnection(connectionUrl);
