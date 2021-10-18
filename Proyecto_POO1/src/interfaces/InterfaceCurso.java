@@ -4,6 +4,8 @@
  */
 package interfaces;
 
+import excepciones.CursoDoesNotExistsException;
+import excepciones.CursoAlreadyExistsException;
 import logicadenegocios.Curso; 
 
 /**
@@ -15,7 +17,7 @@ import logicadenegocios.Curso;
  * @version 1.0
  */
 public interface InterfaceCurso {
-  public abstract Curso buscarCurso (String pCodigoCurso);
+  public abstract Curso buscarCurso (String pCodigoCurso) throws CursoDoesNotExistsException;
   public abstract boolean existeCurso (String pCodigoCurso);
   
 }

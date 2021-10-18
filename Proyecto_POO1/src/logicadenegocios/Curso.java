@@ -68,4 +68,10 @@ public class Curso {
     
     return cadena;
   }
+
+  //Metodos accesores
+  public String getCodigoCurso() {
+    return codigoCurso;
+  }
+  
 }

@@ -1,7 +1,9 @@
 package logicadenegocios;
 
 import logicadenegocios.Requisito;
+import logicadenegocios.Curso;
 import interfaces.InterfaceCurso;
+import excepciones.CursoDoesNotExistsException;
 import java.util.*;
 
 /**
@@ -32,12 +34,17 @@ public class Requisito implements InterfaceCurso {
   //aqui se debe eliminar el curso, pero primero hay que buscar si existe.
   //lanzaria un error si no existe.
   }
-  public Curso buscarCurso (String pCodigoCurso) {
+  public Curso buscarCurso (String pCodigoCurso) throws CursoDoesNotExistsException {
     for (Curso cursoActual: cursosRequisitos) {
-      if()
-    }
-    
+      if(cursoActual.getCodigoCurso().equals(pCodigoCurso))
+        return cursoActual;
+    } throw new CursoDoesNotExistsException(pCodigoCurso);
   }
-  public abstract boolean existeCurso (String pCodigoCurso);
   
+  public boolean existeCurso (String pCodigoCurso){
+    for(Curso cursoActual: cursosRequisitos) {
+      if(cursoActual.getCodigoCurso().equals(pCodigoCurso))
+        return true;
+    } return false;
+  }
 }
