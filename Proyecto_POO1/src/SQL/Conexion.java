@@ -1,6 +1,6 @@
 package SQL;
 
-import java.sql.*;
+import com.sun.jdi.connect.spi.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**

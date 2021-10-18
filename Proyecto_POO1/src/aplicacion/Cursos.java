@@ -96,6 +96,11 @@ public class Cursos extends javax.swing.JFrame {
     comBxHorasLectivas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
     btnGuardarCurso.setText("Guardar");
+    btnGuardarCurso.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnGuardarCursoActionPerformed(evt);
+      }
+    });
 
     btnModificarCurso.setText("Modificar");
 
@@ -183,6 +188,10 @@ public class Cursos extends javax.swing.JFrame {
   private void comBxEscuelaOAreaCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBxEscuelaOAreaCargoActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_comBxEscuelaOAreaCargoActionPerformed
+
+  private void btnGuardarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCursoActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_btnGuardarCursoActionPerformed
 
   /**
    * @param args the command line arguments
