@@ -7,7 +7,7 @@ import java.sql.*;
 import javax.swing.ButtonGroup;
 import javax.swing.table.DefaultTableModel;
 /**
- * Clase de la crración de la ventana Escuela
+ * Clase de la creación de la ventana Escuela
  * @author Alejandra
  * @author Paola
  * @author Josue
@@ -245,8 +245,12 @@ public class Escuela extends javax.swing.JFrame {
       esEscuela=0;
     }
     
+    String connectionUrl = "jbdc:sqlserver://localhost:1433;"
+        +"databaseName=Proyecto_POO1; integratedSecurity=true;";
+    
     try{
-      Connection con = Conexion.getConexion();
+      //Connection con = Conexion.getConexion();
+      Connection con = DriverManager.getConnection(connectionUrl);
       PreparedStatement ps = con.prepareStatement("INSERT INTO EscuelaOArea (codigoCarrera, nombreCarrera, tieneEscuela, idPlan) VALUES (?,?,?,?)");
       ps.setString(1, codigoCarrera);
       ps.setString(2, nombreCarrera);
@@ -260,8 +264,8 @@ public class Escuela extends javax.swing.JFrame {
       JOptionPane.showMessageDialog(null,e.toString());
     }
   }//GEN-LAST:event_btnGuardarActionPerformed
-
-  private void tblCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarrerasMouseClicked
+/*
+    private void tblCarrerasMouseClicked(java.awt.event.MouseEvent evt) {                                         
     try{
       int fila = tblCarreras.getSelectedRow();
       int id = Integer.parseInt(tblCarreras.getValueAt(fila,0).toString());
@@ -275,6 +279,10 @@ public class Escuela extends javax.swing.JFrame {
     }catch(){
       
     }
+  }
+  */
+  private void tblCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarrerasMouseClicked
+    
   }//GEN-LAST:event_tblCarrerasMouseClicked
 
   /**
