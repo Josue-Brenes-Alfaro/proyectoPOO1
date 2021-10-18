@@ -47,4 +47,18 @@ public class Requisito implements InterfaceCurso {
         return true;
     } return false;
   }
+  
+  public Curso buscarCursoCorrequisito (String pCodigoCurso) throws CursoDoesNotExistsException {
+    for (Curso cursoActual: cursosCorrequisitos) {
+      if(cursoActual.getCodigoCurso().equals(pCodigoCurso))
+        return cursoActual;
+    } throw new CursoDoesNotExistsException(pCodigoCurso);
+  }
+  
+  public boolean existeCursoCorrequisito (String pCodigoCurso){
+    for(Curso cursoActual: cursosCorrequisitos) {
+      if(cursoActual.getCodigoCurso().equals(pCodigoCurso))
+        return true;
+    } return false;
+  }
 }
