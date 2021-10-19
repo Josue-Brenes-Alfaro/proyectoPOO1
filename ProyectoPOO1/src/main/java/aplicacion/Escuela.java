@@ -246,8 +246,9 @@ public class Escuela extends javax.swing.JFrame {
     }
     
     try{
-      Connection con = Conexion.getConexion();
-      PreparedStatement ps = con.prepareStatement("INSERT INTO EscuelaOArea (codigoCarrera, nombreCarrera, tieneEscuela, idPlan) VALUES (?,?,?,?)");
+      Conexion con = new Conexion();
+      con.establecerConexion();
+      PreparedStatement ps = con.("INSERT INTO EscuelaOArea (codigoCarrera, nombreCarrera, tieneEscuela, idPlan) VALUES (?,?,?,?)");
       ps.setString(1, codigoCarrera);
       ps.setString(2, nombreCarrera);
       ps.setInt(3, esEscuela);
