@@ -5,7 +5,6 @@
 package interfaces;
 
 import excepciones.CursoDoesNotExistsException;
-import excepciones.CursoAlreadyExistsException;
 import logicadenegocios.Curso; 
 
 /**
