@@ -1,42 +1,49 @@
 package SQL;
+import aplicacion.Escuela;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-/**
- * Clase para la conexión de la base de datos SQL
- * @author Alejandra
- * @author Paola
- * @author Josue
- * @version 1.0
- */
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+
 public class Conexion {
   
-  Connection conectar = null;
-  
-  String usuario = "usuariosql" ;
-  String contraseña = "root1";
-  String bd = "Proyecto_POO1" ;
-  String ip = "localhost";
-  String puerto = "1433";
-  
-  String cadena="jdbc:sqlserver://"+ip+":"+puerto+"/"+bd;
-  //*********************************************
+ private String url;
+ private Connection connect;
+
   /**
-   * Método para realizar la conexión a la base de datos Proyecto_POO1
-   * @return con conexión con la base de datos Proyecto_POO1
-   */  
-  public Connection establecerConexion(){
-    
-    try{
-      String cadena = "jdbc:sqlserver://localhost:"+puerto+";"+"databaseName="+bd;
-      conectar = DriverManager.getConnection(cadena,usuario,contraseña);
-      JOptionPane.showMessageDialog(null, "Se conecto a la base de datos");
-     
-    }catch(Exception e){
-      JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos, error:"+e.toString());
+   * Constructor del objeto {@code Conector} con el url del servidor para la base de datos.
+   * @param pUrl
+   */
+  public Conexion (String pUrl) {
+    pUrl = "jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1";
+    this.url = pUrl;
+   }
+  
+  /**
+   * Método para conectarse a la base de datos por medio del driver JDBC para realizar operaciones.
+   */
+  public void connect() {
+    try {
+      connect = DriverManager.getConnection(url);
+      if (connect != null) {
+        System.out.println("Connected");
+      }
+    } catch (SQLException ex) {
+      System.out.println(ex);
     }
-    return conectar;
-  } 
+  }
+  
+  //* Metdo para cerrar la conexion sql server*//
+  public void close() {
+    try {
+      connect.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
 }

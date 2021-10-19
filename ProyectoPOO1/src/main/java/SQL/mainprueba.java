@@ -9,8 +9,10 @@ package SQL;
  * @author Josue
  */
 public class mainprueba {
-  public static void main(String[] args){
-    Conexion con = new Conexion();
-    con.establecerConexion();
+  Conexion c = new Conexion("");
+  
+  public void main(String[] args){
+    c.connect();
+    c.close();
   }  
 }
