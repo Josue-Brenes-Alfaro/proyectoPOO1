@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Conexion {
   
  private String url;
- private Connection connect;
+ public Connection connect;
 
   /**
    * Constructor del objeto {@code Conector} con el url del servidor para la base de datos.

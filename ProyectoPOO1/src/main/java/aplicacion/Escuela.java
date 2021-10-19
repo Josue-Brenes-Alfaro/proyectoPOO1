@@ -246,24 +246,19 @@ public class Escuela extends javax.swing.JFrame {
       esEscuela=0;
     }
     c.connect();
-    /*
-    PreparedStatement st = prepareStatement("INSERT INTO ESCUELA VALUES ('"+ codigoCarrera + "','"+ nombreCarrera +"','"+ esEscuela +"','"+ idPlan +"')");
-    st.executeUpdate();
-    
-    try{
-      PreparedStatement ps = c.("INSERT INTO EscuelaOArea (codigoCarrera, nombreCarrera, tieneEscuela, idPlan) VALUES (?,?,?,?)");
-      ps.setString(1, codigoCarrera);
-      ps.setString(2, nombreCarrera);
-      ps.setInt(3, esEscuela);
-      ps.setString(4, idPlan);
-      ps.executeUpdate();
+
+    try {
+      PreparedStatement st = connect.prepareStatement("INSERT INTO ESCUELA VALUES ('"+ codigoCarrera + ","+ "','"+ nombreCarrera +"','"+ esEscuela +"','"+ idPlan +"')");
+      st.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro guardado");
       limpiar();
       cargarTabla();
-    }catch(SQLException e){
-      JOptionPane.showMessageDialog(null,e.toString());
-    }
-    c.connect();
+      c.close();
+    } 
+    catch (SQLException ex) {
+      System.err.println(ex.getMessage());
+    }       
+    
   }//GEN-LAST:event_btnGuardarActionPerformed
 
   private void tblCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarrerasMouseClicked
@@ -280,7 +275,6 @@ public class Escuela extends javax.swing.JFrame {
     }catch(){
       
     }
-   */
   }//GEN-LAST:event_tblCarrerasMouseClicked
 
   /**
