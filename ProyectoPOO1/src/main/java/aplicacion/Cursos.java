@@ -4,6 +4,12 @@
  */
 package aplicacion;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pol_D
@@ -15,6 +21,15 @@ public class Cursos extends javax.swing.JFrame {
    */
   public Cursos() {
     initComponents();
+    for(int inicial = 1; inicial < 11; inicial++) {
+      String numCadena= inicial+"";
+    comBxEscuelaOAreaCargo.addItem(numCadena );
+    }
+    for(int inicial = 1; inicial < 25; inicial++) {
+      String numCadena= inicial+"";
+    comBxHorasLectivas.addItem(numCadena );
+    }
+    
   }
 
   /**
@@ -190,7 +205,23 @@ public class Cursos extends javax.swing.JFrame {
   }//GEN-LAST:event_comBxEscuelaOAreaCargoActionPerformed
 
   private void btnGuardarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCursoActionPerformed
-    // TODO add your handling code here:
+      String escuelaIng = comBxEscuelaOAreaCargo.getSelectedItem().toString();
+      String nombreCursoIng = txtNombreCurso.getText();
+      int cantidadCreditosIng = Integer.parseInt(comBxCantiCreditos.getSelectedItem().toString());
+      int horasLectivasIng =  Integer.parseInt(comBxHorasLectivas.getSelectedItem().toString());
+       
+   // try {
+   //   Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+   //   PreparedStatement st = connect.prepareStatement("INSERT INTO EscuelaOArea VALUES ('"+ codigoCarrera + ","+ "','"+ nombreCarrera +"','"+ esEscuela +"')");
+   //   st.executeUpdate();
+   //   JOptionPane.showMessageDialog(null,"Registro guardado");
+   //   limpiar();
+   //   cargarTabla();
+   //   c.close();
+   // } 
+   // catch (SQLException ex) {
+     // System.err.println(ex.getMessage());
+   // }  
   }//GEN-LAST:event_btnGuardarCursoActionPerformed
 
   /**
