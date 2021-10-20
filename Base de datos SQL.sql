@@ -1,4 +1,4 @@
---Creación de la base de dato Proyecto_POO1
+--CreaciÃ³n de la base de dato Proyecto_POO1
 CREATE DATABASE Proyecto_POO1
 --Se coloca en la base de datos Proyecto_POO1 para hacerle modificaciones
 USE Proyecto_POO1;
@@ -7,7 +7,9 @@ CREATE TABLE EscuelaOArea(
   codigoCarrera varchar(20) NOT NULL,
   nombreCarrera varchar(70) NOT NULL,
   tieneEscuea bit NOT NULL,
+  idPlan varchar(10),
   PRIMARY KEY (codigoCarrera),
+  FOREIGN KEY (idPlan) REFERENCES PlanDeEstudio (idPlan)
 );
 
 CREATE TABLE Curso(
