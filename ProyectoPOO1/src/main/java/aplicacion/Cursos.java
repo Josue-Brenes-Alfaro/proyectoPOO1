@@ -147,10 +147,7 @@ public class Cursos extends javax.swing.JFrame {
     comBxCantiCreditos = new javax.swing.JComboBox<>();
     comBxHorasLectivas = new javax.swing.JComboBox<>();
     btnGuardarCurso = new javax.swing.JButton();
-    btnModificarCurso = new javax.swing.JButton();
-    btnEliminarCurso = new javax.swing.JButton();
     btnLimpiarCurso = new javax.swing.JButton();
-    jTextField2 = new javax.swing.JTextField();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Cursos");
@@ -206,13 +203,7 @@ public class Cursos extends javax.swing.JFrame {
       }
     });
 
-    btnModificarCurso.setText("Modificar");
-
-    btnEliminarCurso.setText("Eliminar");
-
     btnLimpiarCurso.setText("Limpiar");
-
-    jTextField2.setText("jTextField2");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -222,20 +213,13 @@ public class Cursos extends javax.swing.JFrame {
         .addGap(28, 28, 28)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(layout.createSequentialGroup()
-                    .addComponent(btnGuardarCurso)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                  .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addComponent(btnModificarCurso)
-                    .addGap(124, 124, 124)))
-                .addComponent(btnEliminarCurso)
-                .addGap(111, 111, 111)
-                .addComponent(btnLimpiarCurso))
-              .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(43, 43, 43))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGap(204, 204, 204)
+                .addComponent(btnGuardarCurso)
+                .addGap(100, 100, 100)
+                .addComponent(btnLimpiarCurso))))
           .addGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(jLabel6)
@@ -248,10 +232,8 @@ public class Cursos extends javax.swing.JFrame {
               .addComponent(comBxEscuelaOAreaCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(txtNombreCurso)
               .addComponent(comBxCantiCreditos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(comBxHorasLectivas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(127, 127, 127))))
+              .addComponent(comBxHorasLectivas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        .addContainerGap(43, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,8 +243,7 @@ public class Cursos extends javax.swing.JFrame {
         .addGap(40, 40, 40)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel2)
-          .addComponent(comBxEscuelaOAreaCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(comBxEscuelaOAreaCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(23, 23, 23)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel4)
@@ -278,8 +259,6 @@ public class Cursos extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(btnGuardarCurso)
-          .addComponent(btnModificarCurso)
-          .addComponent(btnEliminarCurso)
           .addComponent(btnLimpiarCurso))
         .addGap(27, 27, 27)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -368,10 +347,8 @@ public class Cursos extends javax.swing.JFrame {
   
   private int cantidadCursos; 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton btnEliminarCurso;
   private javax.swing.JButton btnGuardarCurso;
   private javax.swing.JButton btnLimpiarCurso;
-  private javax.swing.JButton btnModificarCurso;
   private javax.swing.JComboBox<String> comBxCantiCreditos;
   private javax.swing.JComboBox<String> comBxEscuelaOAreaCargo;
   private javax.swing.JComboBox<String> comBxHorasLectivas;
@@ -381,7 +358,6 @@ public class Cursos extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel5;
   private javax.swing.JLabel jLabel6;
   private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTextField jTextField2;
   private javax.swing.JTable tblCursos;
   private javax.swing.JTextField txtNombreCurso;
   // End of variables declaration//GEN-END:variables

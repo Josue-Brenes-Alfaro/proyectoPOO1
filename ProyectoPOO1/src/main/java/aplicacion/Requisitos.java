@@ -4,6 +4,14 @@
  */
 package aplicacion;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pol_D
@@ -15,6 +23,100 @@ public class Requisitos extends javax.swing.JPanel {
    */
   public Requisitos() {
     initComponents();
+    obtenerNombreEscuelaRe ();
+    obtenerCodigoCurso ();
+  }
+  
+  public void obtenerNombreEscuelaRe () {
+    ResultSet rs;
+    try {
+      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+      listaModelo.addElement("Selecciones una escuela");
+    
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT * from EscuelaOArea order by nombreCarrera");
+      rs = st.executeQuery();
+    
+      try {
+        while (rs.next()){
+          listaModelo.addElement(rs.getString("nombreCarrera"));
+      } rs.close();
+      
+      } catch(SQLException ex ){
+        System.err.println(ex.getMessage());
+      } comBxEscuelaAreaRequisitos.setModel(listaModelo);
+    } catch(SQLException e){
+      JOptionPane.showMessageDialog(null,e);
+    }
+  }
+  
+  public void obtenerCodigoCurso () {
+    ResultSet rs;
+    try {
+      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+      listaModelo.addElement("Selecciones una escuela");
+    
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT * from Curso order by codigoCurso ");
+      rs = st.executeQuery();
+    
+      try {
+        while (rs.next()){
+          listaModelo.addElement(rs.getString("codigoCurso"));
+      } rs.close();
+      
+      } catch(SQLException ex ){
+        System.err.println(ex.getMessage());
+      } comBxCodigoCursoRequisitos.setModel(listaModelo);
+    } catch(SQLException e){
+      JOptionPane.showMessageDialog(null,e);
+    }
+  }
+  
+  public void obtenerCodigoCursoRequisito () {
+    ResultSet rs;
+    try {
+      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+      listaModelo.addElement("Selecciones una escuela");
+    
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT * from Curso order by codigoCurso ");
+      rs = st.executeQuery();
+    
+      try {
+        while (rs.next()){
+          listaModelo.addElement(rs.getString("codigoCurso"));
+      } rs.close();
+      
+      } catch(SQLException ex ){
+        System.err.println(ex.getMessage());
+      } comBxRequisito.setModel(listaModelo);
+    } catch(SQLException e){
+      JOptionPane.showMessageDialog(null,e);
+    }
+  }
+  
+  public void obtenerCodigoCursoCorrequistio () {
+    ResultSet rs;
+    try {
+      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+      listaModelo.addElement("Selecciones una escuela");
+    
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT * from Curso order by codigoCurso ");
+      rs = st.executeQuery();
+    
+      try {
+        while (rs.next()){
+          listaModelo.addElement(rs.getString("codigoCurso"));
+      } rs.close();
+      
+      } catch(SQLException ex ){
+        System.err.println(ex.getMessage());
+      } comBxCorrequisito.setModel(listaModelo);
+    } catch(SQLException e){
+      JOptionPane.showMessageDialog(null,e);
+    }
   }
 
   /**
