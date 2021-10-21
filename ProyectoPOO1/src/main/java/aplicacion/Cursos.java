@@ -7,7 +7,9 @@ package aplicacion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,16 +23,50 @@ public class Cursos extends javax.swing.JFrame {
    */
   public Cursos() {
     initComponents();
+    cargarCmbCatiCreditos ();
+    cargarCmbHorasLectivas ();
+    Obt_NombreEscuela ();
+  }
+  
+  public void cargarCmbCatiCreditos () {
     for(int inicial = 1; inicial < 11; inicial++) {
       String numCadena= inicial+"";
-    comBxCantiCreditos.addItem(numCadena );
+      comBxCantiCreditos.addItem(numCadena );
     }
+  }
+  
+  public void cargarCmbHorasLectivas () {
     for(int inicial = 1; inicial < 25; inicial++) {
       String numCadena= inicial+"";
     comBxHorasLectivas.addItem(numCadena );
     }
-    
   }
+  
+  public void Obt_NombreEscuela () {
+    ResultSet rs;
+    try {
+      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+      listaModelo.addElement("Selecciones una clave");
+    
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT * from EscuelaOArea order by nombreCarrera");
+      rs = st.executeQuery();
+    
+      try {
+        while (rs.next()){
+          listaModelo.addElement(rs.getString("nombreCarrera"));
+      } rs.close();
+      
+      } catch(SQLException ex ){
+        System.err.println(ex.getMessage());
+      } comBxEscuelaOAreaCargo.setModel(listaModelo);
+    } catch(SQLException e){
+      JOptionPane.showMessageDialog(null,e);
+    }
+  }
+  
+  
+  public void cargarCmbNombreEscuelas (){}
 
   /**
    * This method is called from within the constructor to initialize the form.
