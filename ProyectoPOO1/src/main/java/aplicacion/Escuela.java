@@ -27,6 +27,27 @@ public class Escuela extends javax.swing.JFrame {
     btnGr.add(rbSi);
     cargarTabla();
   }
+  
+  /**
+   * Se encarga de que no se repita el nombre de las
+   * @param pNombreEscuela 
+   */
+  public String generarCodigoEscuela (String pNombreEscuela ){
+    int largo = pNombreEscuela.length();
+    String ini=" ";
+    String xx=pNombreEscuela.substring(0, 1);;
+    String x="";
+    String xxx="";
+    for (int i = 0; i <largo; i++) {
+        x=pNombreEscuela.substring(i,i+1);
+      if (x.equals(ini)) {
+        xxx=pNombreEscuela.substring(i+1, i+2);
+        xx=xx+xxx;
+
+      } 
+    }
+    return xx;
+  }
 
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -38,14 +59,10 @@ public class Escuela extends javax.swing.JFrame {
     jPanel1 = new javax.swing.JPanel();
     jLabel2 = new javax.swing.JLabel();
     txtNombreCarrera = new javax.swing.JTextField();
-    jLabel3 = new javax.swing.JLabel();
-    txtCodigoCarrera = new javax.swing.JTextField();
     jLabel4 = new javax.swing.JLabel();
     rbSi = new javax.swing.JRadioButton();
     rbNo = new javax.swing.JRadioButton();
     btnGuardar = new javax.swing.JButton();
-    btnModificar = new javax.swing.JButton();
-    btnEliminar = new javax.swing.JButton();
     btnLimpiar = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,14 +77,14 @@ public class Escuela extends javax.swing.JFrame {
 
       },
       new String [] {
-        "Nombre Carrera", "Codigo Carrera", "Es escuela", "Plan de estudio"
+        "Nombre Carrera", "Codigo Carrera", "Es escuela"
       }
     ) {
       Class[] types = new Class [] {
-        java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class
+        java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
       };
       boolean[] canEdit = new boolean [] {
-        false, false, true, false
+        false, false, false
       };
 
       public Class getColumnClass(int columnIndex) {
@@ -92,11 +109,6 @@ public class Escuela extends javax.swing.JFrame {
 
     txtNombreCarrera.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-    jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jLabel3.setText("Código:  ");
-
-    txtCodigoCarrera.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
     jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel4.setText("¿Es una escuela?:");
 
@@ -114,14 +126,13 @@ public class Escuela extends javax.swing.JFrame {
       }
     });
 
-    btnModificar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    btnModificar.setText("Modificar");
-
-    btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    btnEliminar.setText("Eliminar");
-
     btnLimpiar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnLimpiar.setText("Limpiar");
+    btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpiarActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -129,54 +140,42 @@ public class Escuela extends javax.swing.JFrame {
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jLabel2)
-              .addComponent(jLabel3))
+            .addComponent(jLabel2)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(txtCodigoCarrera)
-              .addComponent(txtNombreCarrera)))
+            .addComponent(txtNombreCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
               .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(btnModificar)
-                  .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addComponent(rbSi, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(rbNo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnEliminar)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-        .addComponent(btnLimpiar)
-        .addGap(37, 37, 37))
+                .addComponent(rbSi, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbNo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+        .addContainerGap(133, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGap(18, 18, 18)
+        .addGap(26, 26, 26)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel2)
           .addComponent(txtNombreCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(18, 18, 18)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel3)
-          .addComponent(txtCodigoCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(22, 22, 22)
+        .addGap(45, 45, 45)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel4)
           .addComponent(rbSi)
           .addComponent(rbNo))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(btnGuardar)
-          .addComponent(btnModificar)
-          .addComponent(btnEliminar)
           .addComponent(btnLimpiar))
         .addGap(27, 27, 27))
     );
@@ -186,17 +185,17 @@ public class Escuela extends javax.swing.JFrame {
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap(128, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addGap(10, 10, 10)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(0, 120, Short.MAX_VALUE))
-      .addGroup(layout.createSequentialGroup()
-        .addGap(230, 230, 230)
-        .addComponent(jLabel1)
-        .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(46, 46, 46)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(80, 80, 80)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(116, 116, 116)
+            .addComponent(jLabel1)))
+        .addContainerGap(40, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,10 +203,10 @@ public class Escuela extends javax.swing.JFrame {
         .addGap(6, 6, 6)
         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(12, 12, 12))
+        .addContainerGap())
     );
 
     pack();
@@ -218,7 +217,7 @@ public class Escuela extends javax.swing.JFrame {
  */
   private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
     String nombreCarrera = txtNombreCarrera.getText();
-    String codigoCarrera = txtCodigoCarrera.getText();
+    String codigoCarrera = generarCodigoEscuela(nombreCarrera);
     int esEscuela;
     if(rbSi.isSelected()==true){
       esEscuela=1;
@@ -244,38 +243,14 @@ public class Escuela extends javax.swing.JFrame {
     
   }//GEN-LAST:event_btnGuardarActionPerformed
 
-
   private void tblCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarrerasMouseClicked
-    
-    try{
-      int fila = tblCarreras.getSelectedRow();
-      int id = Integer.parseInt(tblCarreras.getValueAt(fila,0).toString());
-      ResultSet rs;
-      
-      c.connect();
-      
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("SELECT codigoCarrera, tieneEscuela"
-          +"from EscuelaOArea WHRE nombreCarrera="+id);
-      rs = st.executeQuery();
-      
-      while(rs.next()){
-        txtNombreCarrera.setText(String.valueOf(id));
-        txtNombreCarrera.setText(String.valueOf(""));
-        txtCodigoCarrera.setText(rs.getString("codigoCarrera"));
-        if(rs.getString("tieneEscuela").equals("1")){
-          rbSi.setSelected(true);
-        }else if(rs.getString("tieneEscuela").equals("0")){
-          rbNo.setSelected(true);
-        }
-      }
-      
-      c.close();
-      
-    }catch(SQLException e){
-      System.err.println(e.getMessage());
-    }
+
   }//GEN-LAST:event_tblCarrerasMouseClicked
+
+  private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    limpiar();
+  }//GEN-LAST:event_btnLimpiarActionPerformed
+
 
   
   /**
@@ -283,7 +258,6 @@ public class Escuela extends javax.swing.JFrame {
    */
   private void limpiar(){
     txtNombreCarrera.setText("");
-    txtCodigoCarrera.setText("");
     btnGr.clearSelection(); 
   }
   
@@ -361,20 +335,16 @@ public class Escuela extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton btnEliminar;
   private javax.swing.JButton btnGuardar;
   private javax.swing.JButton btnLimpiar;
-  private javax.swing.JButton btnModificar;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
-  private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JRadioButton rbNo;
   private javax.swing.JRadioButton rbSi;
   private javax.swing.JTable tblCarreras;
-  private javax.swing.JTextField txtCodigoCarrera;
   private javax.swing.JTextField txtNombreCarrera;
   // End of variables declaration//GEN-END:variables
 }
