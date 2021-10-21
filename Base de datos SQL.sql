@@ -30,7 +30,6 @@ CREATE TABLE Curso(
   nombreCurso varchar(70) NOT NULL,
   cantidadCreditos int NOT NULL,
   horasLectivas int NOT NULL,
-  numBloque int NOT NULL,
   cantidadCursos int NOT NULL,
   PRIMARY KEY (codigoCurso)
 );
@@ -47,6 +46,7 @@ CREATE TABLE PlanDeEstudio(
 CREATE TABLE CursosPorPlan (
  idPlan varchar(10),
  codigoCurso varchar(10),
+ numBloque int,
  FOREIGN KEY (codigoCurso) REFERENCES Curso (codigoCurso),
  FOREIGN KEY (idPlan) REFERENCES PlanDeEstudio (idPlan),
 );
