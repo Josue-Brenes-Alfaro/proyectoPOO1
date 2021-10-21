@@ -25,7 +25,7 @@ public class Cursos extends javax.swing.JFrame {
     initComponents();
     cargarCmbCatiCreditos ();
     cargarCmbHorasLectivas ();
-    Obt_NombreEscuela ();
+    obtenerNombreEscuela ();
   }
   
   public void cargarCmbCatiCreditos () {
@@ -42,7 +42,7 @@ public class Cursos extends javax.swing.JFrame {
     }
   }
   
-  public void Obt_NombreEscuela () {
+  public void obtenerNombreEscuela () {
     ResultSet rs;
     try {
       DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
@@ -63,6 +63,64 @@ public class Cursos extends javax.swing.JFrame {
     } catch(SQLException e){
       JOptionPane.showMessageDialog(null,e);
     }
+  }
+  
+  public void cargarCantidadCursos () {
+    ResultSet rs;
+    try {
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT COUNT (*) AS cantidadCursos FROM Curso");
+      rs = st.executeQuery();
+    
+      try {
+        if(rs.next()) {
+       //Si hay resultados obtengo el valor. 
+        this.cantidadCursos= rs.getInt(1);
+     } rs.close();
+      
+      } catch(SQLException ex ){
+        System.err.println(ex.getMessage());
+      }
+    } catch(SQLException e){
+      JOptionPane.showMessageDialog(null,e);
+    }
+  }
+  
+  
+  public String generarCodigoCurso (String pNombreEscuela ){
+    int largo = pNombreEscuela.length();
+    String ini=" ";
+    String xx=pNombreEscuela.substring(0, 1);;
+    String x="";
+    String xxx="";
+        for (int i = 0; i <largo; i++) {
+            x=pNombreEscuela.substring(i,i+1);
+        
+          if (x.equals(ini)) {
+             
+              xxx=pNombreEscuela.substring(i+1, i+2);
+                xx=xx+xxx+this.cantidadCursos;
+                
+            } 
+            
+        }
+    return xx;
+  }
+  public String generarCodigoEscuelaCurso (String pNombreEscuela ){
+    int largo = pNombreEscuela.length();
+    String ini=" ";
+    String xx=pNombreEscuela.substring(0, 1);;
+    String x="";
+    String xxx="";
+    for (int i = 0; i <largo; i++) {
+        x=pNombreEscuela.substring(i,i+1);
+      if (x.equals(ini)) {
+        xxx=pNombreEscuela.substring(i+1, i+2);
+        xx=xx+xxx;
+
+      } 
+    }
+    return xx;
   }
   
   
@@ -237,22 +295,40 @@ public class Cursos extends javax.swing.JFrame {
 
   private void btnGuardarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCursoActionPerformed
       String escuelaIng = comBxEscuelaOAreaCargo.getSelectedItem().toString();
+      String codigoEscuelaIng = generarCodigoEscuelaCurso (escuelaIng );
+      
+      String codigoCursoIng = generarCodigoCurso (escuelaIng );
       String nombreCursoIng = txtNombreCurso.getText();
       int cantidadCreditosIng = Integer.parseInt(comBxCantiCreditos.getSelectedItem().toString());
       int horasLectivasIng =  Integer.parseInt(comBxHorasLectivas.getSelectedItem().toString());
-       
-   // try {
-   //   Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-   //   PreparedStatement st = connect.prepareStatement("INSERT INTO EscuelaOArea VALUES ('"+ codigoCarrera + ","+ "','"+ nombreCarrera +"','"+ esEscuela +"')");
-   //   st.executeUpdate();
-   //   JOptionPane.showMessageDialog(null,"Registro guardado");
-   //   limpiar();
-   //   cargarTabla();
-   //   c.close();
-   // } 
-   // catch (SQLException ex) {
-     // System.err.println(ex.getMessage());
-   // }  
+      this.cantidadCursos++;
+      
+    try {
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("INSERT INTO Curso VALUES ('"+ codigoCursoIng + ","+ "','"+ nombreCursoIng +"',"+ cantidadCreditosIng +", "+ horasLectivasIng +", "+ cantidadCursos +")");
+      st.executeUpdate();
+      JOptionPane.showMessageDialog(null,"Registro guardado");
+      //limpiar();
+      //cargarTabla();
+      //c.close();
+    } 
+    catch (SQLException ex) {
+     System.err.println(ex.getMessage());
+    }
+    
+    try {
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("INSERT INTO CursosPorEscuela VALUES ('"+ codigoEscuelaIng + ","+ "','"+ codigoCursoIng +"')");
+      st.executeUpdate();
+      JOptionPane.showMessageDialog(null,"Registro guardado");
+      //limpiar();
+      //cargarTabla();
+      //c.close();
+    } 
+    catch (SQLException ex) {
+     System.err.println(ex.getMessage());
+    } 
+    
   }//GEN-LAST:event_btnGuardarCursoActionPerformed
 
   /**
@@ -289,7 +365,8 @@ public class Cursos extends javax.swing.JFrame {
       }
     });
   }
-
+  
+  private int cantidadCursos; 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnEliminarCurso;
   private javax.swing.JButton btnGuardarCurso;
