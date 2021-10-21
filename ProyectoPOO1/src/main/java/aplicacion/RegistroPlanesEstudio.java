@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,6 +26,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     initComponents();
     obtenerNombreCarreras();
     obtenerNombreCursos();
+    cargarTablaPlanEstudio();
   }
   
   public void obtenerNombreCarreras(){
@@ -98,28 +101,29 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     jLabel6 = new javax.swing.JLabel();
     cbxCursos = new javax.swing.JComboBox<>();
     jButton1 = new javax.swing.JButton();
+    jLabel7 = new javax.swing.JLabel();
+    jScrollPane2 = new javax.swing.JScrollPane();
+    jTable1 = new javax.swing.JTable();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Registro de Planes de Estudio");
 
+    tblPlanesEstudio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     tblPlanesEstudio.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null}
+
       },
       new String [] {
-        "Carrera", "Código del Plan", "Vigencia", "Bloque"
+        "Código del Plan de Estudio", "Fecha de Vigencia"
       }
     ) {
       Class[] types = new Class [] {
-        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+        java.lang.String.class, java.lang.String.class
       };
       boolean[] canEdit = new boolean [] {
-        false, false, false, true
+        false, false
       };
 
       public Class getColumnClass(int columnIndex) {
@@ -179,87 +183,106 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jButton1.setText("Agregar curso en bloque");
 
+    jLabel7.setText("Año - Mes - Día");
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-            .addComponent(jLabel4)
-            .addGap(18, 18, 18)
-            .addComponent(txtFechaVigencia))
-          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jLabel3)
-              .addComponent(jLabel2))
-            .addGap(27, 27, 27)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-              .addComponent(comBxCarreras, 0, 163, Short.MAX_VALUE)
-              .addComponent(txtCodPlanEstudio)))
-          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-            .addGap(44, 44, 44)
-            .addComponent(btnGuardar)))
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(43, 43, 43)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cmbNumBloque, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(2, 2, 2))
-              .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(cbxCursos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())))
-          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(btnGuardar)))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton1)
-            .addGap(65, 65, 65))))
+            .addGap(65, 65, 65))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(134, 134, 134)
+            .addComponent(jLabel3)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(comBxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(txtFechaVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(txtCodPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addComponent(jLabel7)
+                    .addGap(30, 30, 30)))))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18))
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addGap(9, 9, 9)))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(cmbNumBloque, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(cbxCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18))))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(23, 23, 23)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(jLabel3)
-              .addComponent(comBxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(25, 25, 25))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(jLabel6)
-              .addComponent(cbxCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+        .addContainerGap()
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(comBxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabel3))
+        .addGap(37, 37, 37)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel2)
-          .addComponent(txtCodPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(txtCodPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(cbxCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabel6))
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(18, 18, 18)
+            .addGap(31, 31, 31)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(jLabel4)
-              .addComponent(txtFechaVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+              .addComponent(txtFechaVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(cmbNumBloque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabel5)))
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(4, 4, 4)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(jLabel5)
-              .addComponent(cmbNumBloque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGap(18, 18, 18)
+            .addComponent(jLabel7)))
         .addGap(18, 18, 18)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(btnGuardar)
           .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jButton1))
         .addContainerGap(30, Short.MAX_VALUE))
     );
+
+    jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jTable1.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+
+      },
+      new String [] {
+        "Plan de Estudio", "Curso", "Bloque"
+      }
+    ) {
+      boolean[] canEdit = new boolean [] {
+        false, true, false
+      };
+
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return canEdit [columnIndex];
+      }
+    });
+    jScrollPane2.setViewportView(jTable1);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -268,13 +291,13 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addGap(24, 24, 24)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jScrollPane1)
+          .addComponent(jLabel1)
+          .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jLabel1)
-              .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(0, 0, Short.MAX_VALUE)))
-        .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(44, 44, 44)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(103, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,9 +306,11 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
         .addComponent(jLabel1)
         .addGap(18, 18, 18)
         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap())
+        .addGap(18, 18, 18)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(21, Short.MAX_VALUE))
     );
 
     pack();
@@ -300,11 +325,11 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
 
     try {
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("INSERT INTO PlanDeEstudio VALUES ('"+ codioPlanEstudio +"','"+ fechaVigencia +"')");
+      PreparedStatement st = connect.prepareStatement("INSERT INTO PlanDeEstudio(idPlan, fechaVigencia ) VALUES ('"+ codioPlanEstudio +"','"+ fechaVigencia +"')");
       st.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro guardado");
       limpiar();
-      //cargarTabla();
+      cargarTablaPlanEstudio();
       c.close();
     } 
     catch (SQLException ex) {
@@ -313,6 +338,39 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     
   }//GEN-LAST:event_btnGuardarActionPerformed
 
+  private void cargarTablaPlanEstudio(){
+    DefaultTableModel modeloTabla = (DefaultTableModel) tblPlanesEstudio.getModel();
+    modeloTabla.setRowCount(0);
+    ResultSet rs;
+    ResultSetMetaData rsmd;
+    int columnas;
+    
+    int [] anchos = {10, 50, 100, 30, 100};
+    for(int i = 0 ; i < tblPlanesEstudio.getColumnCount(); i++){
+      tblPlanesEstudio.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+    }
+    
+    try{
+      
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT idPlan, fechaVigencia from PlanDeEstudio");
+      rs = st.executeQuery();
+      rsmd = rs.getMetaData();
+      columnas = rsmd.getColumnCount();
+      
+      while(rs.next()){
+        Object[] fila = new Object[columnas];
+        for(int indice=0; indice<columnas; indice++){
+          fila[indice]=rs.getObject(indice+1);
+        }
+        modeloTabla.addRow(fila);
+      }
+    }catch(SQLException e){
+      
+      JOptionPane.showMessageDialog(null,e);
+    }
+  }
+  
   private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
     limpiar();
   }//GEN-LAST:event_btnLimpiarActionPerformed
@@ -369,8 +427,11 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel5;
   private javax.swing.JLabel jLabel6;
+  private javax.swing.JLabel jLabel7;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JTable jTable1;
   private javax.swing.JTable tblPlanesEstudio;
   private javax.swing.JTextField txtCodPlanEstudio;
   private javax.swing.JTextField txtFechaVigencia;
