@@ -73,9 +73,10 @@ public class Cursos extends javax.swing.JFrame {
       rs = st.executeQuery();
     
       try {
-        while (rs.next()){
-         cantidadCursos = rs.getInt(cantidadCursos);
-      } rs.close();
+        if(rs.next()) {
+       //Si hay resultados obtengo el valor. 
+        this.cantidadCursos= rs.getInt(1);
+     } rs.close();
       
       } catch(SQLException ex ){
         System.err.println(ex.getMessage());
