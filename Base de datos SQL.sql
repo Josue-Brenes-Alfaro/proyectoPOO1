@@ -9,7 +9,20 @@ CREATE TABLE EscuelaOArea(
   tieneEscuea bit NOT NULL,
   idPlan varchar(10),
   PRIMARY KEY (codigoCarrera),
-  FOREIGN KEY (idPlan) REFERENCES PlanDeEstudio (idPlan)
+);
+
+CREATE TABLE PlanesPorEscuela (
+ codigoCarrera varchar(20),
+ idPlan varchar(10),
+ FOREIGN KEY (idPlan) REFERENCES PlanDeEstudio (idPlan),
+ FOREIGN KEY (codigoCarrera) REFERENCES EscuelaOArea (codigoCarrera)
+);
+
+CREATE TABLE CursosPorEscuela (
+ codigoCarrera varchar(20),
+ codigoCurso varchar(10),
+ FOREIGN KEY (codigoCurso) REFERENCES Curso (codigoCurso),
+ FOREIGN KEY (codigoCarrera) REFERENCES EscuelaOArea (codigoCarrera)
 );
 
 CREATE TABLE Curso(
@@ -28,8 +41,14 @@ CREATE TABLE PlanDeEstudio(
   cantidadCursos int NOT NULL,
   cantidadCreditos int NOT NULL,
   codigoCurso varchar(10) NOT NULL,
-  PRIMARY KEY (idPlan),
-  FOREIGN KEY (codigoCurso) REFERENCES Curso(codigoCurso)
+  PRIMARY KEY (idPlan)
+);
+
+CREATE TABLE CursosPorPlan (
+ idPlan varchar(10),
+ codigoCurso varchar(10),
+ FOREIGN KEY (codigoCurso) REFERENCES Curso (codigoCurso),
+ FOREIGN KEY (idPlan) REFERENCES PlanDeEstudio (idPlan),
 );
 
 CREATE TABLE Requisito(
