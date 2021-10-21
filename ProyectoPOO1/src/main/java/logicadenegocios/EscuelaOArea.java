@@ -1,8 +1,9 @@
 package logicadenegocios;
 
 import java.util.ArrayList;
+import excepciones.CursoDoesNotExistsException;
 import interfaces.InterfaceCurso;
-
+import logicadenegocios.EscuelaOArea; 
 /**
  * 
  * @author Alejandra Merino

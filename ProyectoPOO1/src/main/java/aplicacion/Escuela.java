@@ -47,6 +47,8 @@ public class Escuela extends javax.swing.JFrame {
     btnModificar = new javax.swing.JButton();
     btnEliminar = new javax.swing.JButton();
     btnLimpiar = new javax.swing.JButton();
+    jLabel5 = new javax.swing.JLabel();
+    txtPlanEstudio = new javax.swing.JTextField();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Escuela o Área Academica");
@@ -123,6 +125,15 @@ public class Escuela extends javax.swing.JFrame {
     btnLimpiar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnLimpiar.setText("Limpiar");
 
+    jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jLabel5.setText("Plan de estudio:");
+
+    txtPlanEstudio.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtPlanEstudioActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -131,12 +142,14 @@ public class Escuela extends javax.swing.JFrame {
         .addContainerGap()
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+            .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
             .addGap(18, 18, 18)
             .addComponent(btnModificar)
             .addGap(20, 20, 20)
             .addComponent(btnEliminar)
-            .addGap(24, 24, 24))
+            .addGap(24, 24, 24)
+            .addComponent(btnLimpiar)
+            .addGap(48, 48, 48))
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
               .addGroup(jPanel1Layout.createSequentialGroup()
@@ -153,27 +166,36 @@ public class Escuela extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                   .addComponent(txtCodigoCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                   .addComponent(txtNombreCarrera))))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        .addComponent(btnLimpiar)
-        .addGap(48, 48, 48))
+            .addGap(54, 54, 54)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(txtPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabel5))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
-        .addContainerGap()
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel2)
-          .addComponent(txtNombreCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(18, 18, 18)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel3)
-          .addComponent(txtCodigoCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(18, 18, 18)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(jLabel2)
+              .addComponent(txtNombreCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(jLabel3)
+              .addComponent(txtCodigoCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(23, 23, 23)
+            .addComponent(jLabel5)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(txtPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addGap(22, 22, 22)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel4)
           .addComponent(rbSi)
           .addComponent(rbNo))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(btnGuardar)
           .addComponent(btnModificar)
@@ -186,25 +208,25 @@ public class Escuela extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(jLabel1)
-        .addGap(72, 72, 72))
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap(32, Short.MAX_VALUE)
+        .addContainerGap(128, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
             .addGap(10, 10, 10)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(0, 23, Short.MAX_VALUE))
+        .addGap(0, 120, Short.MAX_VALUE))
+      .addGroup(layout.createSequentialGroup()
+        .addGap(230, 230, 230)
+        .addComponent(jLabel1)
+        .addGap(0, 0, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap()
+        .addGap(6, 6, 6)
         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,6 +242,7 @@ public class Escuela extends javax.swing.JFrame {
   private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
     String nombreCarrera = txtNombreCarrera.getText();
     String codigoCarrera = txtCodigoCarrera.getText();
+    String planEstudio = txtPlanEstudio.getText();
     int esEscuela;
     if(rbSi.isSelected()==true){
       esEscuela=1;
@@ -232,7 +255,7 @@ public class Escuela extends javax.swing.JFrame {
 
     try {
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("INSERT INTO EscuelaOArea VALUES ('"+ codigoCarrera + ","+ "','"+ nombreCarrera +"','"+ esEscuela +"')");
+      PreparedStatement st = connect.prepareStatement("INSERT INTO EscuelaOArea VALUES ('"+ codigoCarrera +"','"+ nombreCarrera +"','"+ esEscuela +"','"+ planEstudio +"')");
       st.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro guardado");
       limpiar();
@@ -245,30 +268,42 @@ public class Escuela extends javax.swing.JFrame {
     
   }//GEN-LAST:event_btnGuardarActionPerformed
 
- 
 
   private void tblCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarrerasMouseClicked
+    
     try{
       int fila = tblCarreras.getSelectedRow();
-      int id = Integer.parseInt(tblCarreras.getValueAt(fila,0).toString());
+      int nombreCarrera = Integer.parseInt(tblCarreras.getValueAt(fila,0).toString());
+      ResultSet rs;
+      
+      c.connect();
       
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("SELECT nombreCarrera, codigoCarrera, tieneEscuela,"
-          +"idPlan from EscuelaOArea WHRE codigoCarrera=?");
-      st.executeUpdate();
-
+      PreparedStatement st = connect.prepareStatement("SELECT codigoCarrera, tieneEscuela,"
+          +"idPlan from EscuelaOArea WHRE nombreCarrera="+nombreCarrera);
+      rs = st.executeQuery();
       
+      while(rs.next()){
+        txtNombreCarrera.setText(String.valueOf(nombreCarrera));
+        txtCodigoCarrera.setText(rs.getString("codigoCarrera"));
+        txtPlanEstudio.setText(rs.getString("idPlan"));
+        if(rs.getString("tieneEscuela").equals("1")){
+          rbSi.setSelected(true);
+        }else if(rs.getString("tieneEscuela").equals("0")){
+          rbNo.setSelected(true);
+        }
+      }
       
-      Connection con = Conexion.getConexion();
-      ps = con.prepareStatement("SELECT nombreCarrera, codigoCarrera, tieneEscuela,"
-          +"idPlan from EscuelaOArea WHRE codigoCarrera=?");
-      ps.setString(1,codigoCarrera)
-      rs = ps.executeQuery();
+      c.close();
       
-    }catch(){
-      
+    }catch(SQLException e){
+      System.err.println(e.getMessage());
     }
   }//GEN-LAST:event_tblCarrerasMouseClicked
+
+  private void txtPlanEstudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlanEstudioActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_txtPlanEstudioActionPerformed
 
   
   /**
@@ -277,6 +312,7 @@ public class Escuela extends javax.swing.JFrame {
   private void limpiar(){
     txtNombreCarrera.setText("");
     txtCodigoCarrera.setText("");
+    txtPlanEstudio.setText("");
     btnGr.clearSelection(); 
   }
   
@@ -299,7 +335,7 @@ public class Escuela extends javax.swing.JFrame {
     try{
       
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("SELECT nombreCarrera, codigoCarrera, tieneEscuela from EscuelaOArea");
+      PreparedStatement st = connect.prepareStatement("SELECT nombreCarrera, codigoCarrera, tieneEscuela, idPlan from EscuelaOArea");
       rs = st.executeQuery();
       rsmd = rs.getMetaData();
       columnas = rsmd.getColumnCount();
@@ -313,10 +349,10 @@ public class Escuela extends javax.swing.JFrame {
       }
     }catch(SQLException e){
       
-      System.out.println("Error en el catch de escuela tabla");
       JOptionPane.showMessageDialog(null,e);
     }
   }
+  
   /**
    * Método main de la ventana Escuela
    * @param args
@@ -362,6 +398,7 @@ public class Escuela extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
+  private javax.swing.JLabel jLabel5;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JRadioButton rbNo;
@@ -369,5 +406,6 @@ public class Escuela extends javax.swing.JFrame {
   private javax.swing.JTable tblCarreras;
   private javax.swing.JTextField txtCodigoCarrera;
   private javax.swing.JTextField txtNombreCarrera;
+  private javax.swing.JTextField txtPlanEstudio;
   // End of variables declaration//GEN-END:variables
 }
