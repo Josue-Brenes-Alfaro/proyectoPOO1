@@ -6,8 +6,7 @@ USE Proyecto_POO1;
 CREATE TABLE EscuelaOArea(
   codigoCarrera varchar(20) NOT NULL,
   nombreCarrera varchar(70) NOT NULL,
-  tieneEscuea bit NOT NULL,
-  idPlan varchar(10),
+  tieneEscuela bit NOT NULL,
   PRIMARY KEY (codigoCarrera),
 );
 
