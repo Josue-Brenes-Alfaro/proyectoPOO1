@@ -4,7 +4,6 @@ CREATE DATABASE Proyecto_POO1
 USE Proyecto_POO1;
 
 CREATE TABLE EscuelaOArea(
-  id int identity (1,1) NOT NULL,
   codigoCarrera varchar(20) NOT NULL,
   nombreCarrera varchar(70) NOT NULL,
   tieneEscuela bit NOT NULL,
@@ -37,8 +36,8 @@ CREATE TABLE Curso(
 CREATE TABLE PlanDeEstudio(
   idPlan varchar(10) NOT NULL,
   fechaVigencia datetime NOT NULL,
-  cantidadCursos int NOT NULL,
-  cantidadCreditos int NOT NULL,
+  cantidadCursos int NULL,
+  cantidadCreditos int NULL,
   PRIMARY KEY (idPlan)
 );
 
