@@ -25,6 +25,10 @@ public class Requisitos extends javax.swing.JPanel {
     initComponents();
     obtenerNombreEscuelaRe ();
     obtenerCodigoCurso ();
+    obtenerCodigoCursoRequisito ();
+    obtenerCodigoCursoCorrequistio ();
+    
+    
   }
   
   public void obtenerNombreEscuelaRe () {
@@ -51,13 +55,17 @@ public class Requisitos extends javax.swing.JPanel {
   }
   
   public void obtenerCodigoCurso () {
+    String codigoEscuelaConsu = this.comBxEscuelaAreaRequisitos.getSelectedItem().toString();
+    
     ResultSet rs;
     try {
       DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
-      listaModelo.addElement("Selecciones una escuela");
+      listaModelo.addElement("Seleccione una escuela");
     
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("SELECT * from Curso order by codigoCurso ");
+      PreparedStatement st = connect.prepareStatement("SELECT * from CursosPorEscuela "
+                                                      +"WHERE codigoCarrera = '"+codigoEscuelaConsu +"' "
+                                                      + "order by codigoCurso ");
       rs = st.executeQuery();
     
       try {
@@ -222,7 +230,22 @@ public class Requisitos extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnGuardarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRequisitoActionPerformed
-    // TODO add your handling code here:
+    String codigoCurso = this.comBxCodigoCursoRequisitos.getSelectedItem().toString();
+    String codigoCursoReque = comBxRequisito.getSelectedItem().toString();
+    String codigoCursoCorre = comBxCorrequisito.getSelectedItem().toString();
+    
+    try {
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("INSERT INTO Requisito VALUES ( "+ codigoCurso + ","+ codigoCursoReque +","+ codigoCursoCorre +")");
+      st.executeUpdate();
+      JOptionPane.showMessageDialog(null,"Registro guardado");
+      //limpiar();
+      //cargarTabla();
+      //c.close();
+    } 
+    catch (SQLException ex) {
+     System.err.println(ex.getMessage());
+    }
   }//GEN-LAST:event_btnGuardarRequisitoActionPerformed
 
 
