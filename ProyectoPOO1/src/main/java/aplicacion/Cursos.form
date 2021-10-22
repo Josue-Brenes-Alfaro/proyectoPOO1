@@ -27,15 +27,15 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" min="-2" pref="664" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
-                              <Component id="btnGuardarCurso" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                              <Component id="btnLimpiarCurso" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="664" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                          <Component id="btnGuardarCurso" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                          <Component id="btnLimpiarCurso" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                          <Component id="btnRegresarCursos" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -88,6 +88,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnGuardarCurso" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLimpiarCurso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRegresarCursos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="100" max="-2" attributes="0"/>
@@ -117,11 +118,10 @@
         <Component class="javax.swing.JTable" name="tblCursos">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="4">
+              <Table columnCount="4" rowCount="4">
                 <Column editable="false" title="C&#xf3;digo" type="java.lang.String"/>
                 <Column editable="false" title="Nombre" type="java.lang.String"/>
-                <Column editable="false" title="Escuela o &#xe1;rea a cargo" type="java.lang.String"/>
-                <Column editable="true" title="Cr&#xe9;ditos" type="java.lang.Integer"/>
+                <Column editable="false" title="Cr&#xe9;ditos" type="java.lang.Integer"/>
                 <Column editable="false" title="Horas lectivas" type="java.lang.Integer"/>
               </Table>
             </Property>
@@ -158,6 +158,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Cursos_tblCursos"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -222,6 +225,14 @@
     <Component class="javax.swing.JButton" name="btnLimpiarCurso">
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpiar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarCursoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnRegresarCursos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Volver"/>
       </Properties>
     </Component>
   </SubComponents>

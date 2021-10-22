@@ -146,6 +146,10 @@ public class Requisitos extends javax.swing.JPanel {
     comBxRequisito = new javax.swing.JComboBox<>();
     comBxCorrequisito = new javax.swing.JComboBox<>();
     btnGuardarRequisito = new javax.swing.JButton();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    jTable1 = new javax.swing.JTable();
+    btnEliminarRequisitoCurso = new javax.swing.JButton();
+    btnRegresarRequisitos = new javax.swing.JButton();
 
     setName(""); // NOI18N
 
@@ -174,33 +178,57 @@ public class Requisitos extends javax.swing.JPanel {
       }
     });
 
+    jTable1.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+        {null, null, null, null},
+        {null, null, null, null},
+        {null, null, null, null},
+        {null, null, null, null}
+      },
+      new String [] {
+        "Title 1", "Title 2", "Title 3", "Title 4"
+      }
+    ));
+    jScrollPane1.setViewportView(jTable1);
+
+    btnEliminarRequisitoCurso.setText("Eliminar");
+
+    btnRegresarRequisitos.setText("Volver");
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(20, 20, 20)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(jLabel5)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(comBxCorrequisito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(20, 20, 20)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                  .addGroup(layout.createSequentialGroup()
+                    .addGap(68, 68, 68)
+                    .addComponent(btnGuardarRequisito)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEliminarRequisitoCurso))
+                  .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                  .addGroup(layout.createSequentialGroup()
+                    .addComponent(jLabel2)
+                    .addGap(75, 75, 75)))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(btnRegresarRequisitos)
+                  .addComponent(comBxEscuelaAreaRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(comBxCodigoCursoRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(comBxRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(comBxCorrequisito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
           .addGroup(layout.createSequentialGroup()
-            .addComponent(jLabel4)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(comBxRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addComponent(jLabel3)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(comBxCodigoCursoRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(jLabel1)
-              .addComponent(jLabel2)
-              .addComponent(btnGuardarRequisito))
-            .addGap(18, 18, 18)
-            .addComponent(comBxEscuelaAreaRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(94, Short.MAX_VALUE))
+            .addGap(155, 155, 155)
+            .addComponent(jLabel1)))
+        .addContainerGap(19, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,13 +247,18 @@ public class Requisitos extends javax.swing.JPanel {
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel4)
           .addComponent(comBxRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(33, 33, 33)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(30, 30, 30)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel5)
           .addComponent(comBxCorrequisito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-        .addComponent(btnGuardarRequisito)
-        .addGap(30, 30, 30))
+        .addGap(21, 21, 21)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(btnGuardarRequisito)
+          .addComponent(btnEliminarRequisitoCurso)
+          .addComponent(btnRegresarRequisitos))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
   }// </editor-fold>//GEN-END:initComponents
 
@@ -250,7 +283,9 @@ public class Requisitos extends javax.swing.JPanel {
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btnEliminarRequisitoCurso;
   private javax.swing.JButton btnGuardarRequisito;
+  private javax.swing.JButton btnRegresarRequisitos;
   private javax.swing.JComboBox<String> comBxCodigoCursoRequisitos;
   private javax.swing.JComboBox<String> comBxCorrequisito;
   private javax.swing.JComboBox<String> comBxEscuelaAreaRequisitos;
@@ -260,5 +295,7 @@ public class Requisitos extends javax.swing.JPanel {
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel5;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JTable jTable1;
   // End of variables declaration//GEN-END:variables
 }

@@ -8,9 +8,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +25,7 @@ public class Cursos extends javax.swing.JFrame {
    */
   public Cursos() {
     initComponents();
+    cargarTablaCursos ();
     cargarCmbCatiCreditos ();
     cargarCmbHorasLectivas ();
     obtenerNombreEscuela ();
@@ -93,19 +96,15 @@ public class Cursos extends javax.swing.JFrame {
     String xx=pNombreEscuela.substring(0, 1);;
     String x="";
     String xxx="";
-        for (int i = 0; i <largo; i++) {
-            x=pNombreEscuela.substring(i,i+1);
-        
-          if (x.equals(ini)) {
-             
-              xxx=pNombreEscuela.substring(i+1, i+2);
-                xx=xx+xxx+this.cantidadCursos;
-                
-            } 
-            
-        }
-    return xx;
+      for (int i = 0; i <largo; i++) {
+        x=pNombreEscuela.substring(i,i+1);
+        if (x.equals(ini)) { 
+          xxx=pNombreEscuela.substring(i+1, i+2);
+          xx=xx+xxx+this.cantidadCursos;
+        }     
+      } return xx;
   }
+  
   public String generarCodigoEscuelaCurso (String pNombreEscuela ){
     int largo = pNombreEscuela.length();
     String ini=" ";
@@ -117,14 +116,43 @@ public class Cursos extends javax.swing.JFrame {
       if (x.equals(ini)) {
         xxx=pNombreEscuela.substring(i+1, i+2);
         xx=xx+xxx;
-
       } 
-    }
-    return xx;
+    } return xx;
   }
   
   
-  public void cargarCmbNombreEscuelas (){}
+  private void limpiarCursos(){
+    txtNombreCurso.setText("");
+  }
+  
+  private void cargarTablaCursos (){
+    DefaultTableModel modeloTabla = (DefaultTableModel) tblCursos.getModel();
+    modeloTabla.setRowCount(0);
+    ResultSet rs;
+    ResultSetMetaData rsmd;
+    int columnas;
+    
+    int [] anchos = {10, 50, 100, 30, 100};
+    for(int i = 0 ; i < tblCursos.getColumnCount(); i++){
+      tblCursos.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+    } try{
+      
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT codigoCurso , nombreCurso , cantidadCreditos, horasLectivas  from Curso");
+      rs = st.executeQuery();
+      rsmd = rs.getMetaData();
+      columnas = rsmd.getColumnCount();
+      
+      while(rs.next()){
+        Object[] fila = new Object[columnas];
+        for(int indice=0; indice<columnas; indice++){
+          fila[indice]=rs.getObject(indice+1);
+        } modeloTabla.addRow(fila);
+      }
+    } catch(SQLException e){
+      JOptionPane.showMessageDialog(null,e);
+    }
+  }
 
   /**
    * This method is called from within the constructor to initialize the form.
@@ -148,6 +176,7 @@ public class Cursos extends javax.swing.JFrame {
     comBxHorasLectivas = new javax.swing.JComboBox<>();
     btnGuardarCurso = new javax.swing.JButton();
     btnLimpiarCurso = new javax.swing.JButton();
+    btnRegresarCursos = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Cursos");
@@ -158,20 +187,20 @@ public class Cursos extends javax.swing.JFrame {
 
     tblCursos.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {null, null, null, null, null},
-        {null, null, null, null, null},
-        {null, null, null, null, null},
-        {null, null, null, null, null}
+        {null, null, null, null},
+        {null, null, null, null},
+        {null, null, null, null},
+        {null, null, null, null}
       },
       new String [] {
-        "Código", "Nombre", "Escuela o área a cargo", "Créditos", "Horas lectivas"
+        "Código", "Nombre", "Créditos", "Horas lectivas"
       }
     ) {
       Class[] types = new Class [] {
-        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+        java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
       };
       boolean[] canEdit = new boolean [] {
-        false, false, false, true, false
+        false, false, false, false
       };
 
       public Class getColumnClass(int columnIndex) {
@@ -204,6 +233,13 @@ public class Cursos extends javax.swing.JFrame {
     });
 
     btnLimpiarCurso.setText("Limpiar");
+    btnLimpiarCurso.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpiarCursoActionPerformed(evt);
+      }
+    });
+
+    btnRegresarCursos.setText("Volver");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -212,14 +248,15 @@ public class Cursos extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addGap(28, 28, 28)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGap(204, 204, 204)
-                .addComponent(btnGuardarCurso)
-                .addGap(100, 100, 100)
-                .addComponent(btnLimpiarCurso))))
+          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+              .addGap(129, 129, 129)
+              .addComponent(btnGuardarCurso)
+              .addGap(113, 113, 113)
+              .addComponent(btnLimpiarCurso)
+              .addGap(114, 114, 114)
+              .addComponent(btnRegresarCursos)))
           .addGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(jLabel6)
@@ -259,7 +296,8 @@ public class Cursos extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(btnGuardarCurso)
-          .addComponent(btnLimpiarCurso))
+          .addComponent(btnLimpiarCurso)
+          .addComponent(btnRegresarCursos))
         .addGap(27, 27, 27)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(74, 74, 74))
@@ -273,42 +311,38 @@ public class Cursos extends javax.swing.JFrame {
   }//GEN-LAST:event_comBxEscuelaOAreaCargoActionPerformed
 
   private void btnGuardarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCursoActionPerformed
-      String escuelaIng = comBxEscuelaOAreaCargo.getSelectedItem().toString();
-      String codigoEscuelaIng = generarCodigoEscuelaCurso (escuelaIng );
+    String escuelaIng = comBxEscuelaOAreaCargo.getSelectedItem().toString();
+    String codigoEscuelaIng = generarCodigoEscuelaCurso (escuelaIng );
       
-      String codigoCursoIng = generarCodigoCurso (escuelaIng );
-      String nombreCursoIng = txtNombreCurso.getText();
-      int cantidadCreditosIng = Integer.parseInt(comBxCantiCreditos.getSelectedItem().toString());
-      int horasLectivasIng =  Integer.parseInt(comBxHorasLectivas.getSelectedItem().toString());
-      this.cantidadCursos++;
+    String codigoCursoIng = generarCodigoCurso (escuelaIng );
+    String nombreCursoIng = txtNombreCurso.getText();
+    int cantidadCreditosIng = Integer.parseInt(comBxCantiCreditos.getSelectedItem().toString());
+    int horasLectivasIng =  Integer.parseInt(comBxHorasLectivas.getSelectedItem().toString());
+    this.cantidadCursos++;
       
     try {
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
       PreparedStatement st = connect.prepareStatement("INSERT INTO Curso VALUES ('"+ codigoCursoIng + ","+ "','"+ nombreCursoIng +"',"+ cantidadCreditosIng +", "+ horasLectivasIng +", "+ cantidadCursos +")");
       st.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro guardado");
-      //limpiar();
-      //cargarTabla();
-      //c.close();
-    } 
-    catch (SQLException ex) {
+    } catch (SQLException ex) {
      System.err.println(ex.getMessage());
-    }
-    
-    try {
+    } try {
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
       PreparedStatement st = connect.prepareStatement("INSERT INTO CursosPorEscuela VALUES ('"+ codigoEscuelaIng + ","+ "','"+ codigoCursoIng +"')");
       st.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro guardado");
-      //limpiar();
-      //cargarTabla();
+      limpiarCursos();
+      cargarTablaCursos ();
       //c.close();
-    } 
-    catch (SQLException ex) {
+    } catch (SQLException ex) {
      System.err.println(ex.getMessage());
     } 
-    
   }//GEN-LAST:event_btnGuardarCursoActionPerformed
+
+  private void btnLimpiarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCursoActionPerformed
+    limpiarCursos();
+  }//GEN-LAST:event_btnLimpiarCursoActionPerformed
 
   /**
    * @param args the command line arguments
@@ -349,6 +383,7 @@ public class Cursos extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnGuardarCurso;
   private javax.swing.JButton btnLimpiarCurso;
+  private javax.swing.JButton btnRegresarCursos;
   private javax.swing.JComboBox<String> comBxCantiCreditos;
   private javax.swing.JComboBox<String> comBxEscuelaOAreaCargo;
   private javax.swing.JComboBox<String> comBxHorasLectivas;
