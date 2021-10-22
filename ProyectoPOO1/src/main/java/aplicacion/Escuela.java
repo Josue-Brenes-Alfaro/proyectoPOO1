@@ -1,4 +1,5 @@
 package aplicacion;
+import logicadenegocios.EscuelaOArea;
 import SQL.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @version 1.0
  */
 public class Escuela extends javax.swing.JFrame {
-  
+  EscuelaOArea carrera = new EscuelaOArea();
   Conexion c = new Conexion("");
   ButtonGroup btnGr;
   /**
@@ -26,7 +27,7 @@ public class Escuela extends javax.swing.JFrame {
     btnGr = new ButtonGroup();
     btnGr.add(rbNo);
     btnGr.add(rbSi);
-    cargarTabla();
+    cargarTablaCarreras();
   }
   
   /**
@@ -218,19 +219,11 @@ public class Escuela extends javax.swing.JFrame {
       esEscuela=0;
     }
     c.connect();
-
-    try {
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("INSERT INTO EscuelaOArea VALUES ('"+ codigoCarrera +"','"+ nombreCarrera +"','"+ esEscuela +"')");
-      st.executeUpdate();
-      JOptionPane.showMessageDialog(null,"Registro guardado");
-      limpiar();
-      cargarTabla();
-      c.close();
-    } 
-    catch (SQLException ex) {
-      System.err.println(ex.getMessage());
-    }       
+    
+    carrera.guardarDatosDeCarrera(nombreCarrera, codigoCarrera, esEscuela);
+    Limpiar();
+    cargarTablaCarreras();
+    c.close();
     
   }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -239,21 +232,18 @@ public class Escuela extends javax.swing.JFrame {
  * @param evt 
  */
   private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-    limpiar();
+    Limpiar();
   }//GEN-LAST:event_btnLimpiarActionPerformed
 
-  /**
-   * Limpia los campos de la ventana Escuela
-   */
-  private void limpiar(){
+  public void Limpiar(){
     txtNombreCarrera.setText("");
-    btnGr.clearSelection(); 
-  }
+    btnGr.clearSelection();
+ }
  
   /**
    * Carga los datos de la tabla de la ventana Escuela
    */
-  private void cargarTabla(){
+  private void cargarTablaCarreras(){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblCarreras.getModel();
     modeloTabla.setRowCount(0);
     ResultSet rs;
@@ -264,26 +254,9 @@ public class Escuela extends javax.swing.JFrame {
     for(int i = 0 ; i < tblCarreras.getColumnCount(); i++){
       tblCarreras.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
     }
-    
-    try{
-      
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("SELECT nombreCarrera, codigoCarrera, tieneEscuela from EscuelaOArea");
-      rs = st.executeQuery();
-      rsmd = rs.getMetaData();
-      columnas = rsmd.getColumnCount();
-      
-      while(rs.next()){
-        Object[] fila = new Object[columnas];
-        for(int indice=0; indice<columnas; indice++){
-          fila[indice]=rs.getObject(indice+1);
-        }
-        modeloTabla.addRow(fila);
-      }
-    }catch(SQLException e){
-      
-      JOptionPane.showMessageDialog(null,e);
-    }
+    c.connect();
+    carrera.cargaDeDatosEnTablaCarreras(modeloTabla);
+    c.close();
   }
   
   /**
@@ -335,4 +308,5 @@ public class Escuela extends javax.swing.JFrame {
   private javax.swing.JTable tblCarreras;
   private javax.swing.JTextField txtNombreCarrera;
   // End of variables declaration//GEN-END:variables
+
 }
