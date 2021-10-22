@@ -66,7 +66,7 @@ public class Escuela extends javax.swing.JFrame {
     btnLimpiar = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    setTitle("Carreras");
+    setTitle("RegistroCarreras");
 
     jLabel1.setBackground(new java.awt.Color(153, 204, 255));
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
