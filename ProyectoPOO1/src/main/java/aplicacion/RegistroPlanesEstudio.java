@@ -25,8 +25,24 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
   public RegistroPlanesEstudio() {
     initComponents();
     obtenerNombreCarreras();
-    obtenerNombreCursos();
     cargarTablaPlanEstudio();
+  }
+  
+    public String generarCodigoEscuela (String pNombreEscuela ){
+    int largo = pNombreEscuela.length();
+    String ini=" ";
+    String xx=pNombreEscuela.substring(0, 1);;
+    String x="";
+    String xxx="";
+    for (int i = 0; i <largo; i++) {
+        x=pNombreEscuela.substring(i,i+1);
+      if (x.equals(ini)) {
+        xxx=pNombreEscuela.substring(i+1, i+2);
+        xx=xx+xxx;
+
+      } 
+    }
+    return xx;
   }
   
   public void obtenerNombreCarreras(){
@@ -52,28 +68,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     }
   }
   
-  public void obtenerNombreCursos(){
-    ResultSet rs;
-    try {
-      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
-      listaModelo.addElement("Selecciones un curso");
-    
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("SELECT * from Curso order by nombreCurso");
-      rs = st.executeQuery();
-    
-      try {
-        while (rs.next()){
-          listaModelo.addElement(rs.getString("nombreCurso"));
-      } rs.close();
-      
-      } catch(SQLException ex ){
-        System.err.println(ex.getMessage());
-      } cbxCursos.setModel(listaModelo);
-    } catch(SQLException e){
-      JOptionPane.showMessageDialog(null,e);
-    }
-  }
+
 
   /**
    * This method is called from within the constructor to initialize the form.
@@ -96,16 +91,11 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     txtFechaVigencia = new javax.swing.JTextField();
     btnGuardar = new javax.swing.JButton();
     btnLimpiar = new javax.swing.JButton();
-    jLabel5 = new javax.swing.JLabel();
-    cmbNumBloque = new javax.swing.JComboBox<>();
-    jLabel6 = new javax.swing.JLabel();
-    cbxCursos = new javax.swing.JComboBox<>();
-    jButton1 = new javax.swing.JButton();
     jLabel7 = new javax.swing.JLabel();
-    jScrollPane2 = new javax.swing.JScrollPane();
-    jTable1 = new javax.swing.JTable();
+    btnPasarVentanaRegistrarCursosEnPlan = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setTitle("VentanaPlanDeEstudio");
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Registro de Planes de Estudio");
@@ -116,14 +106,14 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
 
       },
       new String [] {
-        "Código del Plan de Estudio", "Fecha de Vigencia"
+        "Código del Plan de Estudio", "Fecha de Vigencia", "Código Carrera"
       }
     ) {
       Class[] types = new Class [] {
-        java.lang.String.class, java.lang.String.class
+        java.lang.String.class, java.lang.String.class, java.lang.Object.class
       };
       boolean[] canEdit = new boolean [] {
-        false, false
+        false, false, true
       };
 
       public Class getColumnClass(int columnIndex) {
@@ -169,135 +159,89 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
       }
     });
 
-    jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jLabel5.setText(" Bloque:");
-
-    cmbNumBloque.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    cmbNumBloque.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "I Semestre", "II Semestre", "III Semestre", "IV Semestre", "V Semestre", "VI Semestre", "VII Semestre", "VIII Smestre", "IX Semestre", "X Semestre" }));
-
-    jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jLabel6.setText("Curso");
-
-    cbxCursos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-    jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jButton1.setText("Agregar curso en bloque");
-
     jLabel7.setText("Año - Mes - Día");
+
+    btnPasarVentanaRegistrarCursosEnPlan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    btnPasarVentanaRegistrarCursosEnPlan.setText("Registrar cursos en un plan de estudio");
+    btnPasarVentanaRegistrarCursosEnPlan.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnPasarVentanaRegistrarCursosEnPlanActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
-        .addContainerGap()
+        .addGap(18, 18, 18)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(jLabel2)
+          .addComponent(jLabel4)
+          .addComponent(jLabel3))
+        .addGap(18, 18, 18)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(btnGuardar)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton1)
-            .addGap(65, 65, 65))
-          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(134, 134, 134)
-            .addComponent(jLabel3)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(comBxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 0, Short.MAX_VALUE))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(6, 6, 6)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(txtFechaVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(txtCodPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addComponent(jLabel7)
-                    .addGap(30, 30, 30)))))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18))
-              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGap(9, 9, 9)))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(cmbNumBloque, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(cbxCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(18, 18, 18))))
+              .addComponent(txtCodPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(txtFechaVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(btnGuardar)
+        .addGap(29, 29, 29)
+        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(172, 172, 172)
+        .addComponent(btnPasarVentanaRegistrarCursosEnPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGap(312, 312, 312)
+        .addComponent(jLabel7)
+        .addGap(0, 0, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
-        .addContainerGap()
+        .addGap(27, 27, 27)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(comBxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(jLabel3))
-        .addGap(37, 37, 37)
+          .addComponent(jLabel3)
+          .addComponent(comBxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(0, 45, Short.MAX_VALUE)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel2)
-          .addComponent(txtCodPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(cbxCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(jLabel6))
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(31, 31, 31)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(jLabel4)
-              .addComponent(txtFechaVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(cmbNumBloque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jLabel5)))
-          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(18, 18, 18)
-            .addComponent(jLabel7)))
+          .addComponent(txtCodPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(20, 20, 20)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel4)
+          .addComponent(txtFechaVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jLabel7)
         .addGap(18, 18, 18)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(btnPasarVentanaRegistrarCursosEnPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(btnGuardar)
-          .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(jButton1))
-        .addContainerGap(30, Short.MAX_VALUE))
+          .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
     );
-
-    jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jTable1.setModel(new javax.swing.table.DefaultTableModel(
-      new Object [][] {
-
-      },
-      new String [] {
-        "Plan de Estudio", "Curso", "Bloque"
-      }
-    ) {
-      boolean[] canEdit = new boolean [] {
-        false, true, false
-      };
-
-      public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return canEdit [columnIndex];
-      }
-    });
-    jScrollPane2.setViewportView(jTable1);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(24, 24, 24)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jLabel1)
-          .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(44, 44, 44)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(103, Short.MAX_VALUE))
+            .addGap(24, 24, 24)
+            .addComponent(jLabel1))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(45, 45, 45)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(126, 126, 126)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(17, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,10 +251,8 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
         .addGap(18, 18, 18)
         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(18, 18, 18)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(21, Short.MAX_VALUE))
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(22, Short.MAX_VALUE))
     );
 
     pack();
@@ -318,23 +260,42 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
 
   private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
     String nombreCarrera = comBxCarreras.getSelectedItem().toString();
-    String codioPlanEstudio = txtCodPlanEstudio.getText();
+    String codigoCarrera = generarCodigoEscuela(nombreCarrera);
+    String codigoPlanEstudio = txtCodPlanEstudio.getText();
     String fechaVigencia = txtFechaVigencia.getText();
-    
+    String NombrePlanEstudio= codigoCarrera+codigoPlanEstudio;
     c.connect();
 
     try {
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("INSERT INTO PlanDeEstudio(idPlan, fechaVigencia ) VALUES ('"+ codioPlanEstudio +"','"+ fechaVigencia +"')");
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName="
+              + "Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("INSERT INTO PlanDeEstudio"
+              + "(idPlan, fechaVigencia ) VALUES ('"+ NombrePlanEstudio +"','"+ fechaVigencia +"')");
       st.executeUpdate();
-      JOptionPane.showMessageDialog(null,"Registro guardado");
-      limpiar();
-      cargarTablaPlanEstudio();
       c.close();
     } 
     catch (SQLException ex) {
       System.err.println(ex.getMessage());
-    }  
+    }
+    
+    c.connect();
+
+    try {
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName="
+              + "Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("INSERT INTO PlanesPorEscuela "
+              + "VALUES ('"+ codigoCarrera +"','"+ NombrePlanEstudio +"')");
+      st.executeUpdate();
+      JOptionPane.showMessageDialog(null,"Registro guardado");
+      
+      c.close();
+    } 
+    catch (SQLException ex) {
+      System.err.println(ex.getMessage());
+    }
+    
+    limpiar();
+    cargarTablaPlanEstudio();
     
   }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -352,8 +313,11 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     
     try{
       
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("SELECT idPlan, fechaVigencia from PlanDeEstudio");
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName="
+              + "Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT PlanDeEstudio.idPlan, "
+              + "fechaVigencia, codigoCarrera FROM PlanDeEstudio INNER JOIN "
+              + "PlanesPorEscuela ON PlanDeEstudio.idPlan = PlanesPorEscuela.idPlan");
       rs = st.executeQuery();
       rsmd = rs.getMetaData();
       columnas = rsmd.getColumnCount();
@@ -374,6 +338,13 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
   private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
     limpiar();
   }//GEN-LAST:event_btnLimpiarActionPerformed
+
+  private void btnPasarVentanaRegistrarCursosEnPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasarVentanaRegistrarCursosEnPlanActionPerformed
+    RegistroCursosEnPlan abrir = new RegistroCursosEnPlan();
+    
+    abrir.setVisible(true);
+    //this.setVisible(false);
+  }//GEN-LAST:event_btnPasarVentanaRegistrarCursosEnPlanActionPerformed
 
   private void limpiar(){
     txtCodPlanEstudio.setText("");
@@ -417,21 +388,15 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnGuardar;
   private javax.swing.JButton btnLimpiar;
-  private javax.swing.JComboBox<String> cbxCursos;
-  private javax.swing.JComboBox<String> cmbNumBloque;
+  private javax.swing.JButton btnPasarVentanaRegistrarCursosEnPlan;
   private javax.swing.JComboBox<String> comBxCarreras;
-  private javax.swing.JButton jButton1;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
-  private javax.swing.JLabel jLabel5;
-  private javax.swing.JLabel jLabel6;
   private javax.swing.JLabel jLabel7;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JScrollPane jScrollPane2;
-  private javax.swing.JTable jTable1;
   private javax.swing.JTable tblPlanesEstudio;
   private javax.swing.JTextField txtCodPlanEstudio;
   private javax.swing.JTextField txtFechaVigencia;
