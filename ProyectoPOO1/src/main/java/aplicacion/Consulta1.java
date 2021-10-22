@@ -56,7 +56,7 @@ public class Consulta1 extends javax.swing.JFrame {
     setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-    jLabel1.setText("CONSULTAR PLANES DE ESTUDIO");
+    jLabel1.setText("CONSULTAR PLANES DE ESTUDIO Y SUS CURSOS");
 
     jLabel2.setText("Código del plan de estudio");
 
@@ -220,14 +220,14 @@ public class Consulta1 extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addComponent(btnPDF1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(136, 136, 136))
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(jLabel1)
-        .addGap(314, 314, 314))
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addComponent(jScrollPane1)
         .addContainerGap())
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(243, 243, 243))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
