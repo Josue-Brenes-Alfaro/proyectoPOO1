@@ -17,8 +17,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Clase de la creación de la ventana ConsultaCorequisitos
+ * dedicada para la consulta de correquisitos de un curso
+ * @author Alejandra
+ * @author Paola
  * @author Josue
+ * @version 1.0
  */
 public class ConsultaCorequisitos extends javax.swing.JFrame {
 

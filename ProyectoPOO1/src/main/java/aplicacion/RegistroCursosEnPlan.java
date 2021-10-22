@@ -12,8 +12,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Clase de la creación de la ventana RegistroCursoEnPlan
+ * dediaca para el registro de cursos en planes de estudio
+ * @author Alejandra
+ * @author Paola
  * @author Josue
+ * @version 1.0
  */
 public class RegistroCursosEnPlan extends javax.swing.JFrame {
 
@@ -28,6 +32,10 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
     obtenerNombreCarreras();
   }
   
+  /**
+   * Método para isertar el nombre de las carreras en el
+   * combobox llamado comBxCarreras
+   */
   public void obtenerNombreCarreras(){
     ResultSet rs;
     try {
@@ -51,6 +59,11 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
     }
   }
   
+  /**
+   * Método para extraer las primeras letras de una oración.
+   * @param pNombreEscuela
+   * @return las iniciales de una oració
+   */
   public String generarCodigoEscuela (String pNombreEscuela ){
     int largo = pNombreEscuela.length();
     String ini=" ";
@@ -68,6 +81,10 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
     return xx;
   }
 
+  /**
+   * Método para isertar el código de los cursos en el
+   * combobox llamado cbxCursos
+   */
   public void obtenerCodigoCursos(){
     ResultSet rs;
     String nombreCarrera = comBxCarreras.getSelectedItem().toString();
@@ -99,6 +116,10 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
     c.close();
   }
   
+  /**
+   * Método para isertar el código de los Planes de estudio en el
+   * combobox llamado cmbCodigoPlanEstudio
+   */
   public void obtenerCodigoPlanes(){
     ResultSet rs;
     String nombreCarrera = comBxCarreras.getSelectedItem().toString();
@@ -148,7 +169,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
     btnCargarCursos = new javax.swing.JButton();
     jLabel3 = new javax.swing.JLabel();
     comBxCarreras = new javax.swing.JComboBox<>();
-    btnCargarCursos1 = new javax.swing.JButton();
+    btnCargarPlanes = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("RegistroCursosEnPlan");
@@ -214,11 +235,11 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
 
     comBxCarreras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-    btnCargarCursos1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    btnCargarCursos1.setText("Cargar Planes");
-    btnCargarCursos1.addActionListener(new java.awt.event.ActionListener() {
+    btnCargarPlanes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    btnCargarPlanes.setText("Cargar Planes");
+    btnCargarPlanes.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnCargarCursos1ActionPerformed(evt);
+        btnCargarPlanesActionPerformed(evt);
       }
     });
 
@@ -254,7 +275,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
               .addComponent(comBxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(cmbCodigoPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(btnCargarCursos1)))
+            .addComponent(btnCargarPlanes)))
         .addContainerGap(123, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
@@ -268,7 +289,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(cmbCodigoPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel2)
-          .addComponent(btnCargarCursos1))
+          .addComponent(btnCargarPlanes))
         .addGap(18, 18, 18)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(cbxCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,6 +341,11 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+/**
+ * Método para accionar el botón de guardar en la ventala del registro de 
+ * cursos en un plan de estudio.
+ * @param evt 
+ */  
   private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
     String idplan = cmbCodigoPlanEstudio.getSelectedItem().toString();
     String codigoCurso = cbxCursos.getSelectedItem().toString();
@@ -341,14 +367,29 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
 
   }//GEN-LAST:event_btnGuardarActionPerformed
 
+  /**
+   * Método para accionar el botón que carga los cursos en la ventana
+   * que registra los cursos en un plan de estudio, este llama al método
+   * obtenerCodigoCursos
+   * @param evt 
+   */
   private void btnCargarCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarCursosActionPerformed
     obtenerCodigoCursos();
   }//GEN-LAST:event_btnCargarCursosActionPerformed
 
-  private void btnCargarCursos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarCursos1ActionPerformed
+  /**
+   * Método para accionar el botón que carga los planes de estudio en la ventana
+   * que registra los cursos en un plan de estudio, este llama al método
+   * obtenerCodigoPlanes
+   * @param evt 
+   */
+  private void btnCargarPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarPlanesActionPerformed
     obtenerCodigoPlanes();
-  }//GEN-LAST:event_btnCargarCursos1ActionPerformed
+  }//GEN-LAST:event_btnCargarPlanesActionPerformed
 
+   /**
+   * Carga los datos de la tabla de la ventana RegistroCursosEnPlan
+   */
   private void cargarTablaCursosPlan(){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblCursosPlan.getModel();
     modeloTabla.setRowCount(0);
@@ -420,7 +461,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnCargarCursos;
-  private javax.swing.JButton btnCargarCursos1;
+  private javax.swing.JButton btnCargarPlanes;
   private javax.swing.JButton btnGuardar;
   private javax.swing.JComboBox<String> cbxCursos;
   private javax.swing.JComboBox<String> cmbCodigoPlanEstudio;

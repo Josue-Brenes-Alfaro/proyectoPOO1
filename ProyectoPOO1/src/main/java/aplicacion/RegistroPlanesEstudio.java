@@ -12,8 +12,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Clase de la creación de la ventana RegistroPlanesEstudio
+ * dedicada para la creacion de nuevos planes de estudio
+ * @author Alejandra
+ * @author Paola
  * @author Josue
+ * @version 1.0
  */
 public class RegistroPlanesEstudio extends javax.swing.JFrame {
 
@@ -258,6 +262,10 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  /**
+ * Método para accionar el botón de guardar en la ventala RegistroPlanesEstudio.
+ * @param evt 
+ */
   private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
     String nombreCarrera = comBxCarreras.getSelectedItem().toString();
     String codigoCarrera = generarCodigoEscuela(nombreCarrera);
@@ -299,6 +307,9 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     
   }//GEN-LAST:event_btnGuardarActionPerformed
 
+  /**
+   * Carga los datos de la tabla de la ventana RegistroPlanesEstudio
+   */
   private void cargarTablaPlanEstudio(){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblPlanesEstudio.getModel();
     modeloTabla.setRowCount(0);
@@ -335,10 +346,19 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     }
   }
   
+  /**
+   *  Metodo del botón Limpiar el cual llama al metodo limpiar.
+   * @param evt 
+   */
   private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
     limpiar();
   }//GEN-LAST:event_btnLimpiarActionPerformed
 
+  /**
+ * Método para accionar el botón para abrir la ventana llamada 
+ * RegistroCursosEnPlan.
+ * @param evt 
+ */
   private void btnPasarVentanaRegistrarCursosEnPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasarVentanaRegistrarCursosEnPlanActionPerformed
     RegistroCursosEnPlan abrir = new RegistroCursosEnPlan();
     
@@ -346,6 +366,9 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     //this.setVisible(false);
   }//GEN-LAST:event_btnPasarVentanaRegistrarCursosEnPlanActionPerformed
 
+  /**
+   * Limpia los campos de la ventana RegistroPlanesEstudio.
+   */
   private void limpiar(){
     txtCodPlanEstudio.setText("");
     txtFechaVigencia.setText("");

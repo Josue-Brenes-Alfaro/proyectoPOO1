@@ -7,7 +7,8 @@ import java.sql.*;
 import javax.swing.ButtonGroup;
 import javax.swing.table.DefaultTableModel;
 /**
- * Clase de la crración de la ventana Escuela
+ * Clase de la creación de la ventana Escuela
+ * dedicada para la creacion de nuevas escuelas o áreas académicas
  * @author Alejandra
  * @author Paola
  * @author Josue
@@ -93,11 +94,6 @@ public class Escuela extends javax.swing.JFrame {
 
       public boolean isCellEditable(int rowIndex, int columnIndex) {
         return canEdit [columnIndex];
-      }
-    });
-    tblCarreras.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseClicked(java.awt.event.MouseEvent evt) {
-        tblCarrerasMouseClicked(evt);
       }
     });
     jScrollPane1.setViewportView(tblCarreras);
@@ -207,7 +203,7 @@ public class Escuela extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 /**
- * Método del boton guardar de la ventana Escuela guarda los datos ingresados 
+ * Método del botón guardar de la ventana Escuela guarda los datos ingresados 
  * @param evt 
  */
   private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -238,25 +234,22 @@ public class Escuela extends javax.swing.JFrame {
     
   }//GEN-LAST:event_btnGuardarActionPerformed
 
-  private void tblCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarrerasMouseClicked
-
-  }//GEN-LAST:event_tblCarrerasMouseClicked
-
+/**
+ * Metodo del botón Limpiar el cual llama al metodo limpiar.
+ * @param evt 
+ */
   private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
     limpiar();
   }//GEN-LAST:event_btnLimpiarActionPerformed
 
-
-  
   /**
-   * Limpia la tabla de la ventana Escuela
+   * Limpia los campos de la ventana Escuela
    */
   private void limpiar(){
     txtNombreCarrera.setText("");
     btnGr.clearSelection(); 
   }
-  
-
+ 
   /**
    * Carga los datos de la tabla de la ventana Escuela
    */
