@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logicadenegocios.PDF;
+import static logicadenegocios.PDF.generarPDF;
 
 /**
  *
@@ -153,9 +155,6 @@ public class Consulta1 extends javax.swing.JFrame {
       }
     });
     jScrollPane2.setViewportView(tblCantCreditos);
-    if (tblCantCreditos.getColumnModel().getColumnCount() > 0) {
-      tblCantCreditos.getColumnModel().getColumn(0).setHeaderValue("Escuela o Área");
-    }
 
     btnConsultarPlan.setBackground(new java.awt.Color(69, 119, 186));
     btnConsultarPlan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -186,9 +185,6 @@ public class Consulta1 extends javax.swing.JFrame {
       }
     });
     jScrollPane3.setViewportView(tblCantCursos);
-    if (tblCantCursos.getColumnModel().getColumnCount() > 0) {
-      tblCantCursos.getColumnModel().getColumn(0).setHeaderValue("Escuela o Área");
-    }
 
     tblEscuela.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
@@ -299,11 +295,15 @@ public class Consulta1 extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
-    // TODO add your handling code here:
+    c.connect();
+    String idPlan =cmbPlanesEstudio.getSelectedItem().toString();
+    generarPDF(idPlan);
+    c.close();
+    
   }//GEN-LAST:event_btnPDFActionPerformed
 
   private void btnConsultarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPlanActionPerformed
-    
+
     String idPlan =cmbPlanesEstudio.getSelectedItem().toString();
     c.connect();
       cargarTabla(idPlan);
