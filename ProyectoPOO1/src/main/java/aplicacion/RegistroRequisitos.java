@@ -34,6 +34,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   public RegistroRequisitos() {
     initComponents();
     obtenerNombreEscuelaRe ();
+    cargarRequistroRequisitos();
   }
   
     /**
@@ -190,6 +191,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     comBxCodigoCursoRequisitos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
     comBxRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    comBxRequisito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No tiene" }));
     comBxRequisito.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         comBxRequisitoActionPerformed(evt);
@@ -197,6 +199,8 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     });
 
     comBxCorrequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    comBxCorrequisito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No tiene" }));
+    comBxCorrequisito.setToolTipText("");
 
     btnGuardarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnGuardarRequisito.setText("Guardar");
@@ -353,12 +357,13 @@ public class RegistroRequisitos extends javax.swing.JFrame {
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://"
               + ";databaseName=Proyecto_POO1;user=usuariosql;password=root1");
       PreparedStatement st = connect.prepareStatement("INSERT INTO Requisito "
-              + "VALUES ( "+ codigoCurso + ","+ codigoCursoReque +","+ codigoCursoCorre +")");
+              + "VALUES ( '"+ codigoCurso + "','"+ codigoCursoReque +""
+                      + "','"+ codigoCursoCorre +"')");
+      
+      
       st.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro guardado");
-      //limpiar();
-      //cargarTabla();
-      //c.close();
+      cargarRequistroRequisitos();
     }
     catch (SQLException ex) {
       System.err.println(ex.getMessage());
@@ -400,10 +405,6 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   }
   
   
-  private void comBxRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBxRequisitoActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_comBxRequisitoActionPerformed
-
   private void btnCargarCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarCursosActionPerformed
     ResultSet rs;
     String nombreCarrera = comBxEscuelaAreaRequisitos.getSelectedItem().toString();
@@ -442,6 +443,10 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   private void btnCargarCorrequisitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarCorrequisitosActionPerformed
     obtenerCodigoCursoCorrequistio();
   }//GEN-LAST:event_btnCargarCorrequisitosActionPerformed
+
+  private void comBxRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBxRequisitoActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_comBxRequisitoActionPerformed
 
   /**
    * @param args the command line arguments
