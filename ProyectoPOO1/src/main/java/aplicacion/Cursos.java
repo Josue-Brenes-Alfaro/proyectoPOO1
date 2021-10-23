@@ -116,8 +116,10 @@ public class Cursos extends javax.swing.JFrame {
       if (x.equals(ini)) {
         xxx=pNombreEscuela.substring(i+1, i+2);
         xx=xx+xxx;
+
       } 
-    } return xx;
+    }
+    return xx;
   }
   
   
@@ -317,7 +319,7 @@ public class Cursos extends javax.swing.JFrame {
 
   private void btnGuardarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCursoActionPerformed
     String escuelaIng = comBxEscuelaOAreaCargo.getSelectedItem().toString();
-    String codigoEscuelaIng = generarCodigoEscuelaCurso (escuelaIng );
+    String codigoEscuelaIng = generarCodigoEscuelaCurso (escuelaIng);
       
     String codigoCursoIng = generarCodigoCurso (escuelaIng );
     String nombreCursoIng = txtNombreCurso.getText();
@@ -327,14 +329,14 @@ public class Cursos extends javax.swing.JFrame {
       
     try {
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("INSERT INTO Curso VALUES ('"+ codigoCursoIng + ","+ "','"+ nombreCursoIng +"',"+ cantidadCreditosIng +", "+ horasLectivasIng +", "+ cantidadCursos +")");
+      PreparedStatement st = connect.prepareStatement("INSERT INTO Curso VALUES ('"+ codigoCursoIng +"','"+ nombreCursoIng +"',"+ cantidadCreditosIng +","+ horasLectivasIng +","+ cantidadCursos +")");
       st.executeUpdate();
-      JOptionPane.showMessageDialog(null,"Registro guardado");
     } catch (SQLException ex) {
      System.err.println(ex.getMessage());
     } try {
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("INSERT INTO CursosPorEscuela VALUES ('"+ codigoEscuelaIng + ","+ "','"+ codigoCursoIng +"')");
+      System.out.println(codigoEscuelaIng);
+      PreparedStatement st = connect.prepareStatement("INSERT INTO CursosPorEscuela VALUES ('"+ codigoEscuelaIng +"','"+ codigoCursoIng +"')");
       st.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro guardado");
       limpiarCursos();

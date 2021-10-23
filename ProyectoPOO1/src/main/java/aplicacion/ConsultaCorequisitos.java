@@ -63,7 +63,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
     c.close();
   }
   
-  private void cargarTablaPlanEstudio(){
+  private void cargarRequisitos(){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblCorequisitos.getModel();
     modeloTabla.setRowCount(0);
     ResultSet rs;
@@ -241,7 +241,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    cargarTablaPlanEstudio();
+    cargarRequisitos();
   }//GEN-LAST:event_jButton1ActionPerformed
 
   private void cmbNombreCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNombreCursoActionPerformed

@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Josué Brenes
  * @version 1.0
  */
-public class EscuelaOArea{
+public class EscuelaOArea{//implements InterfaceCurso{
   private String codigoCarrera;
   private String nombreCarrera;
   private int tieneEscuela;
@@ -72,7 +72,7 @@ public class EscuelaOArea{
    * @param pEsEscuela 
    */
   public void guardarDatosDeCarrera(String pNombreCarrera, 
-          String pCodigoCarrera, int pEsEscuela){
+      String pCodigoCarrera, int pEsEscuela){
     setNombreCarrera(pNombreCarrera);
     setCodigoCarrera(pCodigoCarrera);
     setTieneEscuela(pEsEscuela);

@@ -10,6 +10,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logicadenegocios.PlanDeEstudio;
 
 /**
  * Clase de la creación de la ventana RegistroPlanesEstudio
@@ -20,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  * @version 1.0
  */
 public class RegistroPlanesEstudio extends javax.swing.JFrame {
-
+  PlanDeEstudio plan = new PlanDeEstudio();
   Conexion c = new Conexion("");
   ButtonGroup btnGr;
   /**
@@ -71,8 +72,6 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
       JOptionPane.showMessageDialog(null,e);
     }
   }
-  
-
 
   /**
    * This method is called from within the constructor to initialize the form.
@@ -315,37 +314,15 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     String NombrePlanEstudio= codigoCarrera+codigoPlanEstudio;
     c.connect();
 
-    try {
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName="
-              + "Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("INSERT INTO PlanDeEstudio"
-              + "(idPlan, fechaVigencia ) VALUES ('"+ NombrePlanEstudio +"','"+ fechaVigencia +"')");
-      st.executeUpdate();
-      c.close();
-    } 
-    catch (SQLException ex) {
-      System.err.println(ex.getMessage());
-    }
+    plan.guardarDatosDePlanesEstudio(NombrePlanEstudio, fechaVigencia);
     
-    c.connect();
-
-    try {
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName="
-              + "Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("INSERT INTO PlanesPorEscuela "
-              + "VALUES ('"+ codigoCarrera +"','"+ NombrePlanEstudio +"')");
-      st.executeUpdate();
-      JOptionPane.showMessageDialog(null,"Registro guardado");
-      
-      c.close();
-    } 
-    catch (SQLException ex) {
-      System.err.println(ex.getMessage());
-    }
+    
+    plan.guardarDatosDePlanesPorEscuela(codigoCarrera, NombrePlanEstudio);
+    
+    c.close();
     
     limpiar();
     cargarTablaPlanEstudio();
-    
   }//GEN-LAST:event_btnGuardarActionPerformed
 
   /**
@@ -362,29 +339,9 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     for(int i = 0 ; i < tblPlanesEstudio.getColumnCount(); i++){
       tblPlanesEstudio.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
     }
-    
-    try{
-      
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName="
-              + "Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("SELECT PlanDeEstudio.idPlan, "
-              + "fechaVigencia, codigoCarrera FROM PlanDeEstudio INNER JOIN "
-              + "PlanesPorEscuela ON PlanDeEstudio.idPlan = PlanesPorEscuela.idPlan");
-      rs = st.executeQuery();
-      rsmd = rs.getMetaData();
-      columnas = rsmd.getColumnCount();
-      
-      while(rs.next()){
-        Object[] fila = new Object[columnas];
-        for(int indice=0; indice<columnas; indice++){
-          fila[indice]=rs.getObject(indice+1);
-        }
-        modeloTabla.addRow(fila);
-      }
-    }catch(SQLException e){
-      
-      JOptionPane.showMessageDialog(null,e);
-    }
+    c.connect();
+    plan.cargarTablaPlanDeEstudio(modeloTabla);
+    c.close();
   }
   
   /**
@@ -402,9 +359,8 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
  */
   private void btnPasarVentanaRegistrarCursosEnPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasarVentanaRegistrarCursosEnPlanActionPerformed
     RegistroCursosEnPlan abrir = new RegistroCursosEnPlan();
-    
     abrir.setVisible(true);
-    //this.setVisible(false);
+    this.setVisible(false);
   }//GEN-LAST:event_btnPasarVentanaRegistrarCursosEnPlanActionPerformed
 
   private void btnPDF3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF3ActionPerformed

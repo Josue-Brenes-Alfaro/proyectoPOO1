@@ -228,8 +228,8 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnConsulta4ActionPerformed
 
   private void btnConsulta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta3ActionPerformed
-    ConsultaRequisitosCurso verConsultaRequisitosCurso = new ConsultaRequisitosCurso();    
-    verConsultaRequisitosCurso.setVisible(true);
+    ConsultaRequisitos verConsultaRequisitos = new ConsultaRequisitos();    
+    verConsultaRequisitos.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnConsulta3ActionPerformed
 
@@ -246,7 +246,7 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnEscuelaActionPerformed
 
   private void btnRequisitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequisitosActionPerformed
-    Requisitos verRequisitos = new Requisitos();    
+    RegistroRequisitos verRequisitos = new RegistroRequisitos();    
     verRequisitos.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnRequisitosActionPerformed

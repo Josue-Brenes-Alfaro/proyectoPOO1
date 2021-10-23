@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,6 +27,35 @@ public class Consulta1 extends javax.swing.JFrame {
    */
   public Consulta1() {
     initComponents();
+    obtenerCodigoPlanes();
+  }
+  
+    /**
+   * Método para isertar el código de los Planes de estudio en el
+   * combobox llamado cmbCodigoPlanEstudio
+   */
+  public void obtenerCodigoPlanes(){
+    ResultSet rs;
+    try {
+      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+      listaModelo.addElement("Selecciones un Plan");
+    
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName="
+              + "Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT idPlan from PlanDeEstudio order by idPlan");
+      rs = st.executeQuery();
+    
+      try {
+        while (rs.next()){
+          listaModelo.addElement(rs.getString("idPlan"));
+      } rs.close();
+      
+      } catch(SQLException ex ){
+        System.err.println(ex.getMessage());
+      } cmbPlanesEstudio.setModel(listaModelo);
+    } catch(SQLException e){
+      JOptionPane.showMessageDialog(null,e);
+    }
   }
 
   /**
@@ -39,7 +69,6 @@ public class Consulta1 extends javax.swing.JFrame {
 
     jLabel1 = new javax.swing.JLabel();
     jLabel2 = new javax.swing.JLabel();
-    txtIdPlan = new javax.swing.JTextField();
     btnPDF = new javax.swing.JButton();
     jScrollPane1 = new javax.swing.JScrollPane();
     tblCursos = new javax.swing.JTable();
@@ -51,6 +80,7 @@ public class Consulta1 extends javax.swing.JFrame {
     jScrollPane4 = new javax.swing.JScrollPane();
     tblEscuela = new javax.swing.JTable();
     btnPDF1 = new javax.swing.JButton();
+    cmbPlanesEstudio = new javax.swing.JComboBox<>();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -58,14 +88,8 @@ public class Consulta1 extends javax.swing.JFrame {
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("CONSULTAR PLANES DE ESTUDIO Y SUS CURSOS");
 
+    jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel2.setText("Código del plan de estudio");
-
-    txtIdPlan.setToolTipText("");
-    txtIdPlan.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        txtIdPlanActionPerformed(evt);
-      }
-    });
 
     btnPDF.setText("Generar PDF y enviar por correo");
     btnPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +213,8 @@ public class Consulta1 extends javax.swing.JFrame {
       }
     });
 
+    cmbPlanesEstudio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -199,7 +225,7 @@ public class Consulta1 extends javax.swing.JFrame {
             .addGap(51, 51, 51)
             .addComponent(jLabel2)
             .addGap(18, 18, 18)
-            .addComponent(txtIdPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cmbPlanesEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(layout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -234,22 +260,22 @@ public class Consulta1 extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addComponent(jLabel1)
-        .addGap(18, 18, 18)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGap(59, 59, 59)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(layout.createSequentialGroup()
+            .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel2)
-                .addComponent(txtIdPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cmbPlanesEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
               .addComponent(btnConsultarPlan, javax.swing.GroupLayout.Alignment.TRAILING))
             .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
               .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addGap(41, 41, 41)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+              .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -265,12 +291,9 @@ public class Consulta1 extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_btnPDFActionPerformed
 
-  private void txtIdPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPlanActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_txtIdPlanActionPerformed
-
   private void btnConsultarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPlanActionPerformed
-    String idPlan =txtIdPlan.getText();
+    
+    String idPlan =cmbPlanesEstudio.getSelectedItem().toString();
     c.connect();
       cargarTabla(idPlan);
       cargarTablaCreditos(idPlan);
@@ -472,6 +495,7 @@ public class Consulta1 extends javax.swing.JFrame {
   private javax.swing.JButton btnConsultarPlan;
   private javax.swing.JButton btnPDF;
   private javax.swing.JButton btnPDF1;
+  private javax.swing.JComboBox<String> cmbPlanesEstudio;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JScrollPane jScrollPane1;
@@ -482,6 +506,5 @@ public class Consulta1 extends javax.swing.JFrame {
   private javax.swing.JTable tblCantCursos;
   private javax.swing.JTable tblCursos;
   private javax.swing.JTable tblEscuela;
-  private javax.swing.JTextField txtIdPlan;
   // End of variables declaration//GEN-END:variables
 }
