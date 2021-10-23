@@ -1,5 +1,6 @@
 package aplicacion;
 import SQL.Conexion;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,6 +32,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     initComponents();
     obtenerNombreCarreras();
     cargarTablaPlanEstudio();
+    this.getContentPane().setBackground(new Color(223,255,255));
   }
   
     public String generarCodigoEscuela (String pNombreEscuela ){
@@ -102,6 +104,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("VentanaPlanDeEstudio");
+    setSize(new java.awt.Dimension(1000, 470));
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Registro de Planes de Estudio");
@@ -149,6 +152,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
 
     txtFechaVigencia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+    btnGuardar.setBackground(new java.awt.Color(69, 119, 186));
     btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnGuardar.setText("Guardar plan de estudio");
     btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +161,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
       }
     });
 
+    btnLimpiar.setBackground(new java.awt.Color(69, 119, 186));
     btnLimpiar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnLimpiar.setText("Limpiar");
     btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +172,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
 
     jLabel7.setText("Año - Mes - Día");
 
+    btnPasarVentanaRegistrarCursosEnPlan.setBackground(new java.awt.Color(69, 119, 186));
     btnPasarVentanaRegistrarCursosEnPlan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnPasarVentanaRegistrarCursosEnPlan.setText("Registrar cursos en un plan de estudio");
     btnPasarVentanaRegistrarCursosEnPlan.addActionListener(new java.awt.event.ActionListener() {
@@ -234,6 +240,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
 
     btnPDF2.setText("Regresar");
 
+    btnPDF3.setBackground(new java.awt.Color(69, 119, 186));
     btnPDF3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnPDF3.setText("Regresar");
     btnPDF3.addActionListener(new java.awt.event.ActionListener() {

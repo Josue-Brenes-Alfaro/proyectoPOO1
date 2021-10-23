@@ -5,6 +5,7 @@
 package aplicacion;
 
 import SQL.Conexion;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,6 +35,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
   public ConsultaCorequisitos() {
     initComponents();
     obtenerCodigoCursos();
+    this.getContentPane().setBackground(new Color(223,255,255));
   }
   
   public void obtenerCodigoCursos(){
@@ -120,6 +122,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("ConsultaCorequisito");
+    setSize(new java.awt.Dimension(1000, 470));
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Consulta de Corequisitos de un Curso");
@@ -162,6 +165,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
       }
     });
 
+    jButton1.setBackground(new java.awt.Color(69, 119, 186));
     jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jButton1.setText("Buscar Corequisitos");
     jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -197,6 +201,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
         .addGap(54, 54, 54))
     );
 
+    btnPDF1.setBackground(new java.awt.Color(69, 119, 186));
     btnPDF1.setText("Regresar");
     btnPDF1.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {

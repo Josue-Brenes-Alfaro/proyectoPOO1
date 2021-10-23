@@ -5,6 +5,7 @@
 package aplicacion;
 
 import SQL.Conexion;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -35,6 +36,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     initComponents();
     obtenerNombreEscuelaRe ();
     cargarRequistroRequisitos();
+    this.getContentPane().setBackground(new Color(223,255,255));
   }
   
     /**
@@ -171,6 +173,9 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     btnCargarCorrequisitos = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setAutoRequestFocus(false);
+    setBackground(new java.awt.Color(204, 255, 255));
+    setSize(new java.awt.Dimension(1000, 470));
 
     jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel4.setText("Requisitos del curso:");
@@ -202,6 +207,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     comBxCorrequisito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No tiene" }));
     comBxCorrequisito.setToolTipText("");
 
+    btnGuardarRequisito.setBackground(new java.awt.Color(69, 119, 186));
     btnGuardarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnGuardarRequisito.setText("Guardar");
     btnGuardarRequisito.addActionListener(new java.awt.event.ActionListener() {
@@ -237,6 +243,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel3.setText("Código del curso:");
 
+    btnCargarCursos.setBackground(new java.awt.Color(69, 119, 186));
     btnCargarCursos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnCargarCursos.setText("Cargar cursos");
     btnCargarCursos.addActionListener(new java.awt.event.ActionListener() {
@@ -245,6 +252,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
       }
     });
 
+    btnCargarRequisitos.setBackground(new java.awt.Color(69, 119, 186));
     btnCargarRequisitos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnCargarRequisitos.setText("Cargar Cursos Requisitos");
     btnCargarRequisitos.addActionListener(new java.awt.event.ActionListener() {
@@ -253,6 +261,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
       }
     });
 
+    btnCargarCorrequisitos.setBackground(new java.awt.Color(69, 119, 186));
     btnCargarCorrequisitos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnCargarCorrequisitos.setText("Cargar Cursos Correquisitos");
     btnCargarCorrequisitos.addActionListener(new java.awt.event.ActionListener() {

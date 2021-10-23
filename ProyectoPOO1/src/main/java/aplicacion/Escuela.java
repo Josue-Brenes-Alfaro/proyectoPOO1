@@ -1,6 +1,7 @@
 package aplicacion;
 import logicadenegocios.EscuelaOArea;
 import SQL.Conexion;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -28,6 +29,7 @@ public class Escuela extends javax.swing.JFrame {
     btnGr.add(rbNo);
     btnGr.add(rbSi);
     cargarTablaCarreras();
+    this.getContentPane().setBackground(new Color(223,255,255));
   }
   
   /**
@@ -70,6 +72,7 @@ public class Escuela extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("RegistroCarreras");
+    setSize(new java.awt.Dimension(1000, 470));
 
     jLabel1.setBackground(new java.awt.Color(153, 204, 255));
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -116,6 +119,7 @@ public class Escuela extends javax.swing.JFrame {
     rbNo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     rbNo.setText("No");
 
+    btnGuardar.setBackground(new java.awt.Color(69, 119, 186));
     btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnGuardar.setText("Guardar");
     btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +128,7 @@ public class Escuela extends javax.swing.JFrame {
       }
     });
 
+    btnLimpiar.setBackground(new java.awt.Color(69, 119, 186));
     btnLimpiar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnLimpiar.setText("Limpiar");
     btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -178,6 +183,7 @@ public class Escuela extends javax.swing.JFrame {
         .addGap(27, 27, 27))
     );
 
+    btnPDF1.setBackground(new java.awt.Color(69, 119, 186));
     btnPDF1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnPDF1.setText("Regresar");
     btnPDF1.addActionListener(new java.awt.event.ActionListener() {

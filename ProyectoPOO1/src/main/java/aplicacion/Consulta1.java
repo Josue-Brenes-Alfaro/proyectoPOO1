@@ -5,6 +5,7 @@
 package aplicacion;
 
 import SQL.Conexion;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,6 +29,7 @@ public class Consulta1 extends javax.swing.JFrame {
   public Consulta1() {
     initComponents();
     obtenerCodigoPlanes();
+    this.getContentPane().setBackground(new Color(223,255,255));
   }
   
     /**
@@ -83,7 +85,10 @@ public class Consulta1 extends javax.swing.JFrame {
     cmbPlanesEstudio = new javax.swing.JComboBox<>();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setBackground(new java.awt.Color(204, 255, 255));
     setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+    setForeground(new java.awt.Color(204, 255, 255));
+    setSize(new java.awt.Dimension(1000, 470));
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("CONSULTAR PLANES DE ESTUDIO Y SUS CURSOS");
@@ -91,6 +96,7 @@ public class Consulta1 extends javax.swing.JFrame {
     jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel2.setText("Código del plan de estudio");
 
+    btnPDF.setBackground(new java.awt.Color(69, 119, 186));
     btnPDF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnPDF.setText("Generar PDF y enviar por correo");
     btnPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +157,7 @@ public class Consulta1 extends javax.swing.JFrame {
       tblCantCreditos.getColumnModel().getColumn(0).setHeaderValue("Escuela o Área");
     }
 
+    btnConsultarPlan.setBackground(new java.awt.Color(69, 119, 186));
     btnConsultarPlan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnConsultarPlan.setText("Consultar Plan ");
     btnConsultarPlan.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +215,7 @@ public class Consulta1 extends javax.swing.JFrame {
       tblEscuela.getColumnModel().getColumn(1).setHeaderValue("Fecha Vigencia");
     }
 
+    btnPDF1.setBackground(new java.awt.Color(69, 119, 186));
     btnPDF1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnPDF1.setText("Regresar");
     btnPDF1.addActionListener(new java.awt.event.ActionListener() {

@@ -4,6 +4,7 @@
  */
 package aplicacion;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -29,6 +30,7 @@ public class Cursos extends javax.swing.JFrame {
     cargarCmbCatiCreditos ();
     cargarCmbHorasLectivas ();
     obtenerNombreEscuela ();
+    this.getContentPane().setBackground(new Color(223,255,255));
   }
   
   public void cargarCmbCatiCreditos () {
@@ -182,6 +184,7 @@ public class Cursos extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Cursos");
+    setSize(new java.awt.Dimension(1000, 470));
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Registro de cursos");
@@ -243,6 +246,7 @@ public class Cursos extends javax.swing.JFrame {
       }
     });
 
+    btnGuardarCurso.setBackground(new java.awt.Color(69, 119, 186));
     btnGuardarCurso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnGuardarCurso.setText("Guardar");
     btnGuardarCurso.addActionListener(new java.awt.event.ActionListener() {
@@ -251,6 +255,7 @@ public class Cursos extends javax.swing.JFrame {
       }
     });
 
+    btnLimpiarCurso.setBackground(new java.awt.Color(69, 119, 186));
     btnLimpiarCurso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnLimpiarCurso.setText("Limpiar");
     btnLimpiarCurso.addActionListener(new java.awt.event.ActionListener() {
@@ -259,6 +264,7 @@ public class Cursos extends javax.swing.JFrame {
       }
     });
 
+    btnRegresarCursos.setBackground(new java.awt.Color(69, 119, 186));
     btnRegresarCursos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnRegresarCursos.setText("Regresar");
     btnRegresarCursos.addActionListener(new java.awt.event.ActionListener() {

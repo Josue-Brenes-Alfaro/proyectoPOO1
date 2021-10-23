@@ -80,6 +80,7 @@ public class Consulta2 extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+    setSize(new java.awt.Dimension(1000, 470));
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("CONSULTAR PLAN DE ESTUDIO POR CURSO");
@@ -115,6 +116,7 @@ public class Consulta2 extends javax.swing.JFrame {
     });
     jScrollPane1.setViewportView(tblCursos);
 
+    btnConsultarPlan.setBackground(new java.awt.Color(69, 119, 186));
     btnConsultarPlan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnConsultarPlan.setText("Consultar Plan ");
     btnConsultarPlan.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +125,7 @@ public class Consulta2 extends javax.swing.JFrame {
       }
     });
 
+    btnPDF1.setBackground(new java.awt.Color(69, 119, 186));
     btnPDF1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnPDF1.setText("Regresar");
     btnPDF1.addActionListener(new java.awt.event.ActionListener() {

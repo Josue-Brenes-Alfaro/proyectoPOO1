@@ -1,5 +1,6 @@
 package aplicacion;
 import SQL.Conexion;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -30,6 +31,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
     initComponents();
     cargarTablaCursosPlan();
     obtenerNombreCarreras();
+    this.getContentPane().setBackground(new Color(223,255,255));
   }
   
   /**
@@ -174,6 +176,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("RegistroCursosEnPlan");
+    setSize(new java.awt.Dimension(1000, 470));
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Registro de cursos en un plan de estudio");
@@ -202,6 +205,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
     jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel2.setText("Código del plan de estudios:");
 
+    btnGuardar.setBackground(new java.awt.Color(69, 119, 186));
     btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnGuardar.setText("Añadir curso a Plan de estudio");
     btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +227,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
 
     cmbCodigoPlanEstudio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+    btnCargarCursos.setBackground(new java.awt.Color(69, 119, 186));
     btnCargarCursos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnCargarCursos.setText("Cargar Cursos");
     btnCargarCursos.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +241,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
 
     comBxCarreras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+    btnCargarPlanes.setBackground(new java.awt.Color(69, 119, 186));
     btnCargarPlanes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnCargarPlanes.setText("Cargar Planes");
     btnCargarPlanes.addActionListener(new java.awt.event.ActionListener() {
@@ -305,6 +311,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
         .addContainerGap())
     );
 
+    btnPDF2.setBackground(new java.awt.Color(69, 119, 186));
     btnPDF2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnPDF2.setText("Regresar");
     btnPDF2.addActionListener(new java.awt.event.ActionListener() {
