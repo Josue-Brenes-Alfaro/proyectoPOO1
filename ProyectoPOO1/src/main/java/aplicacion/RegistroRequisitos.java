@@ -34,8 +34,6 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   public RegistroRequisitos() {
     initComponents();
     obtenerNombreEscuelaRe ();
-    //obtenerCodigoCursoRequisito ();
-    //obtenerCodigoCursoCorrequistio ();
   }
   
     /**
@@ -60,7 +58,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     return xx;
   }
   
-  public void obtenerNombreEscuelaRe () {
+  public void obtenerNombreEscuelaRe() {
     ResultSet rs;
     try {
       DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
@@ -83,16 +81,21 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     }
   }
   
-  public void obtenerCodigoCursoRequisito () {
+  public void obtenerCodigoCursoRequisito() {
     ResultSet rs;
-    try {
-      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
-      listaModelo.addElement("Selecciones un código requisito");
+    String nombreCarrera = comBxEscuelaAreaRequisitos.getSelectedItem().toString();
+    String codigoCarrera = generarCodigoEscuela(nombreCarrera);    
     
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;"
-              + "databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("SELECT * from Curso "
-              + "order by codigoCurso ");
+    
+    try {
+      c.connect();
+      
+      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+      listaModelo.addElement("Selecciones un curso");
+    
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      //PreparedStatement st = connect.prepareStatement("SELECT codigoCurso from Curso order by nombreCurso");
+      PreparedStatement st = connect.prepareStatement("SELECT codigoCurso from CursosPorEscuela where CursosPorEscuela.codigoCarrera = '"+codigoCarrera+"'");
       rs = st.executeQuery();
     
       try {
@@ -106,18 +109,24 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     } catch(SQLException e){
       JOptionPane.showMessageDialog(null,e);
     }
+    c.close();
   }
   
-  public void obtenerCodigoCursoCorrequistio () {
+  public void obtenerCodigoCursoCorrequistio() {
     ResultSet rs;
-    try {
-      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
-      listaModelo.addElement("Selecciones un curso correquisito");
+    String nombreCarrera = comBxEscuelaAreaRequisitos.getSelectedItem().toString();
+    String codigoCarrera = generarCodigoEscuela(nombreCarrera);    
     
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;"
-              + "databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("SELECT * from Curso "
-              + "order by codigoCurso ");
+    
+    try {
+      c.connect();
+      
+      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+      listaModelo.addElement("Selecciones un curso");
+    
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      //PreparedStatement st = connect.prepareStatement("SELECT codigoCurso from Curso order by nombreCurso");
+      PreparedStatement st = connect.prepareStatement("SELECT codigoCurso from CursosPorEscuela where CursosPorEscuela.codigoCarrera = '"+codigoCarrera+"'");
       rs = st.executeQuery();
     
       try {
@@ -131,6 +140,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     } catch(SQLException e){
       JOptionPane.showMessageDialog(null,e);
     }
+    c.close();
   }
 
   /**
@@ -426,65 +436,11 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   }//GEN-LAST:event_btnCargarCursosActionPerformed
 
   private void btnCargarRequisitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarRequisitosActionPerformed
-    ResultSet rs;
-    String nombreCarrera = comBxEscuelaAreaRequisitos.getSelectedItem().toString();
-    String codigoCarrera = generarCodigoEscuela(nombreCarrera);    
-    
-    
-    try {
-      c.connect();
-      
-      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
-      listaModelo.addElement("Selecciones un curso");
-    
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      //PreparedStatement st = connect.prepareStatement("SELECT codigoCurso from Curso order by nombreCurso");
-      PreparedStatement st = connect.prepareStatement("SELECT codigoCurso from CursosPorEscuela where CursosPorEscuela.codigoCarrera = '"+codigoCarrera+"'");
-      rs = st.executeQuery();
-    
-      try {
-        while (rs.next()){
-          listaModelo.addElement(rs.getString("codigoCurso"));
-      } rs.close();
-      
-      } catch(SQLException ex ){
-        System.err.println(ex.getMessage());
-      } comBxRequisito.setModel(listaModelo);
-    } catch(SQLException e){
-      JOptionPane.showMessageDialog(null,e);
-    }
-    c.close(); 
+    obtenerCodigoCursoRequisito();
   }//GEN-LAST:event_btnCargarRequisitosActionPerformed
 
   private void btnCargarCorrequisitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarCorrequisitosActionPerformed
-    ResultSet rs;
-    String nombreCarrera = comBxEscuelaAreaRequisitos.getSelectedItem().toString();
-    String codigoCarrera = generarCodigoEscuela(nombreCarrera);    
-    
-    
-    try {
-      c.connect();
-      
-      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
-      listaModelo.addElement("Selecciones un curso");
-    
-      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      //PreparedStatement st = connect.prepareStatement("SELECT codigoCurso from Curso order by nombreCurso");
-      PreparedStatement st = connect.prepareStatement("SELECT codigoCurso from CursosPorEscuela where CursosPorEscuela.codigoCarrera = '"+codigoCarrera+"'");
-      rs = st.executeQuery();
-    
-      try {
-        while (rs.next()){
-          listaModelo.addElement(rs.getString("codigoCurso"));
-      } rs.close();
-      
-      } catch(SQLException ex ){
-        System.err.println(ex.getMessage());
-      } comBxCorrequisito.setModel(listaModelo);
-    } catch(SQLException e){
-      JOptionPane.showMessageDialog(null,e);
-    }
-    c.close(); 
+    obtenerCodigoCursoCorrequistio();
   }//GEN-LAST:event_btnCargarCorrequisitosActionPerformed
 
   /**
