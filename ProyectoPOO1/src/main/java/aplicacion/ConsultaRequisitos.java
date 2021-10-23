@@ -4,6 +4,7 @@
  */
 package aplicacion;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,6 +27,7 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
   public ConsultaRequisitos() {
     initComponents();
     obtenerCodigoCursoConsulta();
+    this.getContentPane().setBackground(new Color(223,255,255));
   }
   
   public void obtenerCodigoCursoConsulta() {
@@ -69,6 +71,7 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+    botonRegresarConsultaRequisito.setBackground(new java.awt.Color(69, 119, 186));
     botonRegresarConsultaRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     botonRegresarConsultaRequisito.setText("Regresar");
     botonRegresarConsultaRequisito.addActionListener(new java.awt.event.ActionListener() {
@@ -114,14 +117,15 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
-            .addGroup(layout.createSequentialGroup()
-              .addGap(47, 47, 47)
-              .addComponent(jLabel2)
-              .addGap(18, 18, 18)
-              .addComponent(combxCodigoCursoConsultaRequi, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addGap(371, 371, 371)))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jLabel1)
+              .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(combxCodigoCursoConsultaRequi, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(366, 366, 366))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addComponent(botonRegresarConsultaRequisito)
             .addGap(66, 66, 66))))

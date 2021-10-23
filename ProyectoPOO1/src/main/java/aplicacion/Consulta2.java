@@ -5,6 +5,7 @@
 package aplicacion;
 
 import SQL.Conexion;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,6 +29,7 @@ public class Consulta2 extends javax.swing.JFrame {
   public Consulta2() {
     initComponents();
     obtenerCodigoCursos();
+    this.getContentPane().setBackground(new Color(223,255,255));
   }
   
     /**
