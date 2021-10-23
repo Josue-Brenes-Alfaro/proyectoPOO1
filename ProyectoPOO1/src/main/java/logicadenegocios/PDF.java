@@ -4,10 +4,10 @@
  */
 package logicadenegocios;
 
- import com.itextpdf.text.Document;
- import com.itextpdf.text.DocumentException;
- import com.itextpdf.text.pdf.PdfPTable;
- import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;

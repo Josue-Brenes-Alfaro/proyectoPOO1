@@ -4,6 +4,7 @@
  */
 package aplicacion;
 
+import SQL.Conexion;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +22,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Josue
  */
 public class ConsultaRequisitos extends javax.swing.JFrame {
-
+  Conexion c = new Conexion("");
+  ButtonGroup btnGr;
   /**
    * Creates new form ConsultaRequisitos
    */
@@ -28,16 +31,20 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
     initComponents();
     obtenerCodigoCursoConsulta();
     this.getContentPane().setBackground(new Color(223,255,255));
+    cargarCorrequisitos();
   }
   
   public void obtenerCodigoCursoConsulta() {
     ResultSet rs;
     try {
+      c.connect();
+      
       DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
-      listaModelo.addElement("Selecciones una clave");
+      listaModelo.addElement("Selecciones un curso");
     
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
-      PreparedStatement st = connect.prepareStatement("SELECT * from Curso order by codigoCurso ");
+      //PreparedStatement st = connect.prepareStatement("SELECT codigoCurso from Curso order by nombreCurso");
+      PreparedStatement st = connect.prepareStatement("SELECT nombreCurso from Requisito");
       rs = st.executeQuery();
     
       try {
@@ -51,6 +58,7 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
     } catch(SQLException e){
       JOptionPane.showMessageDialog(null,e);
     }
+    c.close();
   }
 
   /**
@@ -68,6 +76,7 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
     combxCodigoCursoConsultaRequi = new javax.swing.JComboBox<>();
     jScrollPane1 = new javax.swing.JScrollPane();
     tblRequisitos = new javax.swing.JTable();
+    jButton1 = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +93,7 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
     jLabel1.setText("Consulta de requisitos de un curso");
 
     jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jLabel2.setText("Código de curso");
+    jLabel2.setText("Código de curso:");
 
     combxCodigoCursoConsultaRequi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -106,29 +115,42 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
     });
     jScrollPane1.setViewportView(tblRequisitos);
 
+    jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jButton1.setText("Cargar Datos");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1ActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
-        .addGap(268, 268, 268)
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(0, 290, Short.MAX_VALUE))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jLabel1)
-              .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(combxCodigoCursoConsultaRequi, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(jLabel1)
             .addGap(366, 366, 366))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addComponent(botonRegresarConsultaRequisito)
             .addGap(66, 66, 66))))
+      .addGroup(layout.createSequentialGroup()
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addGap(268, 268, 268)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(441, 441, 441)
+            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addGap(0, 0, Short.MAX_VALUE))
+      .addGroup(layout.createSequentialGroup()
+        .addGap(215, 215, 215)
+        .addComponent(jLabel2)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(combxCodigoCursoConsultaRequi, 0, 302, Short.MAX_VALUE)
+        .addGap(366, 366, 366))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +161,9 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel2)
           .addComponent(combxCodigoCursoConsultaRequi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+        .addComponent(jButton1)
+        .addGap(27, 27, 27)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(34, 34, 34)
         .addComponent(botonRegresarConsultaRequisito)
@@ -154,6 +178,10 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
     verMenu.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_botonRegresarConsultaRequisitoActionPerformed
+
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    cargarCorrequisitos();
+  }//GEN-LAST:event_jButton1ActionPerformed
 
   private void cargarCorrequisitos(){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblRequisitos.getModel();
@@ -231,6 +259,7 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton botonRegresarConsultaRequisito;
   private javax.swing.JComboBox<String> combxCodigoCursoConsultaRequi;
+  private javax.swing.JButton jButton1;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JScrollPane jScrollPane1;
