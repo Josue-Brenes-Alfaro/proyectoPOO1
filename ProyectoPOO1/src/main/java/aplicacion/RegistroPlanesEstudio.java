@@ -247,7 +247,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(126, 915, Short.MAX_VALUE)
+        .addGap(126, 903, Short.MAX_VALUE)
         .addComponent(btnPDF3)
         .addContainerGap())
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -283,7 +283,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(29, 29, 29)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(54, Short.MAX_VALUE))
+        .addContainerGap(48, Short.MAX_VALUE))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addComponent(btnPDF3)

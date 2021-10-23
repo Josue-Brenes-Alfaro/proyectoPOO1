@@ -320,7 +320,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addGap(172, 915, Short.MAX_VALUE)
+            .addGap(172, 903, Short.MAX_VALUE)
             .addComponent(btnPDF2))
           .addGroup(layout.createSequentialGroup()
             .addGap(118, 118, 118)
