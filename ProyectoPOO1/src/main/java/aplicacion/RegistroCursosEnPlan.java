@@ -170,6 +170,8 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
     jLabel3 = new javax.swing.JLabel();
     comBxCarreras = new javax.swing.JComboBox<>();
     btnCargarPlanes = new javax.swing.JButton();
+    btnPDF1 = new javax.swing.JButton();
+    btnPDF2 = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("RegistroCursosEnPlan");
@@ -304,6 +306,15 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
         .addContainerGap())
     );
 
+    btnPDF1.setText("Regresar");
+
+    btnPDF2.setText("Regresar");
+    btnPDF2.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnPDF2ActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -312,16 +323,24 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
             .addGap(118, 118, 118)
-            .addComponent(jLabel1))
+            .addComponent(jLabel1)
+            .addGap(0, 0, Short.MAX_VALUE))
           .addGroup(layout.createSequentialGroup()
             .addGap(172, 172, 172)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(203, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+            .addComponent(btnPDF2)))
+        .addContainerGap())
       .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
           .addContainerGap()
           .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+      .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+          .addGap(0, 0, Short.MAX_VALUE)
+          .addComponent(btnPDF1)
+          .addGap(0, 0, Short.MAX_VALUE)))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,11 +350,20 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(24, 24, 24))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(btnPDF2)
+        .addContainerGap())
       .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
           .addGap(39, 39, 39)
           .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addContainerGap(132, Short.MAX_VALUE)))
+      .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+          .addGap(0, 0, Short.MAX_VALUE)
+          .addComponent(btnPDF1)
+          .addGap(0, 0, Short.MAX_VALUE)))
     );
 
     pack();
@@ -386,6 +414,12 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   private void btnCargarPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarPlanesActionPerformed
     obtenerCodigoPlanes();
   }//GEN-LAST:event_btnCargarPlanesActionPerformed
+
+  private void btnPDF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF2ActionPerformed
+    Menu verMenu = new Menu();    
+    verMenu.setVisible(true);
+    this.setVisible(false);
+  }//GEN-LAST:event_btnPDF2ActionPerformed
 
    /**
    * Carga los datos de la tabla de la ventana RegistroCursosEnPlan
@@ -463,6 +497,8 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   private javax.swing.JButton btnCargarCursos;
   private javax.swing.JButton btnCargarPlanes;
   private javax.swing.JButton btnGuardar;
+  private javax.swing.JButton btnPDF1;
+  private javax.swing.JButton btnPDF2;
   private javax.swing.JComboBox<String> cbxCursos;
   private javax.swing.JComboBox<String> cmbCodigoPlanEstudio;
   private javax.swing.JComboBox<String> cmbNumBloque;

@@ -97,6 +97,9 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     btnLimpiar = new javax.swing.JButton();
     jLabel7 = new javax.swing.JLabel();
     btnPasarVentanaRegistrarCursosEnPlan = new javax.swing.JButton();
+    btnPDF1 = new javax.swing.JButton();
+    btnPDF2 = new javax.swing.JButton();
+    btnPDF3 = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("VentanaPlanDeEstudio");
@@ -185,15 +188,13 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
           .addComponent(jLabel3))
         .addGap(18, 18, 18)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(comBxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+          .addComponent(comBxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(6, 6, 6)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
               .addComponent(txtCodPlanEstudio, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(txtFechaVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+              .addComponent(txtFechaVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addContainerGap()
         .addComponent(btnGuardar)
@@ -230,6 +231,17 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
           .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
     );
 
+    btnPDF1.setText("Regresar");
+
+    btnPDF2.setText("Regresar");
+
+    btnPDF3.setText("Regresar");
+    btnPDF3.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnPDF3ActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -237,15 +249,30 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addGap(24, 24, 24)
-            .addComponent(jLabel1))
-          .addGroup(layout.createSequentialGroup()
-            .addGap(45, 45, 45)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addGroup(layout.createSequentialGroup()
             .addGap(126, 126, 126)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(17, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnPDF3))
+          .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1))
+              .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(0, 7, Short.MAX_VALUE)))
+        .addContainerGap())
+      .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+          .addGap(0, 0, Short.MAX_VALUE)
+          .addComponent(btnPDF1)
+          .addGap(0, 0, Short.MAX_VALUE)))
+      .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+          .addGap(0, 0, Short.MAX_VALUE)
+          .addComponent(btnPDF2)
+          .addGap(0, 0, Short.MAX_VALUE)))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,6 +284,20 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
         .addGap(18, 18, 18)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap(22, Short.MAX_VALUE))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(btnPDF3)
+        .addContainerGap())
+      .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+          .addGap(0, 0, Short.MAX_VALUE)
+          .addComponent(btnPDF1)
+          .addGap(0, 0, Short.MAX_VALUE)))
+      .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+          .addGap(0, 0, Short.MAX_VALUE)
+          .addComponent(btnPDF2)
+          .addGap(0, 0, Short.MAX_VALUE)))
     );
 
     pack();
@@ -366,6 +407,12 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     //this.setVisible(false);
   }//GEN-LAST:event_btnPasarVentanaRegistrarCursosEnPlanActionPerformed
 
+  private void btnPDF3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF3ActionPerformed
+    Menu verMenu = new Menu();    
+    verMenu.setVisible(true);
+    this.setVisible(false);
+  }//GEN-LAST:event_btnPDF3ActionPerformed
+
   /**
    * Limpia los campos de la ventana RegistroPlanesEstudio.
    */
@@ -411,6 +458,9 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnGuardar;
   private javax.swing.JButton btnLimpiar;
+  private javax.swing.JButton btnPDF1;
+  private javax.swing.JButton btnPDF2;
+  private javax.swing.JButton btnPDF3;
   private javax.swing.JButton btnPasarVentanaRegistrarCursosEnPlan;
   private javax.swing.JComboBox<String> comBxCarreras;
   private javax.swing.JLabel jLabel1;

@@ -239,7 +239,12 @@ public class Cursos extends javax.swing.JFrame {
       }
     });
 
-    btnRegresarCursos.setText("Volver");
+    btnRegresarCursos.setText("Regresar");
+    btnRegresarCursos.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRegresarCursosActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -343,6 +348,12 @@ public class Cursos extends javax.swing.JFrame {
   private void btnLimpiarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCursoActionPerformed
     limpiarCursos();
   }//GEN-LAST:event_btnLimpiarCursoActionPerformed
+
+  private void btnRegresarCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarCursosActionPerformed
+    Menu verMenu = new Menu();    
+    verMenu.setVisible(true);
+    this.setVisible(false);
+  }//GEN-LAST:event_btnRegresarCursosActionPerformed
 
   /**
    * @param args the command line arguments

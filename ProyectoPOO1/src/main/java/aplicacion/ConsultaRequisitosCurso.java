@@ -84,7 +84,7 @@ public class ConsultaRequisitosCurso extends javax.swing.JPanel {
     ));
     jScrollPane1.setViewportView(jTable1);
 
-    botonRegresarConsultaRequisito.setText("Volver");
+    botonRegresarConsultaRequisito.setText("Regresar");
     botonRegresarConsultaRequisito.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         botonRegresarConsultaRequisitoActionPerformed(evt);
@@ -134,7 +134,9 @@ public class ConsultaRequisitosCurso extends javax.swing.JPanel {
   }// </editor-fold>//GEN-END:initComponents
 
   private void botonRegresarConsultaRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarConsultaRequisitoActionPerformed
-    // TODO add your handling code here:
+    Menu verMenu = new Menu();    
+    verMenu.setVisible(true);
+    this.setVisible(false);
   }//GEN-LAST:event_botonRegresarConsultaRequisitoActionPerformed
 
 

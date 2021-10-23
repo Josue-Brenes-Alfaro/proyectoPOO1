@@ -150,6 +150,7 @@ public class Requisitos extends javax.swing.JPanel {
     jTable1 = new javax.swing.JTable();
     btnEliminarRequisitoCurso = new javax.swing.JButton();
     btnRegresarRequisitos = new javax.swing.JButton();
+    btnPDF1 = new javax.swing.JButton();
 
     setName(""); // NOI18N
 
@@ -195,6 +196,13 @@ public class Requisitos extends javax.swing.JPanel {
 
     btnRegresarRequisitos.setText("Volver");
 
+    btnPDF1.setText("Regresar");
+    btnPDF1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnPDF1ActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
@@ -229,6 +237,10 @@ public class Requisitos extends javax.swing.JPanel {
             .addGap(155, 155, 155)
             .addComponent(jLabel1)))
         .addContainerGap(19, Short.MAX_VALUE))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addComponent(btnPDF1)
+        .addGap(176, 176, 176))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,6 +270,8 @@ public class Requisitos extends javax.swing.JPanel {
           .addComponent(btnRegresarRequisitos))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(btnPDF1)
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
   }// </editor-fold>//GEN-END:initComponents
@@ -281,10 +295,17 @@ public class Requisitos extends javax.swing.JPanel {
     }
   }//GEN-LAST:event_btnGuardarRequisitoActionPerformed
 
+  private void btnPDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF1ActionPerformed
+    Menu verMenu = new Menu();    
+    verMenu.setVisible(true);
+    this.setVisible(false);
+  }//GEN-LAST:event_btnPDF1ActionPerformed
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnEliminarRequisitoCurso;
   private javax.swing.JButton btnGuardarRequisito;
+  private javax.swing.JButton btnPDF1;
   private javax.swing.JButton btnRegresarRequisitos;
   private javax.swing.JComboBox<String> comBxCodigoCursoRequisitos;
   private javax.swing.JComboBox<String> comBxCorrequisito;

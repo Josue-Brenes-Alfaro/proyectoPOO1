@@ -232,8 +232,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnRegresarCursos">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Volver"/>
+        <Property name="text" type="java.lang.String" value="Regresar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarCursosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

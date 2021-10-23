@@ -160,7 +160,9 @@ public class Consulta2 extends javax.swing.JFrame {
   }//GEN-LAST:event_btnConsultarPlanActionPerformed
 
   private void btnPDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF1ActionPerformed
-    // TODO add your handling code here:
+    Menu verMenu = new Menu();    
+    verMenu.setVisible(true);
+    this.setVisible(false);
   }//GEN-LAST:event_btnPDF1ActionPerformed
 
   private void cargarTabla(String nombreCurso){
