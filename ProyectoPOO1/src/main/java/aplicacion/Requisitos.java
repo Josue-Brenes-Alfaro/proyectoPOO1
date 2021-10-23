@@ -8,9 +8,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +25,7 @@ public class Requisitos extends javax.swing.JPanel {
    */
   public Requisitos() {
     initComponents();
+    cargarTablaRequisitosCorrequisitos ();
     obtenerNombreEscuelaRe ();
     obtenerCodigoCurso ();
     obtenerCodigoCursoRequisito ();
@@ -126,6 +129,35 @@ public class Requisitos extends javax.swing.JPanel {
       JOptionPane.showMessageDialog(null,e);
     }
   }
+  
+  private void cargarTablaRequisitosCorrequisitos (){
+    DefaultTableModel modeloTabla = (DefaultTableModel) tblRequisitos.getModel();
+    modeloTabla.setRowCount(0);
+    ResultSet rs;
+    ResultSetMetaData rsmd;
+    int columnas;
+    
+    int [] anchos = {10, 50, 100, 30, 100};
+    for(int i = 0 ; i < tblRequisitos.getColumnCount(); i++){
+      tblRequisitos.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+    } try{
+      
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT nombreCurso  , nombreCurso , cursoRequisito , cursoCorrequisito   from Requisito");
+      rs = st.executeQuery();
+      rsmd = rs.getMetaData();
+      columnas = rsmd.getColumnCount();
+      
+      while(rs.next()){
+        Object[] fila = new Object[columnas];
+        for(int indice=0; indice<columnas; indice++){
+          fila[indice]=rs.getObject(indice+1);
+        } modeloTabla.addRow(fila);
+      }
+    } catch(SQLException e){
+      JOptionPane.showMessageDialog(null,e);
+    }
+  }
 
   /**
    * This method is called from within the constructor to initialize the form.
@@ -147,7 +179,7 @@ public class Requisitos extends javax.swing.JPanel {
     comBxCorrequisito = new javax.swing.JComboBox<>();
     btnGuardarRequisito = new javax.swing.JButton();
     jScrollPane1 = new javax.swing.JScrollPane();
-    jTable1 = new javax.swing.JTable();
+    tblRequisitos = new javax.swing.JTable();
     btnEliminarRequisitoCurso = new javax.swing.JButton();
     btnRegresarRequisitos = new javax.swing.JButton();
     btnPDF1 = new javax.swing.JButton();
@@ -179,18 +211,26 @@ public class Requisitos extends javax.swing.JPanel {
       }
     });
 
-    jTable1.setModel(new javax.swing.table.DefaultTableModel(
+    tblRequisitos.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null}
+        {null, null, null},
+        {null, null, null},
+        {null, null, null},
+        {null, null, null}
       },
       new String [] {
-        "Title 1", "Title 2", "Title 3", "Title 4"
+        "Código del curso ", "Código del requisito", "Código del correquisito"
       }
-    ));
-    jScrollPane1.setViewportView(jTable1);
+    ) {
+      Class[] types = new Class [] {
+        java.lang.String.class, java.lang.String.class, java.lang.String.class
+      };
+
+      public Class getColumnClass(int columnIndex) {
+        return types [columnIndex];
+      }
+    });
+    jScrollPane1.setViewportView(tblRequisitos);
 
     btnEliminarRequisitoCurso.setText("Eliminar");
 
@@ -286,8 +326,7 @@ public class Requisitos extends javax.swing.JPanel {
       PreparedStatement st = connect.prepareStatement("INSERT INTO Requisito VALUES ( "+ codigoCurso + ","+ codigoCursoReque +","+ codigoCursoCorre +")");
       st.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro guardado");
-      //limpiar();
-      //cargarTabla();
+      cargarTablaRequisitosCorrequisitos ();
       //c.close();
     } 
     catch (SQLException ex) {
@@ -317,6 +356,6 @@ public class Requisitos extends javax.swing.JPanel {
   private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel5;
   private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTable jTable1;
+  private javax.swing.JTable tblRequisitos;
   // End of variables declaration//GEN-END:variables
 }
