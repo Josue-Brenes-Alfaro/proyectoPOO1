@@ -152,7 +152,6 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     btnGuardarRequisito = new javax.swing.JButton();
     jScrollPane1 = new javax.swing.JScrollPane();
     tblRegistroRequisitos = new javax.swing.JTable();
-    btnRegresarRequisitos = new javax.swing.JButton();
     jLabel1 = new javax.swing.JLabel();
     jLabel2 = new javax.swing.JLabel();
     jLabel3 = new javax.swing.JLabel();
@@ -215,9 +214,6 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     });
     jScrollPane1.setViewportView(tblRegistroRequisitos);
 
-    btnRegresarRequisitos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    btnRegresarRequisitos.setText("Volver");
-
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Asignar requisitos");
 
@@ -255,7 +251,6 @@ public class RegistroRequisitos extends javax.swing.JFrame {
           .addGroup(layout.createSequentialGroup()
             .addGap(31, 31, 31)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(btnRegresarRequisitos)
               .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                   .addGroup(layout.createSequentialGroup()
@@ -305,9 +300,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
           .addComponent(jLabel5)
           .addComponent(comBxCorrequisito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(21, 21, 21)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(btnGuardarRequisito)
-          .addComponent(btnRegresarRequisitos))
+        .addComponent(btnGuardarRequisito)
         .addGap(11, 11, 11)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -454,7 +447,6 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   private javax.swing.JButton btnCargarCursos;
   private javax.swing.JButton btnGuardarRequisito;
   private javax.swing.JButton btnPDF1;
-  private javax.swing.JButton btnRegresarRequisitos;
   private javax.swing.JComboBox<String> comBxCodigoCursoRequisitos;
   private javax.swing.JComboBox<String> comBxCorrequisito;
   private javax.swing.JComboBox<String> comBxEscuelaAreaRequisitos;
