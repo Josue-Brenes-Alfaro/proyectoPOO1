@@ -91,6 +91,7 @@ public class Consulta1 extends javax.swing.JFrame {
     jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel2.setText("Código del plan de estudio");
 
+    btnPDF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnPDF.setText("Generar PDF y enviar por correo");
     btnPDF.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +151,7 @@ public class Consulta1 extends javax.swing.JFrame {
       tblCantCreditos.getColumnModel().getColumn(0).setHeaderValue("Escuela o Área");
     }
 
+    btnConsultarPlan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnConsultarPlan.setText("Consultar Plan ");
     btnConsultarPlan.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,6 +208,7 @@ public class Consulta1 extends javax.swing.JFrame {
       tblEscuela.getColumnModel().getColumn(1).setHeaderValue("Fecha Vigencia");
     }
 
+    btnPDF1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnPDF1.setText("Regresar");
     btnPDF1.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,7 +278,7 @@ public class Consulta1 extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
               .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

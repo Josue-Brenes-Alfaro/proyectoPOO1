@@ -160,8 +160,9 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jLabel4.setText("Requisitos del curso");
+    jLabel4.setText("Requisitos del curso:");
 
+    btnPDF1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnPDF1.setText("Regresar");
     btnPDF1.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +171,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     });
 
     jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jLabel5.setText("Correquisitos del curso");
+    jLabel5.setText("Correquisitos del curso:");
 
     comBxEscuelaAreaRequisitos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -195,10 +196,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
 
     tblRegistroRequisitos.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {null, null, null},
-        {null, null, null},
-        {null, null, null},
-        {null, null, null}
+
       },
       new String [] {
         "Curso", "Curso Requisito", "Curso Correquisito"
@@ -215,13 +213,13 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     jScrollPane1.setViewportView(tblRegistroRequisitos);
 
     jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-    jLabel1.setText("Asignar requisitos");
+    jLabel1.setText("Asignar requisitos y Correquisitos");
 
     jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jLabel2.setText("Escuela o área propietaria del curso");
+    jLabel2.setText("Escuela o área propietaria del curso:");
 
     jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jLabel3.setText("Código del curso");
+    jLabel3.setText("Código del curso:");
 
     btnCargarCursos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnCargarCursos.setText("Cargar cursos");
@@ -235,47 +233,40 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-        .addGap(0, 0, Short.MAX_VALUE)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(btnGuardarRequisito)
-          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-              .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addGap(107, 107, 107))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-              .addComponent(btnPDF1)
-              .addContainerGap()))))
       .addGroup(layout.createSequentialGroup()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addGap(31, 31, 31)
+            .addGap(218, 218, 218)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(jLabel4)
+              .addComponent(jLabel5)
+              .addComponent(jLabel3)
+              .addComponent(jLabel2))
+            .addGap(37, 37, 37)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(comBxCorrequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(comBxRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                  .addGroup(layout.createSequentialGroup()
-                    .addComponent(jLabel4)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                  .addGroup(layout.createSequentialGroup()
-                    .addComponent(jLabel3)
-                    .addGap(18, 18, 18))
-                  .addGroup(layout.createSequentialGroup()
-                    .addComponent(jLabel2)
-                    .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                  .addComponent(comBxRequisito, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addComponent(comBxCodigoCursoRequisitos, 0, 200, Short.MAX_VALUE)
-                  .addComponent(comBxEscuelaAreaRequisitos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-              .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(comBxCorrequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(btnCargarCursos))
+                .addComponent(comBxCodigoCursoRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCargarCursos))
+              .addComponent(comBxEscuelaAreaRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
           .addGroup(layout.createSequentialGroup()
-            .addGap(207, 207, 207)
+            .addGap(369, 369, 369)
             .addComponent(jLabel1)))
-        .addContainerGap(25, Short.MAX_VALUE))
+        .addContainerGap(204, Short.MAX_VALUE))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnGuardarRequisito)
+            .addGroup(layout.createSequentialGroup()
+              .addGap(423, 423, 423)
+              .addComponent(btnPDF1)
+              .addContainerGap()))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(266, 266, 266))))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,9 +292,9 @@ public class RegistroRequisitos extends javax.swing.JFrame {
           .addComponent(comBxCorrequisito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(21, 21, 21)
         .addComponent(btnGuardarRequisito)
-        .addGap(11, 11, 11)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGap(8, 8, 8)
         .addComponent(btnPDF1)
         .addContainerGap())
     );

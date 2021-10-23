@@ -8,9 +8,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -63,10 +65,11 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
     jLabel2 = new javax.swing.JLabel();
     combxCodigoCursoConsultaRequi = new javax.swing.JComboBox<>();
     jScrollPane1 = new javax.swing.JScrollPane();
-    jTable1 = new javax.swing.JTable();
+    tblRequisitos = new javax.swing.JTable();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+    botonRegresarConsultaRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     botonRegresarConsultaRequisito.setText("Regresar");
     botonRegresarConsultaRequisito.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,64 +77,69 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
       }
     });
 
+    jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Consulta de requisitos de un curso");
 
+    jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel2.setText("Código de curso");
 
-    combxCodigoCursoConsultaRequi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    combxCodigoCursoConsultaRequi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-    jTable1.setModel(new javax.swing.table.DefaultTableModel(
+    tblRequisitos.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null}
+
       },
       new String [] {
-        "Title 1", "Title 2", "Title 3", "Title 4"
+        "Requisitos del Curso"
       }
-    ));
-    jScrollPane1.setViewportView(jTable1);
+    ) {
+      boolean[] canEdit = new boolean [] {
+        false
+      };
+
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return canEdit [columnIndex];
+      }
+    });
+    jScrollPane1.setViewportView(tblRequisitos);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(layout.createSequentialGroup()
+        .addGap(268, 268, 268)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(0, 290, Short.MAX_VALUE))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1)
-            .addGap(111, 111, 111))
+            .addGroup(layout.createSequentialGroup()
+              .addGap(47, 47, 47)
+              .addComponent(jLabel2)
+              .addGap(18, 18, 18)
+              .addComponent(combxCodigoCursoConsultaRequi, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGap(371, 371, 371)))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap())))
-      .addGroup(layout.createSequentialGroup()
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(layout.createSequentialGroup()
-            .addGap(28, 28, 28)
-            .addComponent(jLabel2)
-            .addGap(108, 108, 108)
-            .addComponent(combxCodigoCursoConsultaRequi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addGroup(layout.createSequentialGroup()
-            .addGap(156, 156, 156)
-            .addComponent(botonRegresarConsultaRequisito)))
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(botonRegresarConsultaRequisito)
+            .addGap(66, 66, 66))))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap()
+        .addGap(21, 21, 21)
         .addComponent(jLabel1)
-        .addGap(66, 66, 66)
+        .addGap(56, 56, 56)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel2)
           .addComponent(combxCodigoCursoConsultaRequi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+        .addGap(34, 34, 34)
         .addComponent(botonRegresarConsultaRequisito)
-        .addGap(22, 22, 22))
+        .addGap(76, 76, 76))
     );
 
     pack();
@@ -143,6 +151,44 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
     this.setVisible(false);
   }//GEN-LAST:event_botonRegresarConsultaRequisitoActionPerformed
 
+  private void cargarCorrequisitos(){
+    DefaultTableModel modeloTabla = (DefaultTableModel) tblRequisitos.getModel();
+    modeloTabla.setRowCount(0);
+    ResultSet rs;
+    ResultSetMetaData rsmd;
+    int columnas;
+    String nombreCarrera = combxCodigoCursoConsultaRequi.getSelectedItem().toString();
+
+    
+    
+    int [] anchos = {10, 50, 100, 30, 100};
+    for(int i = 0 ; i < tblRequisitos.getColumnCount(); i++){
+      tblRequisitos.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+    }
+    
+    try{
+      
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName="
+              + "Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT cursoRequisito FROM Requisito WHERE Requisito.nombreCurso = '"+nombreCarrera+"'");
+      rs = st.executeQuery();
+      rsmd = rs.getMetaData();
+      columnas = rsmd.getColumnCount();
+      
+      while(rs.next()){
+        Object[] fila = new Object[columnas];
+        for(int indice=0; indice<columnas; indice++){
+          fila[indice]=rs.getObject(indice+1);
+        }
+        modeloTabla.addRow(fila);
+      }
+    }catch(SQLException e){
+      
+      JOptionPane.showMessageDialog(null,e);
+    }
+  }  
+  
+  
   /**
    * @param args the command line arguments
    */
@@ -184,6 +230,6 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTable jTable1;
+  private javax.swing.JTable tblRequisitos;
   // End of variables declaration//GEN-END:variables
 }

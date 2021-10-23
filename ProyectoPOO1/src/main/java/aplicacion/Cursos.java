@@ -183,8 +183,10 @@ public class Cursos extends javax.swing.JFrame {
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Cursos");
 
+    jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
     jLabel1.setText("Registro de cursos");
 
+    jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel2.setText("Escuela o área propietaria del curso:");
 
     tblCursos.setModel(new javax.swing.table.DefaultTableModel(
@@ -215,18 +217,33 @@ public class Cursos extends javax.swing.JFrame {
     });
     jScrollPane1.setViewportView(tblCursos);
 
+    jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel4.setText("Nombre del curso:");
 
+    jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel5.setText("Cantidad de créditos:");
 
+    jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel6.setText("Horas lectivas:");
 
+    comBxEscuelaOAreaCargo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     comBxEscuelaOAreaCargo.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         comBxEscuelaOAreaCargoActionPerformed(evt);
       }
     });
 
+    txtNombreCurso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+    comBxCantiCreditos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+    comBxHorasLectivas.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        comBxHorasLectivasActionPerformed(evt);
+      }
+    });
+
+    btnGuardarCurso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnGuardarCurso.setText("Guardar");
     btnGuardarCurso.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,6 +251,7 @@ public class Cursos extends javax.swing.JFrame {
       }
     });
 
+    btnLimpiarCurso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnLimpiarCurso.setText("Limpiar");
     btnLimpiarCurso.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,6 +259,7 @@ public class Cursos extends javax.swing.JFrame {
       }
     });
 
+    btnRegresarCursos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     btnRegresarCursos.setText("Regresar");
     btnRegresarCursos.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,61 +272,71 @@ public class Cursos extends javax.swing.JFrame {
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(28, 28, 28)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-              .addGap(129, 129, 129)
-              .addComponent(btnGuardarCurso)
-              .addGap(113, 113, 113)
-              .addComponent(btnLimpiarCurso)
-              .addGap(114, 114, 114)
-              .addComponent(btnRegresarCursos)))
+        .addGap(169, 169, 169)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
           .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jLabel6)
-              .addComponent(jLabel5)
-              .addComponent(jLabel4)
-              .addComponent(jLabel2))
-            .addGap(50, 50, 50)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-              .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(comBxEscuelaOAreaCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(txtNombreCurso)
-              .addComponent(comBxCantiCreditos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(comBxHorasLectivas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        .addContainerGap(43, Short.MAX_VALUE))
+            .addComponent(jLabel1)
+            .addContainerGap(659, Short.MAX_VALUE))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(btnGuardarCurso)
+            .addGap(187, 187, 187)
+            .addComponent(btnLimpiarCurso)
+            .addGap(332, 332, 332))))
+      .addGroup(layout.createSequentialGroup()
+        .addGap(136, 136, 136)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(btnRegresarCursos)
+        .addGap(49, 49, 49))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+        .addGap(29, 29, 29)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(comBxHorasLectivas, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(comBxCantiCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(comBxEscuelaOAreaCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(txtNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(349, 349, 349))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(jLabel1)
-        .addGap(40, 40, 40)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel2)
-          .addComponent(comBxEscuelaOAreaCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(23, 23, 23)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel4)
-          .addComponent(txtNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(29, 29, 29)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel5)
-          .addComponent(comBxCantiCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(20, 20, 20)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel6)
-          .addComponent(comBxHorasLectivas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(btnGuardarCurso)
-          .addComponent(btnLimpiarCurso)
-          .addComponent(btnRegresarCursos))
-        .addGap(27, 27, 27)
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(74, 74, 74))
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(layout.createSequentialGroup()
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(btnRegresarCursos))
+          .addGroup(layout.createSequentialGroup()
+            .addComponent(jLabel1)
+            .addGap(18, 18, 18)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(comBxEscuelaOAreaCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabel2))
+            .addGap(14, 14, 14)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(jLabel4)
+              .addComponent(txtNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(comBxCantiCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabel5))
+            .addGap(18, 18, 18)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(comBxHorasLectivas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(jLabel6))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(btnGuardarCurso)
+              .addComponent(btnLimpiarCurso))
+            .addGap(54, 54, 54)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addGap(47, 47, 47))
     );
 
     pack();
@@ -356,6 +385,10 @@ public class Cursos extends javax.swing.JFrame {
     verMenu.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnRegresarCursosActionPerformed
+
+  private void comBxHorasLectivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBxHorasLectivasActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_comBxHorasLectivasActionPerformed
 
   /**
    * @param args the command line arguments

@@ -63,7 +63,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
     c.close();
   }
   
-  private void cargarRequisitos(){
+  private void cargarCorrequisitos(){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblCorequisitos.getModel();
     modeloTabla.setRowCount(0);
     ResultSet rs;
@@ -152,8 +152,8 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
 
     jPanel1.setToolTipText("");
 
-    jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-    jLabel2.setText("Curso");
+    jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jLabel2.setText("Código del curso:");
 
     cmbNombreCurso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     cmbNombreCurso.addActionListener(new java.awt.event.ActionListener() {
@@ -175,26 +175,26 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
     jPanel1Layout.setHorizontalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGap(57, 57, 57)
-        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(18, 18, 18)
+        .addGap(59, 59, 59)
+        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(cmbNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(57, Short.MAX_VALUE))
+        .addContainerGap(61, Short.MAX_VALUE))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addComponent(jButton1)
-        .addGap(84, 84, 84))
+        .addGap(73, 73, 73))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-        .addContainerGap(29, Short.MAX_VALUE)
+        .addGap(63, 63, 63)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(cmbNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(26, 26, 26)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
         .addComponent(jButton1)
-        .addGap(24, 24, 24))
+        .addGap(54, 54, 54))
     );
 
     btnPDF1.setText("Regresar");
@@ -211,28 +211,29 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addGap(73, 73, 73)
+            .addGap(308, 308, 308)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(layout.createSequentialGroup()
-            .addGap(81, 81, 81)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jLabel1)
-              .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(447, 447, 447)
+            .addComponent(btnPDF1))
           .addGroup(layout.createSequentialGroup()
-            .addGap(219, 219, 219)
-            .addComponent(btnPDF1)))
-        .addContainerGap(85, Short.MAX_VALUE))
+            .addGap(324, 324, 324)
+            .addComponent(jLabel1))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(280, 280, 280)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(313, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap()
+        .addGap(29, 29, 29)
         .addComponent(jLabel1)
         .addGap(18, 18, 18)
         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addGap(35, 35, 35)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(12, 12, 12)
+        .addGap(18, 18, 18)
         .addComponent(btnPDF1)
         .addContainerGap())
     );
@@ -241,7 +242,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    cargarRequisitos();
+    cargarCorrequisitos();
   }//GEN-LAST:event_jButton1ActionPerformed
 
   private void cmbNombreCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNombreCursoActionPerformed
