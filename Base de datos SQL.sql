@@ -13,15 +13,19 @@ CREATE TABLE EscuelaOArea(
 CREATE TABLE PlanesPorEscuela (
  codigoCarrera varchar(20),
  idPlan varchar(10),
- FOREIGN KEY (idPlan) REFERENCES PlanDeEstudio (idPlan),
+ FOREIGN KEY (idPlan) REFERENCES PlanDeEstudio (idPlan) 
+ ON DELETE CASCADE,
  FOREIGN KEY (codigoCarrera) REFERENCES EscuelaOArea (codigoCarrera)
+ ON DELETE CASCADE
 );
 
 CREATE TABLE CursosPorEscuela (
  codigoCarrera varchar(20),
  codigoCurso varchar(10),
- FOREIGN KEY (codigoCurso) REFERENCES Curso (codigoCurso),
+ FOREIGN KEY (codigoCurso) REFERENCES Curso (codigoCurso) 
+ ON DELETE CASCADE,
  FOREIGN KEY (codigoCarrera) REFERENCES EscuelaOArea (codigoCarrera)
+ ON DELETE CASCADE,
 );
 
 CREATE TABLE Curso(
@@ -31,8 +35,7 @@ CREATE TABLE Curso(
   horasLectivas int NOT NULL,
   cantidadCursos int NOT NULL,
   PRIMARY KEY (codigoCurso)
-  ON DELETE CASCADE
-);
+  );
 
 CREATE TABLE PlanDeEstudio(
   idPlan varchar(10) NOT NULL,
@@ -46,15 +49,17 @@ CREATE TABLE CursosPorPlan (
  idPlan varchar(10),
  codigoCurso varchar(10),
  numBloque int,
- FOREIGN KEY (codigoCurso) REFERENCES Curso (codigoCurso),
- FOREIGN KEY (idPlan) REFERENCES PlanDeEstudio (idPlan),
+ FOREIGN KEY (codigoCurso) REFERENCES Curso (codigoCurso)
+ ON DELETE CASCADE,
+ FOREIGN KEY (idPlan) REFERENCES PlanDeEstudio (idPlan)
+ ON DELETE CASCADE
 );
 
 CREATE TABLE Requisito(
   nombreCurso varchar(10),
   cursoRequisito varchar(10),
   cursoCorrequisito varchar(10),
-  FOREIGN KEY (nombreCurso) REFERENCES Curso(codigoCurso),
+  FOREIGN KEY (nombreCurso) REFERENCES Curso(codigoCurso) ON DELETE CASCADE,
   FOREIGN KEY (cursoRequisito) REFERENCES Curso(codigoCurso),
   FOREIGN KEY (cursoCorrequisito) REFERENCES Curso(codigoCurso)
 );
