@@ -16,7 +16,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logicadenegocios.PDF;
-import static logicadenegocios.PDF.generarPDF;
+//import static logicadenegocios.PDF.generarPDF;
 
 /**
  * Clase de la creación de la ventana Consulta1
@@ -303,7 +303,7 @@ public class Consulta1 extends javax.swing.JFrame {
   private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
     c.connect();
     String idPlan =cmbPlanesEstudio.getSelectedItem().toString();
-    generarPDF(idPlan);
+    //generarPDF(idPlan);
     c.close();
     
   }//GEN-LAST:event_btnPDFActionPerformed

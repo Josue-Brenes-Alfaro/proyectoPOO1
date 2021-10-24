@@ -82,6 +82,7 @@ public class PlanDeEstudio {//implements InterfaceCurso{
             + "(idPlan, fechaVigencia ) VALUES ('"+getNombrePlanEstudio()+"','"+ getFechaVigencia() +"')");
     st.executeUpdate();
     }catch (SQLException ex) {
+      JOptionPane.showMessageDialog(null,"Datos invalidos");
       System.err.println(ex.getMessage());
     }
   }

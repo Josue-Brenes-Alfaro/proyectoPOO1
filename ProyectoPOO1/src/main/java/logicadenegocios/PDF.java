@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package logicadenegocios;
-
+/*
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import javax.swing.JOptionPane;
+*/
 /**
  * Esta es una abstraccion de la clase PDF con fines academicos
  * @author Paola López
@@ -30,6 +31,7 @@ public class PDF {
  * y lo guarda en el equipo
  * no funciona
  */
+  /*
   public static void generarPDF(String idPlan) { 
      Document documento = new Document();
       try {
@@ -69,4 +71,5 @@ public class PDF {
       }
 
   }
+*/
 }
