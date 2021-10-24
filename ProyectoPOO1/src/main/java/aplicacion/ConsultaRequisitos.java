@@ -62,8 +62,7 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
       } combxCodigoCursoConsultaRequi.setModel(listaModelo);
     } catch(SQLException e){
       JOptionPane.showMessageDialog(null,e);
-    }
-    c.close();
+    } c.close();
   }
 
   /**

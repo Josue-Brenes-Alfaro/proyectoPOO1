@@ -4,6 +4,7 @@
  */
 package aplicacion;
 
+import SQL.Conexion;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  * @version 1.0
  */
 public class Cursos extends javax.swing.JFrame {
-
+  Conexion c = new Conexion("");
   /**
    * crea el nuevo formulario  y agrega color de fondo
    */
@@ -32,7 +33,33 @@ public class Cursos extends javax.swing.JFrame {
     cargarCmbCatiCreditos ();
     cargarCmbHorasLectivas ();
     obtenerNombreEscuela ();
+    cargarCodigoCursoEliminado();
     this.getContentPane().setBackground(new Color(223,255,255));
+  }
+  
+   public void cargarCodigoCursoEliminado() {
+    ResultSet rs;
+    try {
+      c.connect();
+      
+      DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
+      listaModelo.addElement("Seleccione un codigo");
+    
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("SELECT codigoCurso  from Curso");
+      rs = st.executeQuery();
+    
+      try {
+        while (rs.next()){
+          listaModelo.addElement(rs.getString("codigoCurso"));
+      } rs.close();
+      
+      } catch(SQLException ex ){
+        System.err.println(ex.getMessage());
+      } cmbCodigoCursoParaEliminar.setModel(listaModelo);
+    } catch(SQLException e){
+      JOptionPane.showMessageDialog(null,e);
+    } c.close();
   }
   
   /**
@@ -211,6 +238,9 @@ public class Cursos extends javax.swing.JFrame {
     btnGuardarCurso = new javax.swing.JButton();
     btnLimpiarCurso = new javax.swing.JButton();
     btnRegresarCursos = new javax.swing.JButton();
+    btnEliminarCurso = new javax.swing.JButton();
+    jLabel3 = new javax.swing.JLabel();
+    cmbCodigoCursoParaEliminar = new javax.swing.JComboBox<>();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Cursos");
@@ -303,42 +333,65 @@ public class Cursos extends javax.swing.JFrame {
       }
     });
 
+    btnEliminarCurso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    btnEliminarCurso.setText("Eliminar");
+    btnEliminarCurso.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEliminarCursoActionPerformed(evt);
+      }
+    });
+
+    jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    jLabel3.setText("Código del curso:");
+
+    cmbCodigoCursoParaEliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(169, 169, 169)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addGroup(layout.createSequentialGroup()
-            .addComponent(jLabel1)
-            .addContainerGap(659, Short.MAX_VALUE))
-          .addGroup(layout.createSequentialGroup()
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addComponent(btnGuardarCurso)
-            .addGap(187, 187, 187)
-            .addComponent(btnLimpiarCurso)
-            .addGap(332, 332, 332))))
-      .addGroup(layout.createSequentialGroup()
         .addGap(136, 136, 136)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
         .addComponent(btnRegresarCursos)
         .addGap(49, 49, 49))
+      .addGroup(layout.createSequentialGroup()
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addGap(169, 169, 169)
+            .addComponent(jLabel1))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(284, 284, 284)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(btnLimpiarCurso)
+                .addGap(57, 57, 57)
+                .addComponent(btnGuardarCurso)
+                .addGap(59, 59, 59)
+                .addComponent(btnEliminarCurso))
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                  .addComponent(comBxCantiCreditos, 0, 132, Short.MAX_VALUE)
+                  .addComponent(comBxHorasLectivas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(122, 122, 122)))))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addGap(0, 0, Short.MAX_VALUE)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+        .addComponent(jLabel2)
         .addGap(29, 29, 29)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(comBxHorasLectivas, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(comBxCantiCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(comBxEscuelaOAreaCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(txtNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(349, 349, 349))
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addComponent(comBxEscuelaOAreaCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(cmbCodigoCursoParaEliminar, 0, 333, Short.MAX_VALUE)
+          .addComponent(txtNombreCurso))
+        .addGap(213, 213, 213))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,7 +407,11 @@ public class Cursos extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(comBxEscuelaOAreaCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(jLabel2))
-            .addGap(14, 14, 14)
+            .addGap(17, 17, 17)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(jLabel3)
+              .addComponent(cmbCodigoCursoParaEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(jLabel4)
               .addComponent(txtNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -366,11 +423,12 @@ public class Cursos extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(comBxHorasLectivas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(jLabel6))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(btnGuardarCurso)
-              .addComponent(btnLimpiarCurso))
-            .addGap(54, 54, 54)
+              .addComponent(btnLimpiarCurso)
+              .addComponent(btnEliminarCurso))
+            .addGap(18, 18, 18)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addGap(47, 47, 47))
     );
@@ -437,6 +495,26 @@ public class Cursos extends javax.swing.JFrame {
   private void comBxHorasLectivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBxHorasLectivasActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_comBxHorasLectivasActionPerformed
+  /**
+   * Metodo que al ser accionado elimina un curso del registro
+   * @param evt 
+   */
+  private void btnEliminarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCursoActionPerformed
+    String codigoCursoPorEliminar = cmbCodigoCursoParaEliminar.getSelectedItem().toString();
+    
+    int cantidadCreditosIng = Integer.parseInt(comBxCantiCreditos.getSelectedItem().toString());
+    this.cantidadCursos++;
+      
+    try {
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("DELETE FROM Curso "
+          + "WHERE codigoCurso = '"+codigoCursoPorEliminar+"'");
+      st.executeUpdate();
+      cargarTablaCursos ();
+    } catch (SQLException ex) {
+     System.err.println(ex.getMessage());
+    }  
+  }//GEN-LAST:event_btnEliminarCursoActionPerformed
 
   /**
    * Metodo principal de la clase consulta
@@ -476,14 +554,17 @@ public class Cursos extends javax.swing.JFrame {
   
   private int cantidadCursos; 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btnEliminarCurso;
   private javax.swing.JButton btnGuardarCurso;
   private javax.swing.JButton btnLimpiarCurso;
   private javax.swing.JButton btnRegresarCursos;
+  private javax.swing.JComboBox<String> cmbCodigoCursoParaEliminar;
   private javax.swing.JComboBox<String> comBxCantiCreditos;
   private javax.swing.JComboBox<String> comBxEscuelaOAreaCargo;
   private javax.swing.JComboBox<String> comBxHorasLectivas;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel5;
   private javax.swing.JLabel jLabel6;
