@@ -1,9 +1,6 @@
 package logicadenegocios;
 
 import java.util.ArrayList;
-import excepciones.CursoDoesNotExistsException;
-import interfaces.InterfaceCurso;
-import logicadenegocios.EscuelaOArea;
 import aplicacion.Escuela;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -96,6 +93,7 @@ public class EscuelaOArea{//implements InterfaceCurso{
   /**
    *Este metodo carga la los datos de la tabla carreras
    * y la muestra en la tabla de la aplicacion
+   * @param modeloTabla
    */  
   public void cargaDeDatosEnTablaCarreras(DefaultTableModel modeloTabla){
     Connection connect;

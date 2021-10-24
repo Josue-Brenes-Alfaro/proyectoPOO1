@@ -1,12 +1,11 @@
 package logicadenegocios;
-import interfaces.InterfaceCurso;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -111,6 +110,7 @@ public class PlanDeEstudio {//implements InterfaceCurso{
   /**
    *Este metodo carga la los datos de la tabla Planes
    * y la muestra en la tabla de la aplicacion
+   * @param modeloTabla
    */  
   public void cargarTablaPlanDeEstudio(DefaultTableModel modeloTabla){
     ResultSet rs;

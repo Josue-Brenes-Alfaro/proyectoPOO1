@@ -1,9 +1,7 @@
 package logicadenegocios;
 
 import excepciones.CursoDoesNotExistsException;
-import interfaces.InterfaceCurso;
 import java.util.ArrayList;
-import logicadenegocios.EscuelaOArea; 
  
 /**
  * Esta es una abstraccion de la clase Cursos con fines academicos
@@ -12,7 +10,7 @@ import logicadenegocios.EscuelaOArea;
  * @author Josué Brenes
  * @version 1.0
  */
-public class Curso implements InterfaceCurso{
+public class Curso {
   private String codigoCurso;
   private String nombreCurso;
   private int cantidadCreditos;
@@ -52,6 +50,8 @@ public class Curso implements InterfaceCurso{
   /**
    *Este metodo busca toda informacion de un curso
    * @param pCodigoCurso
+   * @return cursoActual
+   * @throws excepciones.CursoDoesNotExistsException
    */  
   public Curso buscarCurso (String pCodigoCurso) throws CursoDoesNotExistsException {
     for (Curso cursoActual: cursosRequisitos) {
@@ -63,6 +63,7 @@ public class Curso implements InterfaceCurso{
   /**
    *Este metodo verifica la existencia de un codigo curso
    * @param pCodigoCurso
+   * @return Boolean
    */  
   public boolean existeCurso (String pCodigoCurso){
     for(Curso cursoActual: cursosRequisitos) {
@@ -73,6 +74,8 @@ public class Curso implements InterfaceCurso{
   /**
    *Este metodo busca toda informacion de un cursoCorrequisito
    * @param pCodigoCurso
+   * @return cursoActual
+   * @throws excepciones.CursoDoesNotExistsException
    */  
   public Curso buscarCursoCorrequisito (String pCodigoCurso) throws CursoDoesNotExistsException {
     for (Curso cursoActual: cursosCorrequisitos) {
@@ -84,6 +87,7 @@ public class Curso implements InterfaceCurso{
   /**
    *Este metodo busca la existencia de un cursoCorrequisito
    * @param pCodigoCurso
+   * @return 
    */  
   public boolean existeCursoCorrequisito (String pCodigoCurso){
     for(Curso cursoActual: cursosCorrequisitos) {
@@ -95,6 +99,7 @@ public class Curso implements InterfaceCurso{
   /**
    * Meotdo que imprime un mensaje con la informacion de un curso.
    * @return cadena como String
+   *  @Override
    */
   public String toString() {
     String cadena = "";
