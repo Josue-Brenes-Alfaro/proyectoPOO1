@@ -171,6 +171,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
     jLabel3 = new javax.swing.JLabel();
     comBxCarreras = new javax.swing.JComboBox<>();
     btnCargarPlanes = new javax.swing.JButton();
+    btnEliminarCursoEnPlan = new javax.swing.JButton();
     btnVolver = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -206,7 +207,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
 
     btnGuardar.setBackground(new java.awt.Color(69, 119, 186));
     btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    btnGuardar.setText("Añadir curso a Plan de estudio");
+    btnGuardar.setText("Guardar");
     btnGuardar.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         btnGuardarActionPerformed(evt);
@@ -249,6 +250,14 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
       }
     });
 
+    btnEliminarCursoEnPlan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    btnEliminarCursoEnPlan.setText("Eliminar");
+    btnEliminarCursoEnPlan.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEliminarCursoEnPlanActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -269,13 +278,17 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-              .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(cmbNumBloque, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addComponent(cbxCursos, 0, 287, Short.MAX_VALUE))
+              .addComponent(cbxCursos, 0, 287, Short.MAX_VALUE)
+              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(btnGuardar)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addComponent(btnEliminarCursoEnPlan))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addGap(1, 1, 1)
+                  .addComponent(cmbNumBloque, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(btnCargarCursos))
-          .addComponent(btnGuardar)
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
               .addComponent(comBxCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,7 +319,9 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
           .addComponent(cmbNumBloque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jLabel5))
         .addGap(18, 18, 18)
-        .addComponent(btnGuardar)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(btnGuardar)
+          .addComponent(btnEliminarCursoEnPlan))
         .addContainerGap())
     );
 
@@ -417,6 +432,30 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   }//GEN-LAST:event_btnVolverActionPerformed
 
   /**
+   * Este metodo contiene un evento que al accionarlo, elimina el curso de un Plan
+   * @param evt 
+   */
+  private void btnEliminarCursoEnPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCursoEnPlanActionPerformed
+    String idplan = cmbCodigoPlanEstudio.getSelectedItem().toString();
+    String codigoCurso = cbxCursos.getSelectedItem().toString();
+    String numBloque = cmbNumBloque.getSelectedItem().toString();
+    
+    c.connect();
+
+    try {
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName="
+        + "Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("DELETE from CursosPorPlan WHERE codigoCurso = '"+codigoCurso+"' AND idPlan = '"+idplan+"'");
+      st.executeUpdate();
+      c.close();
+    }
+    catch (SQLException ex) {
+      System.err.println(ex.getMessage());
+    }
+    cargarTablaCursosPlan();
+  }//GEN-LAST:event_btnEliminarCursoEnPlanActionPerformed
+
+  /**
    * Este metodo Carga los datos de la tabla de la ventana RegistroCursosEnPlan
    */
   private void cargarTablaCursosPlan(){
@@ -492,6 +531,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnCargarCursos;
   private javax.swing.JButton btnCargarPlanes;
+  private javax.swing.JButton btnEliminarCursoEnPlan;
   private javax.swing.JButton btnGuardar;
   private javax.swing.JButton btnVolver;
   private javax.swing.JComboBox<String> cbxCursos;
