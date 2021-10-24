@@ -31,6 +31,7 @@ CREATE TABLE Curso(
   horasLectivas int NOT NULL,
   cantidadCursos int NOT NULL,
   PRIMARY KEY (codigoCurso)
+  ON DELETE CASCADE
 );
 
 CREATE TABLE PlanDeEstudio(
