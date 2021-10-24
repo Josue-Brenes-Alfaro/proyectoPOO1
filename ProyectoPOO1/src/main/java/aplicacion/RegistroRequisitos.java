@@ -55,10 +55,8 @@ public class RegistroRequisitos extends javax.swing.JFrame {
       if (x.equals(ini)) {
         xxx=pNombreEscuela.substring(i+1, i+2);
         xx=xx+xxx;
-
       } 
-    }
-    return xx;
+    } return xx;
   }
   
   /**
@@ -99,7 +97,6 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     
     try {
       c.connect();
-      
       DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
       listaModelo.addElement("Selecciones un curso");
     
@@ -118,8 +115,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
       } comBxRequisito.setModel(listaModelo);
     } catch(SQLException e){
       JOptionPane.showMessageDialog(null,e);
-    }
-    c.close();
+    } c.close();
   }
   /**
    * Método para insertar el codigo de los cursosCO en el
@@ -129,10 +125,8 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     ResultSet rs;
     String nombreCarrera = comBxEscuelaAreaRequisitos.getSelectedItem().toString();
     String codigoCarrera = generarCodigoEscuela(nombreCarrera);    
-    
     try {
       c.connect();
-      
       DefaultComboBoxModel listaModelo = new DefaultComboBoxModel();
       listaModelo.addElement("Selecciones un curso");
     
@@ -151,8 +145,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
       } comBxCorrequisito.setModel(listaModelo);
     } catch(SQLException e){
       JOptionPane.showMessageDialog(null,e);
-    }
-    c.close();
+    } c.close();
   }
 
   /**
@@ -397,13 +390,10 @@ public class RegistroRequisitos extends javax.swing.JFrame {
       PreparedStatement st = connect.prepareStatement("INSERT INTO Requisito "
               + "VALUES ( '"+ codigoCurso + "','"+ codigoCursoReque +""
                       + "','"+ codigoCursoCorre +"')");
-      
-      
       st.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro guardado");
       cargarRequistroRequisitos();
-    }
-    catch (SQLException ex) {
+    } catch (SQLException ex) {
       System.err.println(ex.getMessage());
     }
   }//GEN-LAST:event_btnGuardarRequisitoActionPerformed
@@ -422,10 +412,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     int [] anchos = {10, 50, 100, 30, 100};
     for(int i = 0 ; i < tblRegistroRequisitos.getColumnCount(); i++){
       tblRegistroRequisitos.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
-    }
-    
-    try{
-      
+    } try{
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName="
               + "Proyecto_POO1;user=usuariosql;password=root1");
       PreparedStatement st = connect.prepareStatement("Select * from Requisito");
@@ -437,11 +424,9 @@ public class RegistroRequisitos extends javax.swing.JFrame {
         Object[] fila = new Object[columnas];
         for(int indice=0; indice<columnas; indice++){
           fila[indice]=rs.getObject(indice+1);
-        }
-        modeloTabla.addRow(fila);
+        } modeloTabla.addRow(fila);
       }
     }catch(SQLException e){
-      
       JOptionPane.showMessageDialog(null,e);
     }
   }
@@ -464,8 +449,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
       //PreparedStatement st = connect.prepareStatement("SELECT codigoCurso from Curso order by nombreCurso");
       PreparedStatement st = connect.prepareStatement("SELECT codigoCurso from CursosPorEscuela where CursosPorEscuela.codigoCarrera = '"+codigoCarrera+"'");
-      rs = st.executeQuery();
-    
+      rs = st.executeQuery(); 
       try {
         while (rs.next()){
           listaModelo.addElement(rs.getString("codigoCurso"));
@@ -476,8 +460,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
       } comBxCodigoCursoRequisitos.setModel(listaModelo);
     } catch(SQLException e){
       JOptionPane.showMessageDialog(null,e);
-    }
-    c.close();
+    } c.close();
   }//GEN-LAST:event_btnCargarCursosActionPerformed
   /**
    * Método para accionar el botón de CargarRequisitos
@@ -498,7 +481,10 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   private void comBxRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBxRequisitoActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_comBxRequisitoActionPerformed
-
+/**
+ * Metodo que ejecuta un evento de eliminado de un requisito cuando es accionado
+ * @param evt 
+ */
   private void btnEliminarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarRequisitoActionPerformed
     String codigoCurso = this.comBxCodigoCursoRequisitos.getSelectedItem().toString();
     String codigoCursoReque = comBxRequisito.getSelectedItem().toString();
@@ -511,13 +497,10 @@ public class RegistroRequisitos extends javax.swing.JFrame {
           + "WHERE nombreCurso = '"+codigoCurso+"' "
               + "and cursoRequisito = '"+codigoCursoReque+"' "
                   + "or cursoCorrequisito = '"+codigoCursoCorre+"'");
-      
-      
       st.executeUpdate();
       JOptionPane.showMessageDialog(null,"Registro eliminado");
       cargarRequistroRequisitos();
-    }
-    catch (SQLException ex) {
+    } catch (SQLException ex) {
       System.err.println(ex.getMessage());
     }
   }//GEN-LAST:event_btnEliminarRequisitoActionPerformed
