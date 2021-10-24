@@ -57,3 +57,5 @@ CREATE TABLE Requisito(
   FOREIGN KEY (cursoRequisito) REFERENCES Curso(codigoCurso),
   FOREIGN KEY (cursoCorrequisito) REFERENCES Curso(codigoCurso)
 );
+
+INSERT INTO  Curso VALUES ('No tiene', 'No tiene ',0,0,0)
