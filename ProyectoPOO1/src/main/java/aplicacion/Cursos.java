@@ -508,7 +508,8 @@ public class Cursos extends javax.swing.JFrame {
     try {
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
       PreparedStatement st = connect.prepareStatement("DELETE FROM Curso "
-          + "WHERE codigoCurso = '"+codigoCursoPorEliminar+"'");
+          + "WHERE codigoCurso = '"+codigoCursoPorEliminar+"' "
+              + "AND (SELECT count(1) FROM CursosPorPlan WHERE codigoCurso = '"+codigoCursoPorEliminar+"') < 1");
       st.executeUpdate();
       cargarTablaCursos ();
     } catch (SQLException ex) {
