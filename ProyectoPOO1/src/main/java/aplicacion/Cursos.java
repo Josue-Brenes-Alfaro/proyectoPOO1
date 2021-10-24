@@ -344,6 +344,7 @@ public class Cursos extends javax.swing.JFrame {
     jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel3.setText("Código del curso:");
 
+    cmbCodigoCursoParaEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     cmbCodigoCursoParaEliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -423,7 +424,7 @@ public class Cursos extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(comBxHorasLectivas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(jLabel6))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(btnGuardarCurso)
               .addComponent(btnLimpiarCurso)
