@@ -180,6 +180,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     btnCargarCursos = new javax.swing.JButton();
     btnCargarRequisitos = new javax.swing.JButton();
     btnCargarCorrequisitos = new javax.swing.JButton();
+    btnEliminarRequisito = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setAutoRequestFocus(false);
@@ -279,6 +280,14 @@ public class RegistroRequisitos extends javax.swing.JFrame {
       }
     });
 
+    btnEliminarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    btnEliminarRequisito.setText("Eliminar");
+    btnEliminarRequisito.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEliminarRequisitoActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -306,10 +315,6 @@ public class RegistroRequisitos extends javax.swing.JFrame {
             .addGap(37, 37, 37)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
               .addGroup(layout.createSequentialGroup()
-                .addComponent(comBxCorrequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCargarCorrequisitos))
-              .addGroup(layout.createSequentialGroup()
                 .addComponent(comBxRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCargarRequisitos))
@@ -317,11 +322,16 @@ public class RegistroRequisitos extends javax.swing.JFrame {
                 .addComponent(comBxCodigoCursoRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCargarCursos))
-              .addComponent(comBxEscuelaAreaRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(btnGuardarRequisito)
-            .addGap(289, 289, 289)))
+              .addComponent(comBxEscuelaAreaRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                  .addGroup(layout.createSequentialGroup()
+                    .addComponent(btnGuardarRequisito)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEliminarRequisito))
+                  .addComponent(comBxCorrequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCargarCorrequisitos)))))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
@@ -349,7 +359,9 @@ public class RegistroRequisitos extends javax.swing.JFrame {
           .addComponent(comBxCorrequisito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(btnCargarCorrequisitos))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-        .addComponent(btnGuardarRequisito)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(btnGuardarRequisito)
+          .addComponent(btnEliminarRequisito))
         .addGap(18, 18, 18)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(8, 8, 8)
@@ -487,6 +499,29 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_comBxRequisitoActionPerformed
 
+  private void btnEliminarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarRequisitoActionPerformed
+    String codigoCurso = this.comBxCodigoCursoRequisitos.getSelectedItem().toString();
+    String codigoCursoReque = comBxRequisito.getSelectedItem().toString();
+    String codigoCursoCorre = comBxCorrequisito.getSelectedItem().toString();
+
+    try {
+      Connection connect = DriverManager.getConnection("jdbc:sqlserver://"
+          + ";databaseName=Proyecto_POO1;user=usuariosql;password=root1");
+      PreparedStatement st = connect.prepareStatement("DELETE FROM Requisito "
+          + "WHERE nombreCurso = '"+codigoCurso+"' "
+              + "and cursoRequisito = '"+codigoCursoReque+"' "
+                  + "or cursoCorrequisito = '"+codigoCursoCorre+"'");
+      
+      
+      st.executeUpdate();
+      JOptionPane.showMessageDialog(null,"Registro eliminado");
+      cargarRequistroRequisitos();
+    }
+    catch (SQLException ex) {
+      System.err.println(ex.getMessage());
+    }
+  }//GEN-LAST:event_btnEliminarRequisitoActionPerformed
+
   /**
    * Método main de la ventana RegistroPlanesEstudio
    * @param args
@@ -527,6 +562,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   private javax.swing.JButton btnCargarCorrequisitos;
   private javax.swing.JButton btnCargarCursos;
   private javax.swing.JButton btnCargarRequisitos;
+  private javax.swing.JButton btnEliminarRequisito;
   private javax.swing.JButton btnGuardarRequisito;
   private javax.swing.JButton btnVolver;
   private javax.swing.JComboBox<String> comBxCodigoCursoRequisitos;
