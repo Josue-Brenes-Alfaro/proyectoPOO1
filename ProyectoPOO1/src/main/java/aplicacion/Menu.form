@@ -104,10 +104,12 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnEscuela" alignment="1" min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="btnRequisitos" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="btnCursos" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnRequisitos" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="btnCursos" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">

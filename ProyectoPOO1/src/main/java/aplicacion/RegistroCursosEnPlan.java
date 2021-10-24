@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * Clase de la creación de la ventana RegistroCursoEnPlan
- * dediaca para el registro de cursos en planes de estudio
+ * dedicada para el registro de cursos en planes de estudio
  * @author Alejandra
  * @author Paola
  * @author Josue
@@ -25,7 +25,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   Conexion c = new Conexion("");
   ButtonGroup btnGr;
   /**
-   * Creates new form RegistroCursosEnPlan
+   * crea el nuevo formulario  y agrega color de fondo
    */
   public RegistroCursosEnPlan() {
     initComponents();
@@ -35,7 +35,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   }
   
   /**
-   * Método para isertar el nombre de las carreras en el
+   * Método para insertar el nombre de las carreras en el
    * combobox llamado comBxCarreras
    */
   public void obtenerNombreCarreras(){
@@ -64,7 +64,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   /**
    * Método para extraer las primeras letras de una oración.
    * @param pNombreEscuela
-   * @return las iniciales de una oració
+   * @return las iniciales de una oración
    */
   public String generarCodigoEscuela (String pNombreEscuela ){
     int largo = pNombreEscuela.length();
@@ -84,15 +84,14 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   }
 
   /**
-   * Método para isertar el código de los cursos en el
+   * Método para insertar el código de los cursos en el
    * combobox llamado cbxCursos
    */
   public void obtenerCodigoCursos(){
     ResultSet rs;
     String nombreCarrera = comBxCarreras.getSelectedItem().toString();
     String codigoCarrera = generarCodigoEscuela(nombreCarrera);    
-    
-    
+
     try {
       c.connect();
       
@@ -119,7 +118,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   }
   
   /**
-   * Método para isertar el código de los Planes de estudio en el
+   * Método para insertar el código de los Planes de estudio en el
    * combobox llamado cmbCodigoPlanEstudio
    */
   public void obtenerCodigoPlanes(){
@@ -172,7 +171,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
     jLabel3 = new javax.swing.JLabel();
     comBxCarreras = new javax.swing.JComboBox<>();
     btnCargarPlanes = new javax.swing.JButton();
-    btnPDF2 = new javax.swing.JButton();
+    btnVolver = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("RegistroCursosEnPlan");
@@ -311,12 +310,12 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
         .addContainerGap())
     );
 
-    btnPDF2.setBackground(new java.awt.Color(69, 119, 186));
-    btnPDF2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    btnPDF2.setText("Regresar");
-    btnPDF2.addActionListener(new java.awt.event.ActionListener() {
+    btnVolver.setBackground(new java.awt.Color(69, 119, 186));
+    btnVolver.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    btnVolver.setText("Regresar");
+    btnVolver.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnPDF2ActionPerformed(evt);
+        btnVolverActionPerformed(evt);
       }
     });
 
@@ -328,7 +327,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
             .addGap(172, 903, Short.MAX_VALUE)
-            .addComponent(btnPDF2))
+            .addComponent(btnVolver))
           .addGroup(layout.createSequentialGroup()
             .addGap(118, 118, 118)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,7 +352,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
         .addGap(18, 18, 18)
         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(btnPDF2)
+        .addComponent(btnVolver)
         .addContainerGap())
     );
 
@@ -405,15 +404,20 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   private void btnCargarPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarPlanesActionPerformed
     obtenerCodigoPlanes();
   }//GEN-LAST:event_btnCargarPlanesActionPerformed
-
-  private void btnPDF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF2ActionPerformed
+  
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * regresa al menu principal
+   * @param evt
+   */
+  private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
     RegistroPlanesEstudio verPlanEstudio = new RegistroPlanesEstudio();    
     verPlanEstudio.setVisible(true);
     this.setVisible(false);
-  }//GEN-LAST:event_btnPDF2ActionPerformed
+  }//GEN-LAST:event_btnVolverActionPerformed
 
-   /**
-   * Carga los datos de la tabla de la ventana RegistroCursosEnPlan
+  /**
+   * Este metodo Carga los datos de la tabla de la ventana RegistroCursosEnPlan
    */
   private void cargarTablaCursosPlan(){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblCursosPlan.getModel();
@@ -450,7 +454,8 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   }
   
   /**
-   * @param args the command line arguments
+   * Método main de la ventana RegistroCursosEnPlan
+   * @param args
    */
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */
@@ -488,7 +493,7 @@ public class RegistroCursosEnPlan extends javax.swing.JFrame {
   private javax.swing.JButton btnCargarCursos;
   private javax.swing.JButton btnCargarPlanes;
   private javax.swing.JButton btnGuardar;
-  private javax.swing.JButton btnPDF2;
+  private javax.swing.JButton btnVolver;
   private javax.swing.JComboBox<String> cbxCursos;
   private javax.swing.JComboBox<String> cmbCodigoPlanEstudio;
   private javax.swing.JComboBox<String> cmbNumBloque;

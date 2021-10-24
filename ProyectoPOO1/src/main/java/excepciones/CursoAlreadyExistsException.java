@@ -5,8 +5,12 @@
 package excepciones;
 
 /**
- *
- * @author Pol_D
+ * Esta es una abstraccion de la clase CursoAlreadytExistsException con fines 
+ * academicos
+ * @author Alejandra Merino
+ * @author Paola López
+ * @author Josué Brenes
+ * @version 1.0
  */
 public class CursoAlreadyExistsException extends Exception {
   private String codigoCurso;

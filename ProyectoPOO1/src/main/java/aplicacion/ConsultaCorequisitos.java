@@ -21,8 +21,6 @@ import javax.swing.table.DefaultTableModel;
  * Clase de la creación de la ventana ConsultaCorequisitos
  * dedicada para la consulta de correquisitos de un curso
  * @author Alejandra
- * @author Paola
- * @author Josue
  * @version 1.0
  */
 public class ConsultaCorequisitos extends javax.swing.JFrame {
@@ -30,7 +28,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
   Conexion c = new Conexion("");
   ButtonGroup btnGr;
   /**
-   * Creates new form ConsultaCorequisitos
+   * crea el nuevo formulario consulta y agrega color de fondo
    */
   public ConsultaCorequisitos() {
     initComponents();
@@ -38,6 +36,10 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
     this.getContentPane().setBackground(new Color(223,255,255));
   }
   
+  /**
+   * Método para insertar el código de los cursos en el
+   * combobox llamado cbxCursos
+   */
   public void obtenerCodigoCursos(){
     ResultSet rs;
     try {
@@ -65,6 +67,10 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
     c.close();
   }
   
+  /**
+   *Este metodo carga la consulta de requisitos sql en la tabla
+   * y la muestra en la aplicacion
+   */  
   private void cargarCorrequisitos(){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblCorequisitos.getModel();
     modeloTabla.setRowCount(0);
@@ -118,7 +124,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
     jLabel2 = new javax.swing.JLabel();
     cmbNombreCurso = new javax.swing.JComboBox<>();
     jButton1 = new javax.swing.JButton();
-    btnPDF1 = new javax.swing.JButton();
+    btnvolver = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("ConsultaCorequisito");
@@ -201,11 +207,11 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
         .addGap(54, 54, 54))
     );
 
-    btnPDF1.setBackground(new java.awt.Color(69, 119, 186));
-    btnPDF1.setText("Regresar");
-    btnPDF1.addActionListener(new java.awt.event.ActionListener() {
+    btnvolver.setBackground(new java.awt.Color(69, 119, 186));
+    btnvolver.setText("Regresar");
+    btnvolver.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnPDF1ActionPerformed(evt);
+        btnvolverActionPerformed(evt);
       }
     });
 
@@ -220,7 +226,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(layout.createSequentialGroup()
             .addGap(447, 447, 447)
-            .addComponent(btnPDF1))
+            .addComponent(btnvolver))
           .addGroup(layout.createSequentialGroup()
             .addGap(324, 324, 324)
             .addComponent(jLabel1))
@@ -239,13 +245,18 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(18, 18, 18)
-        .addComponent(btnPDF1)
+        .addComponent(btnvolver)
         .addContainerGap())
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * carga la tabla de consultas en el formulario
+   * @param evt
+   */
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     cargarCorrequisitos();
   }//GEN-LAST:event_jButton1ActionPerformed
@@ -254,13 +265,20 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_cmbNombreCursoActionPerformed
 
-  private void btnPDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF1ActionPerformed
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * regresa al menu principal
+   * @param evt
+   */
+  
+  private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
     Menu verMenu = new Menu();    
     verMenu.setVisible(true);
     this.setVisible(false);
-  }//GEN-LAST:event_btnPDF1ActionPerformed
+  }//GEN-LAST:event_btnvolverActionPerformed
 
   /**
+   * Metodo principal de la clase consulta
    * @param args the command line arguments
    */
   public static void main(String args[]) {
@@ -296,7 +314,7 @@ public class ConsultaCorequisitos extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton btnPDF1;
+  private javax.swing.JButton btnvolver;
   private javax.swing.JComboBox<String> cmbNombreCurso;
   private javax.swing.JButton jButton1;
   private javax.swing.JLabel jLabel1;

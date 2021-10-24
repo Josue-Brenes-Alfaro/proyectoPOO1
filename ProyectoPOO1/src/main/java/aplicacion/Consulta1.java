@@ -19,14 +19,15 @@ import logicadenegocios.PDF;
 import static logicadenegocios.PDF.generarPDF;
 
 /**
- *
- * @author farol
+ * Clase de la creación de la ventana Consulta1
+ * dedicada para las consultas de plan de estudio
+ * @author Paola
+ * @version 1.0
  */
 public class Consulta1 extends javax.swing.JFrame {
   Conexion c = new Conexion("");
-
   /**
-   * Creates new form Consulta1
+   * Creacion del formulario consulta
    */
   public Consulta1() {
     initComponents();
@@ -34,8 +35,8 @@ public class Consulta1 extends javax.swing.JFrame {
     this.getContentPane().setBackground(new Color(223,255,255));
   }
   
-    /**
-   * Método para isertar el código de los Planes de estudio en el
+  /**
+   * Método para insertar el código de los Planes de estudio en el
    * combobox llamado cmbCodigoPlanEstudio
    */
   public void obtenerCodigoPlanes(){
@@ -294,6 +295,11 @@ public class Consulta1 extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * crea un pdf en la computadora
+   * @param evt
+   */
   private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
     c.connect();
     String idPlan =cmbPlanesEstudio.getSelectedItem().toString();
@@ -301,24 +307,38 @@ public class Consulta1 extends javax.swing.JFrame {
     c.close();
     
   }//GEN-LAST:event_btnPDFActionPerformed
-
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * muestra las consultas en las tablas respectivas
+   * @param evt
+   */
   private void btnConsultarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPlanActionPerformed
 
     String idPlan =cmbPlanesEstudio.getSelectedItem().toString();
     c.connect();
-      cargarTabla(idPlan);
-      cargarTablaCreditos(idPlan);
-      cargarTablaCursos(idPlan);
-      cargarTablaEscuela(idPlan);
-      c.close();
+    cargarTabla(idPlan);
+    cargarTablaCreditos(idPlan);
+    cargarTablaCursos(idPlan);
+    cargarTablaEscuela(idPlan);
+    c.close();
   }//GEN-LAST:event_btnConsultarPlanActionPerformed
-
+  
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * regresa al menu principal
+   * @param evt
+   */
   private void btnPDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF1ActionPerformed
     Menu verMenu = new Menu();    
     verMenu.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnPDF1ActionPerformed
 
+  /**
+   *Este metodo carga la consulta de planes sql en la tabla
+   * y la muestra en la aplicacion
+   * @param idPlan
+   */  
   private void cargarTabla(String idPlan){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblCursos.getModel();
     modeloTabla.setRowCount(0);
@@ -332,7 +352,6 @@ public class Consulta1 extends javax.swing.JFrame {
     }
     
     try{
-      
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
       PreparedStatement st = connect.prepareStatement("SELECT  a.codigoCurso,a.nombreCurso, b.numBloque, a.horasLectivas, a.cantidadCreditos FROM Curso AS a\n" +
                                                       "INNER JOIN CursosPorPlan AS b\n" +
@@ -355,21 +374,25 @@ public class Consulta1 extends javax.swing.JFrame {
     }
   }
   
-  
-    private void cargarTablaCreditos(String idPlan){
+  /**
+   *Este metodo carga la consulta  de creditos sql en la tabla
+   * y la muestra en la aplicacion
+   * @param idPlan
+   */  
+  private void cargarTablaCreditos(String idPlan){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblCantCreditos.getModel();
     modeloTabla.setRowCount(0);
     ResultSet rs;
     ResultSetMetaData rsmd;
     int columnas;
-    
+
     int [] anchos = {10, 50, 100, 30, 100};
     for(int i = 0 ; i < tblCantCreditos.getColumnCount(); i++){
       tblCantCreditos.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
     }
-    
+
     try{
-      
+
       Connection connect = DriverManager.getConnection("jdbc:sqlserver://;databaseName=Proyecto_POO1;user=usuariosql;password=root1");
       PreparedStatement st = connect.prepareStatement("SELECT SUM(cantidadCreditos) AS cantidadCreditosPlan FROM Curso AS a\n" +
                                                       "INNER JOIN CursosPorPlan AS b\n" +
@@ -378,7 +401,7 @@ public class Consulta1 extends javax.swing.JFrame {
       rs = st.executeQuery();
       rsmd = rs.getMetaData();
       columnas = rsmd.getColumnCount();
-      
+
       while(rs.next()){
         Object[] fila = new Object[columnas];
         for(int indice=0; indice<columnas; indice++){
@@ -387,12 +410,17 @@ public class Consulta1 extends javax.swing.JFrame {
         modeloTabla.addRow(fila);
       }
     }catch(SQLException e){
-      
+
       JOptionPane.showMessageDialog(null,e);
     }
   }
-    
-    private void cargarTablaCursos(String idPlan){
+  
+  /**
+   *Este metodo carga la consulta cursos sql en la tabla
+   * y la muestra en la aplicacion
+   * @param idPlan
+   */  
+  private void cargarTablaCursos(String idPlan){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblCantCursos.getModel();
     modeloTabla.setRowCount(0);
     ResultSet rs;
@@ -426,7 +454,11 @@ public class Consulta1 extends javax.swing.JFrame {
     }
   }    
     
-
+  /**
+   *Este metodo carga la consulta escuelas sql en la tabla
+   * y la muestra en la aplicacion
+   * @param idPlan
+   */  
   private void cargarTablaEscuela(String idPlan){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblEscuela.getModel();
     modeloTabla.setRowCount(0);
@@ -468,6 +500,7 @@ public class Consulta1 extends javax.swing.JFrame {
   
   
   /**
+   * Metodo principal de la clase consulta
    * @param args the command line arguments
    */
   public static void main(String args[]) {
@@ -494,7 +527,7 @@ public class Consulta1 extends javax.swing.JFrame {
     }
     //</editor-fold>
 
-    /* Create and display the form */
+    /* crea y muestra el form*/
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
         new Consulta1().setVisible(true);

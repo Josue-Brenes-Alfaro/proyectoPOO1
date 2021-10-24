@@ -11,8 +11,6 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Clase de la creación de la ventana Escuela
  * dedicada para la creacion de nuevas escuelas o áreas académicas
- * @author Alejandra
- * @author Paola
  * @author Josue
  * @version 1.0
  */
@@ -33,7 +31,7 @@ public class Escuela extends javax.swing.JFrame {
   }
   
   /**
-   * Se encarga de que no se repita el nombre de las
+   * Este metodo Se encarga de que no se repita el nombre de las escuelas
    * @param pNombreEscuela 
    */
   public String generarCodigoEscuela (String pNombreEscuela ){
@@ -68,7 +66,7 @@ public class Escuela extends javax.swing.JFrame {
     rbNo = new javax.swing.JRadioButton();
     btnGuardar = new javax.swing.JButton();
     btnLimpiar = new javax.swing.JButton();
-    btnPDF1 = new javax.swing.JButton();
+    btnVolver = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("RegistroCarreras");
@@ -183,12 +181,12 @@ public class Escuela extends javax.swing.JFrame {
         .addGap(27, 27, 27))
     );
 
-    btnPDF1.setBackground(new java.awt.Color(69, 119, 186));
-    btnPDF1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    btnPDF1.setText("Regresar");
-    btnPDF1.addActionListener(new java.awt.event.ActionListener() {
+    btnVolver.setBackground(new java.awt.Color(69, 119, 186));
+    btnVolver.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    btnVolver.setText("Regresar");
+    btnVolver.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnPDF1ActionPerformed(evt);
+        btnVolverActionPerformed(evt);
       }
     });
 
@@ -200,7 +198,7 @@ public class Escuela extends javax.swing.JFrame {
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(193, 193, 193)
-        .addComponent(btnPDF1)
+        .addComponent(btnVolver)
         .addGap(23, 23, 23))
       .addGroup(layout.createSequentialGroup()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,14 +219,15 @@ public class Escuela extends javax.swing.JFrame {
         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(11, 11, 11)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(btnPDF1)
+          .addComponent(btnVolver)
           .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addContainerGap())
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
-/**
+
+  /**
  * Método del botón guardar de la ventana Escuela guarda los datos ingresados 
  * @param evt 
  */
@@ -244,12 +243,10 @@ public class Escuela extends javax.swing.JFrame {
       esEscuela=0;
     }
     c.connect();
-    
     carrera.guardarDatosDeCarrera(nombreCarrera, codigoCarrera, esEscuela);
     Limpiar();
     cargarTablaCarreras();
     c.close();
-    
   }//GEN-LAST:event_btnGuardarActionPerformed
 
 /**
@@ -259,18 +256,24 @@ public class Escuela extends javax.swing.JFrame {
   private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
     Limpiar();
   }//GEN-LAST:event_btnLimpiarActionPerformed
-
-  private void btnPDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF1ActionPerformed
+ 
+  /**
+   *Este metodo contiene un evento de accion (boton) que al apretarlo
+   * regresa al menu principal
+   * @param evt
+   */
+  private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
     Menu verMenu = new Menu();    
     verMenu.setVisible(true);
     this.setVisible(false);
-  }//GEN-LAST:event_btnPDF1ActionPerformed
-
+  }//GEN-LAST:event_btnVolverActionPerformed
+  /**
+   * metodo para limpiar los textbox de carrera
+   */ 
   public void Limpiar(){
     txtNombreCarrera.setText("");
     btnGr.clearSelection();
  }
- 
   /**
    * Carga los datos de la tabla de la ventana Escuela
    */
@@ -329,7 +332,7 @@ public class Escuela extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnGuardar;
   private javax.swing.JButton btnLimpiar;
-  private javax.swing.JButton btnPDF1;
+  private javax.swing.JButton btnVolver;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel4;

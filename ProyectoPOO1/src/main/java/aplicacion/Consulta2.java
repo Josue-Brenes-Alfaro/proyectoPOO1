@@ -17,14 +17,16 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author farol
+ * Clase de la creación de la ventana Consulta2
+ * dedicada para las consultas de plan de estudio segun curso
+ * @author Paola
+ * @version 1.0
  */
 public class Consulta2 extends javax.swing.JFrame {
   Conexion c = new Conexion("");
 
   /**
-   * Creates new form Consulta1
+   * crea el nuevo formulario consulta y agrega color de fondo
    */
   public Consulta2() {
     initComponents();
@@ -32,8 +34,8 @@ public class Consulta2 extends javax.swing.JFrame {
     this.getContentPane().setBackground(new Color(223,255,255));
   }
   
-    /**
-   * Método para isertar el código de los cursos en el
+  /**
+   * Método para insertar el código de los cursos en el
    * combobox llamado cbxCursos
    */
   public void obtenerCodigoCursos(){
@@ -77,7 +79,7 @@ public class Consulta2 extends javax.swing.JFrame {
     jScrollPane1 = new javax.swing.JScrollPane();
     tblCursos = new javax.swing.JTable();
     btnConsultarPlan = new javax.swing.JButton();
-    btnPDF1 = new javax.swing.JButton();
+    btnVolver = new javax.swing.JButton();
     cmbNombreCursos = new javax.swing.JComboBox<>();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -127,12 +129,12 @@ public class Consulta2 extends javax.swing.JFrame {
       }
     });
 
-    btnPDF1.setBackground(new java.awt.Color(69, 119, 186));
-    btnPDF1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    btnPDF1.setText("Regresar");
-    btnPDF1.addActionListener(new java.awt.event.ActionListener() {
+    btnVolver.setBackground(new java.awt.Color(69, 119, 186));
+    btnVolver.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    btnVolver.setText("Regresar");
+    btnVolver.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnPDF1ActionPerformed(evt);
+        btnVolverActionPerformed(evt);
       }
     });
 
@@ -161,7 +163,7 @@ public class Consulta2 extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(243, 243, 243))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addComponent(btnPDF1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(19, 19, 19))))
     );
     layout.setVerticalGroup(
@@ -177,13 +179,18 @@ public class Consulta2 extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(14, 14, 14)
-        .addComponent(btnPDF1)
+        .addComponent(btnVolver)
         .addContainerGap())
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * carga la tabla de consultas en el formulario
+   * @param evt
+   */
   private void btnConsultarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPlanActionPerformed
     String nombreCurso = cmbNombreCursos.getSelectedItem().toString();
     c.connect();
@@ -191,12 +198,22 @@ public class Consulta2 extends javax.swing.JFrame {
       c.close();
   }//GEN-LAST:event_btnConsultarPlanActionPerformed
 
-  private void btnPDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF1ActionPerformed
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * regresa al menu principal
+   * @param evt
+   */
+  private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
     Menu verMenu = new Menu();    
     verMenu.setVisible(true);
     this.setVisible(false);
-  }//GEN-LAST:event_btnPDF1ActionPerformed
+  }//GEN-LAST:event_btnVolverActionPerformed
 
+  /**
+   *Este metodo carga la consulta de cursos sql en la tabla
+   * y la muestra en la aplicacion
+   * @param idPlan
+   */  
   private void cargarTabla(String nombreCurso){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblCursos.getModel();
     modeloTabla.setRowCount(0);
@@ -238,10 +255,8 @@ public class Consulta2 extends javax.swing.JFrame {
     }
   }
   
-     
-  
-  
   /**
+   * Metodo principal de la clase consulta
    * @param args the command line arguments
    */
   public static void main(String args[]) {
@@ -269,7 +284,7 @@ public class Consulta2 extends javax.swing.JFrame {
     //</editor-fold>
     //</editor-fold>
 
-    /* Create and display the form */
+    /* crea y muestra el form*/
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
         new Consulta2().setVisible(true);
@@ -279,7 +294,7 @@ public class Consulta2 extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnConsultarPlan;
-  private javax.swing.JButton btnPDF1;
+  private javax.swing.JButton btnVolver;
   private javax.swing.JComboBox<String> cmbNombreCursos;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;

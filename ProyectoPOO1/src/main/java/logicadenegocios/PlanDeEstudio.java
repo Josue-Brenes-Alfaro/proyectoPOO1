@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * 
+ * Esta es una abstraccion de la clase PlanDeEstudio con fines academicos
  * @author Alejandra Merino
  * @author Paola López
  * @author Josué Brenes
@@ -24,6 +24,7 @@ public class PlanDeEstudio {//implements InterfaceCurso{
   private int cantidadCursos=0;
   private int cantidadCreditos=0;
 
+//metodos accesores  
   public String getCodCarrera() {
     return codCarrera;
   }
@@ -64,6 +65,12 @@ public class PlanDeEstudio {//implements InterfaceCurso{
     this.cantidadCreditos = cantidadCreditos;
   }
   
+  /**
+   * Método para guardar la información de un plan de estudio, el nombre, código 
+   * y demas
+   * @param pNomPlan
+   * @param pFechaVigencia
+   */
   public void guardarDatosDePlanesEstudio(String pNomPlan, String pFechaVigencia){
     setNombrePlanEstudio(pNomPlan);
     setFechaVigencia(pFechaVigencia);
@@ -78,7 +85,11 @@ public class PlanDeEstudio {//implements InterfaceCurso{
       System.err.println(ex.getMessage());
     }
   }
-  
+  /**
+   * Método para guardar la información de un plan de estudio, en la tabla intermedia 
+   * @param pCodCarrera
+   * @param pNombrePlanEstudio
+   */
   public void guardarDatosDePlanesPorEscuela(String pCodCarrera, String pNombrePlanEstudio){
     setCodCarrera(pCodCarrera);
     setNombrePlanEstudio(pNombrePlanEstudio);
@@ -96,6 +107,10 @@ public class PlanDeEstudio {//implements InterfaceCurso{
     }
   }
   
+  /**
+   *Este metodo carga la los datos de la tabla Planes
+   * y la muestra en la tabla de la aplicacion
+   */  
   public void cargarTablaPlanDeEstudio(DefaultTableModel modeloTabla){
     ResultSet rs;
     ResultSetMetaData rsmd;

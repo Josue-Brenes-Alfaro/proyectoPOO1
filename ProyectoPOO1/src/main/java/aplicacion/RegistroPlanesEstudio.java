@@ -26,7 +26,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
   Conexion c = new Conexion("");
   ButtonGroup btnGr;
   /**
-   * Creates new form RegistroPlanesEstudio
+   * crea el nuevo formulario  y agrega color de fondo
    */
   public RegistroPlanesEstudio() {
     initComponents();
@@ -35,6 +35,11 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     this.getContentPane().setBackground(new Color(223,255,255));
   }
   
+  /**
+   * Método para extraer las primeras letras de una oración.
+   * @param pNombreEscuela
+   * @return las iniciales de una oración
+   */
     public String generarCodigoEscuela (String pNombreEscuela ){
     int largo = pNombreEscuela.length();
     String ini=" ";
@@ -51,7 +56,11 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     }
     return xx;
   }
-  
+
+  /**
+   * Método para insertar el nombre de las carreras en el
+   * combobox llamado 
+   */  
   public void obtenerNombreCarreras(){
     ResultSet rs;
     try {
@@ -100,7 +109,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     btnPasarVentanaRegistrarCursosEnPlan = new javax.swing.JButton();
     btnPDF1 = new javax.swing.JButton();
     btnPDF2 = new javax.swing.JButton();
-    btnPDF3 = new javax.swing.JButton();
+    btnVolver = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("VentanaPlanDeEstudio");
@@ -240,12 +249,12 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
 
     btnPDF2.setText("Regresar");
 
-    btnPDF3.setBackground(new java.awt.Color(69, 119, 186));
-    btnPDF3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    btnPDF3.setText("Regresar");
-    btnPDF3.addActionListener(new java.awt.event.ActionListener() {
+    btnVolver.setBackground(new java.awt.Color(69, 119, 186));
+    btnVolver.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    btnVolver.setText("Regresar");
+    btnVolver.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnPDF3ActionPerformed(evt);
+        btnVolverActionPerformed(evt);
       }
     });
 
@@ -255,7 +264,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
         .addGap(126, 903, Short.MAX_VALUE)
-        .addComponent(btnPDF3)
+        .addComponent(btnVolver)
         .addContainerGap())
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addGap(0, 0, Short.MAX_VALUE)
@@ -293,7 +302,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
         .addContainerGap(48, Short.MAX_VALUE))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(btnPDF3)
+        .addComponent(btnVolver)
         .addContainerGap())
       .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
@@ -311,7 +320,7 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   /**
- * Método para accionar el botón de guardar en la ventala RegistroPlanesEstudio.
+ * Método para accionar el botón de guardar en la ventana RegistroPlanesEstudio.
  * @param evt 
  */
   private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -328,13 +337,12 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     plan.guardarDatosDePlanesPorEscuela(codigoCarrera, NombrePlanEstudio);
     
     c.close();
-    
     limpiar();
     cargarTablaPlanEstudio();
   }//GEN-LAST:event_btnGuardarActionPerformed
 
   /**
-   * Carga los datos de la tabla de la ventana RegistroPlanesEstudio
+   * Este metodo carga los datos de la tabla de la ventana RegistroPlanesEstudio
    */
   private void cargarTablaPlanEstudio(){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblPlanesEstudio.getModel();
@@ -371,11 +379,16 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     this.setVisible(false);
   }//GEN-LAST:event_btnPasarVentanaRegistrarCursosEnPlanActionPerformed
 
-  private void btnPDF3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF3ActionPerformed
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * regresa al menu principal
+   * @param evt
+   */
+  private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
     Menu verMenu = new Menu();    
     verMenu.setVisible(true);
     this.setVisible(false);
-  }//GEN-LAST:event_btnPDF3ActionPerformed
+  }//GEN-LAST:event_btnVolverActionPerformed
 
   /**
    * Limpia los campos de la ventana RegistroPlanesEstudio.
@@ -385,7 +398,8 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
     txtFechaVigencia.setText("");
   }
   /**
-   * @param args the command line arguments
+   * Método main de la ventana RegistroPlanesEstudio
+   * @param args
    */
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */
@@ -423,8 +437,8 @@ public class RegistroPlanesEstudio extends javax.swing.JFrame {
   private javax.swing.JButton btnLimpiar;
   private javax.swing.JButton btnPDF1;
   private javax.swing.JButton btnPDF2;
-  private javax.swing.JButton btnPDF3;
   private javax.swing.JButton btnPasarVentanaRegistrarCursosEnPlan;
+  private javax.swing.JButton btnVolver;
   private javax.swing.JComboBox<String> comBxCarreras;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;

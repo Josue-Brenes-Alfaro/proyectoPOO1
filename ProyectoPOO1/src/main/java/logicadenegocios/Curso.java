@@ -39,11 +39,20 @@ public class Curso implements InterfaceCurso{
     this.escuelaOAreaACargo = pEscuelaOAreaACargo;
     this.cantidadCreditos++;
   }
-  
+
+  /**
+   *Este metodo elimina toda informacion de un curso
+   * @param pCodigoCurso
+   */  
   public void eliminarRequisito(String pCodigoCurso){
   //aqui se debe eliminar el curso, pero primero hay que buscar si existe.
   //lanzaria un error si no existe.
   }
+  
+  /**
+   *Este metodo busca toda informacion de un curso
+   * @param pCodigoCurso
+   */  
   public Curso buscarCurso (String pCodigoCurso) throws CursoDoesNotExistsException {
     for (Curso cursoActual: cursosRequisitos) {
       if(cursoActual.getCodigoCurso().equals(pCodigoCurso))
@@ -51,13 +60,20 @@ public class Curso implements InterfaceCurso{
     } throw new CursoDoesNotExistsException(pCodigoCurso);
   }
   
+  /**
+   *Este metodo verifica la existencia de un codigo curso
+   * @param pCodigoCurso
+   */  
   public boolean existeCurso (String pCodigoCurso){
     for(Curso cursoActual: cursosRequisitos) {
       if(cursoActual.getCodigoCurso().equals(pCodigoCurso))
         return true;
     } return false;
   }
-  
+  /**
+   *Este metodo busca toda informacion de un cursoCorrequisito
+   * @param pCodigoCurso
+   */  
   public Curso buscarCursoCorrequisito (String pCodigoCurso) throws CursoDoesNotExistsException {
     for (Curso cursoActual: cursosCorrequisitos) {
       if(cursoActual.getCodigoCurso().equals(pCodigoCurso))
@@ -65,6 +81,10 @@ public class Curso implements InterfaceCurso{
     } throw new CursoDoesNotExistsException(pCodigoCurso);
   }
   
+  /**
+   *Este metodo busca la existencia de un cursoCorrequisito
+   * @param pCodigoCurso
+   */  
   public boolean existeCursoCorrequisito (String pCodigoCurso){
     for(Curso cursoActual: cursosCorrequisitos) {
       if(cursoActual.getCodigoCurso().equals(pCodigoCurso))

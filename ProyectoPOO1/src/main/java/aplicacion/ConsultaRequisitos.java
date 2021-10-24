@@ -18,14 +18,16 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Clase de la creación de la ventana Consultarequisitos
+ * dedicada para la consulta de requisitos de un curso
  * @author Josue
+ * @version 1.0
  */
 public class ConsultaRequisitos extends javax.swing.JFrame {
   Conexion c = new Conexion("");
   ButtonGroup btnGr;
   /**
-   * Creates new form ConsultaRequisitos
+   * crea el nuevo formulario consulta y agrega color de fondo
    */
   public ConsultaRequisitos() {
     initComponents();
@@ -33,7 +35,10 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
     this.getContentPane().setBackground(new Color(223,255,255));
     cargarCorrequisitos();
   }
-  
+  /**
+   * Método para insertar el código de los cursos en el
+   * combobox llamado cbxCursos
+   */
   public void obtenerCodigoCursoConsulta() {
     ResultSet rs;
     try {
@@ -172,17 +177,31 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
-
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * regresa al menu principal
+   * @param evt
+   */
   private void botonRegresarConsultaRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarConsultaRequisitoActionPerformed
     Menu verMenu = new Menu();
     verMenu.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_botonRegresarConsultaRequisitoActionPerformed
 
+  /**
+   *Este metodo carga la consulta de sql en la tabla
+   * y la muestra en la aplicacion
+   * @param evt
+   */  
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     cargarCorrequisitos();
   }//GEN-LAST:event_jButton1ActionPerformed
 
+  /**
+   *Este metodo carga la consulta de correquisitos sql en la tabla
+   * y la muestra en la aplicacion
+   * @param idPlan
+   */  
   private void cargarCorrequisitos(){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblRequisitos.getModel();
     modeloTabla.setRowCount(0);
@@ -190,8 +209,6 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
     ResultSetMetaData rsmd;
     int columnas;
     String nombreCarrera = combxCodigoCursoConsultaRequi.getSelectedItem().toString();
-
-    
     
     int [] anchos = {10, 50, 100, 30, 100};
     for(int i = 0 ; i < tblRequisitos.getColumnCount(); i++){
@@ -222,6 +239,7 @@ public class ConsultaRequisitos extends javax.swing.JFrame {
   
   
   /**
+   * Metodo principal de la clase consulta
    * @param args the command line arguments
    */
   public static void main(String args[]) {

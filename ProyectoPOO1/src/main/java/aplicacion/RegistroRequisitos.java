@@ -30,7 +30,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   Conexion c = new Conexion("");
   ButtonGroup btnGr;  
   /**
-   * Creates new form RegistroRequisitos
+   * crea el nuevo formulario y agrega color de fondo
    */
   public RegistroRequisitos() {
     initComponents();
@@ -61,6 +61,10 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     return xx;
   }
   
+  /**
+   * Método para insertar el nombre de las escuelas en el
+   * combobox  
+   */  
   public void obtenerNombreEscuelaRe() {
     ResultSet rs;
     try {
@@ -84,11 +88,14 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     }
   }
   
+  /**
+   * Método para insertar el codigo de los cursosRE en el
+   * combobox  
+   */  
   public void obtenerCodigoCursoRequisito() {
     ResultSet rs;
     String nombreCarrera = comBxEscuelaAreaRequisitos.getSelectedItem().toString();
     String codigoCarrera = generarCodigoEscuela(nombreCarrera);    
-    
     
     try {
       c.connect();
@@ -114,12 +121,14 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     }
     c.close();
   }
-  
+  /**
+   * Método para insertar el codigo de los cursosCO en el
+   * combobox  
+   */  
   public void obtenerCodigoCursoCorrequistio() {
     ResultSet rs;
     String nombreCarrera = comBxEscuelaAreaRequisitos.getSelectedItem().toString();
     String codigoCarrera = generarCodigoEscuela(nombreCarrera);    
-    
     
     try {
       c.connect();
@@ -156,7 +165,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   private void initComponents() {
 
     jLabel4 = new javax.swing.JLabel();
-    btnPDF1 = new javax.swing.JButton();
+    btnVolver = new javax.swing.JButton();
     jLabel5 = new javax.swing.JLabel();
     comBxEscuelaAreaRequisitos = new javax.swing.JComboBox<>();
     comBxCodigoCursoRequisitos = new javax.swing.JComboBox<>();
@@ -180,11 +189,11 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     jLabel4.setText("Requisitos del curso:");
 
-    btnPDF1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    btnPDF1.setText("Regresar");
-    btnPDF1.addActionListener(new java.awt.event.ActionListener() {
+    btnVolver.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+    btnVolver.setText("Regresar");
+    btnVolver.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnPDF1ActionPerformed(evt);
+        btnVolverActionPerformed(evt);
       }
     });
 
@@ -276,7 +285,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addGap(423, 903, Short.MAX_VALUE)
-        .addComponent(btnPDF1)
+        .addComponent(btnVolver)
         .addContainerGap())
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
         .addGap(0, 0, Short.MAX_VALUE)
@@ -344,19 +353,27 @@ public class RegistroRequisitos extends javax.swing.JFrame {
         .addGap(18, 18, 18)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(8, 8, 8)
-        .addComponent(btnPDF1)
+        .addComponent(btnVolver)
         .addContainerGap())
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
-
-  private void btnPDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDF1ActionPerformed
+  
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * regresa al menu principal
+   * @param evt
+   */
+  private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
     Menu verMenu = new Menu();
     verMenu.setVisible(true);
     this.setVisible(false);
-  }//GEN-LAST:event_btnPDF1ActionPerformed
+  }//GEN-LAST:event_btnVolverActionPerformed
 
+  /**
+   *Este metodo registra la informacion de la tabla requisitos en sql
+   */  
   private void btnGuardarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRequisitoActionPerformed
     String codigoCurso = this.comBxCodigoCursoRequisitos.getSelectedItem().toString();
     String codigoCursoReque = comBxRequisito.getSelectedItem().toString();
@@ -379,6 +396,10 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_btnGuardarRequisitoActionPerformed
 
+  /**
+   *Este metodo carga la consulta de requisitos sql en la tabla
+   * y la muestra en la aplicacion
+   */  
     private void cargarRequistroRequisitos(){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblRegistroRequisitos.getModel();
     modeloTabla.setRowCount(0);
@@ -413,12 +434,14 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     }
   }
   
-  
+  /**
+   *Este metodo carga la consulta de cursos sql en la tabla
+   * y la muestra en la aplicacion
+   */  
   private void btnCargarCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarCursosActionPerformed
     ResultSet rs;
     String nombreCarrera = comBxEscuelaAreaRequisitos.getSelectedItem().toString();
     String codigoCarrera = generarCodigoEscuela(nombreCarrera);    
-    
     
     try {
       c.connect();
@@ -444,11 +467,18 @@ public class RegistroRequisitos extends javax.swing.JFrame {
     }
     c.close();
   }//GEN-LAST:event_btnCargarCursosActionPerformed
-
+  /**
+   * Método para accionar el botón de CargarRequisitos
+   * @param evt 
+   */
   private void btnCargarRequisitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarRequisitosActionPerformed
     obtenerCodigoCursoRequisito();
   }//GEN-LAST:event_btnCargarRequisitosActionPerformed
 
+  /**
+   * Método para accionar el botón de CargarCoRequisitos
+   * @param evt 
+   */
   private void btnCargarCorrequisitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarCorrequisitosActionPerformed
     obtenerCodigoCursoCorrequistio();
   }//GEN-LAST:event_btnCargarCorrequisitosActionPerformed
@@ -458,7 +488,8 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   }//GEN-LAST:event_comBxRequisitoActionPerformed
 
   /**
-   * @param args the command line arguments
+   * Método main de la ventana RegistroPlanesEstudio
+   * @param args
    */
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */
@@ -497,7 +528,7 @@ public class RegistroRequisitos extends javax.swing.JFrame {
   private javax.swing.JButton btnCargarCursos;
   private javax.swing.JButton btnCargarRequisitos;
   private javax.swing.JButton btnGuardarRequisito;
-  private javax.swing.JButton btnPDF1;
+  private javax.swing.JButton btnVolver;
   private javax.swing.JComboBox<String> comBxCodigoCursoRequisitos;
   private javax.swing.JComboBox<String> comBxCorrequisito;
   private javax.swing.JComboBox<String> comBxEscuelaAreaRequisitos;

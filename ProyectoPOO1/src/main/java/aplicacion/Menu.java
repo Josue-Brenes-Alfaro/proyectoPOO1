@@ -5,13 +5,14 @@
 package aplicacion;
 
 /**
- *
- * @author farol
+ * Clase de la creación de la ventana menu
+ * dedicada para la navegacion de la aplicacion
+ * @author Paola
+ * @version 1.0
  */
 public class Menu extends javax.swing.JFrame {
-
   /**
-   * Creates new form Menu
+   * Crea el nuevo formulario menu
    */
   public Menu() {
     initComponents();
@@ -215,10 +216,11 @@ public class Menu extends javax.swing.JFrame {
         .addGap(18, 18, 18)
         .addComponent(jLabel3)
         .addGap(27, 27, 27)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(btnEscuela, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(btnRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(btnCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(btnEscuela, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(btnRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addGap(36, 36, 36)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(btnConsulta1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,48 +240,88 @@ public class Menu extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  /**
+   *Este metodo contiene un evento de accion(boton) que al apretarlo
+   * va al formulario de ConsultaCorequisitos
+   * @param evt
+   */
   private void btnConsulta4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta4ActionPerformed
     ConsultaCorequisitos verConsultaCorequisitos = new ConsultaCorequisitos();    
     verConsultaCorequisitos.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnConsulta4ActionPerformed
 
+  /**
+   *Este metodo contiene un evento de accion(boton) que al apretarlo
+   * va al formulario de Consultarequisitos
+   * @param evt
+   */
   private void btnConsulta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta3ActionPerformed
     ConsultaRequisitos verConsultaRequisitos = new ConsultaRequisitos();    
     verConsultaRequisitos.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnConsulta3ActionPerformed
 
+  /**
+   *Este metodo contiene un evento de accion(boton) que al apretarlo
+   * va al formulario de Cursos
+   * @param evt
+   */  
   private void btnCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCursosActionPerformed
     Cursos verCursos = new Cursos();    
     verCursos.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnCursosActionPerformed
 
+  /**
+   *Este metodo contiene un evento de accion(boton) que al apretarlo
+   * va al formulario de escuela
+   * @param evt
+   */
   private void btnEscuelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscuelaActionPerformed
     Escuela verEscuela = new Escuela();    
     verEscuela.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnEscuelaActionPerformed
-
+ 
+  /**
+   *Este metodo contiene un evento de accion(boton) que al apretarlo
+   * va al formulario de RegistroRequisitos
+   * @param evt
+   */
   private void btnRequisitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequisitosActionPerformed
     RegistroRequisitos verRequisitos = new RegistroRequisitos();    
     verRequisitos.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnRequisitosActionPerformed
 
+  /**
+   *Este metodo contiene un evento de accion(boton) que al apretarlo
+   * va al formulario de Consulta1
+   * @param evt
+   */  
   private void btnConsulta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta1ActionPerformed
     Consulta1 verConsulta1 = new Consulta1();    
     verConsulta1.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnConsulta1ActionPerformed
 
+  /**
+   *Este metodo contiene un evento de accion(boton) que al apretarlo
+   * va al formulario de RegistroPlanesEstudio
+   * @param evt
+   */  
   private void btnPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanesActionPerformed
     RegistroPlanesEstudio verRegistroPlanesEstudio = new RegistroPlanesEstudio();    
     verRegistroPlanesEstudio.setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnPlanesActionPerformed
 
+   /**
+   *Este metodo contiene un evento de accion(boton) que al apretarlo
+   * va al formulario de Consulta2
+   * @param evt
+   */  
   private void btnConsulta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta2ActionPerformed
     Consulta2 verConsulta2 = new Consulta2();    
     verConsulta2.setVisible(true);
@@ -287,7 +329,8 @@ public class Menu extends javax.swing.JFrame {
   }//GEN-LAST:event_btnConsulta2ActionPerformed
 
   /**
-   * @param args the command line arguments
+   * Método main de la ventana Menu
+   * @param args
    */
   public static void main(String args[]) {
     /* Set the Nimbus look and feel */

@@ -15,8 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
- * 
+ * Esta es una abstraccion de la clase EscuelaoArea con fines academicos
  * @author Alejandra Merino
  * @author Paola López
  * @author Josué Brenes
@@ -28,6 +29,7 @@ public class EscuelaOArea{//implements InterfaceCurso{
   private int tieneEscuela;
   private ArrayList<Curso> misCursos;
 
+//metodos accesores  
   public String getCodigoCarrera() {
     return codigoCarrera;
   }
@@ -91,6 +93,10 @@ public class EscuelaOArea{//implements InterfaceCurso{
     }
   }
   
+  /**
+   *Este metodo carga la los datos de la tabla carreras
+   * y la muestra en la tabla de la aplicacion
+   */  
   public void cargaDeDatosEnTablaCarreras(DefaultTableModel modeloTabla){
     Connection connect;
     ResultSet rs;

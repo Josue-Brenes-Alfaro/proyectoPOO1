@@ -16,13 +16,15 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author Pol_D
+ * Clase de la creación de la ventana Cursos
+ * dedicada para la gestion de cursos
+ * @author Alejandra
+ * @version 1.0
  */
 public class Cursos extends javax.swing.JFrame {
 
   /**
-   * Creates new form Cursos
+   * crea el nuevo formulario  y agrega color de fondo
    */
   public Cursos() {
     initComponents();
@@ -33,13 +35,20 @@ public class Cursos extends javax.swing.JFrame {
     this.getContentPane().setBackground(new Color(223,255,255));
   }
   
+  /**
+   * Método para insertar el código de los creditos en el
+   * combobox
+   */  
   public void cargarCmbCatiCreditos () {
     for(int inicial = 1; inicial < 11; inicial++) {
       String numCadena= inicial+"";
       comBxCantiCreditos.addItem(numCadena );
     }
   }
-  
+  /**
+   * Método para insertar la cantidad de las horas en el
+   * combobox
+   */  
   public void cargarCmbHorasLectivas () {
     for(int inicial = 1; inicial < 25; inicial++) {
       String numCadena= inicial+"";
@@ -47,6 +56,10 @@ public class Cursos extends javax.swing.JFrame {
     }
   }
   
+  /**
+   * Método para insertar el nombre de la escuela en el
+   * combobox
+   */    
   public void obtenerNombreEscuela () {
     ResultSet rs;
     try {
@@ -70,6 +83,10 @@ public class Cursos extends javax.swing.JFrame {
     }
   }
   
+  /**
+   * Método para insertar la cantidad de cursos en el
+   * combobox
+   */    
   public void cargarCantidadCursos () {
     ResultSet rs;
     try {
@@ -91,7 +108,10 @@ public class Cursos extends javax.swing.JFrame {
     }
   }
   
-  
+  /**
+   * Este Método genera un codigo para curso no repetido
+   * @param pNombreEscuela
+   */   
   public String generarCodigoCurso (String pNombreEscuela ){
     int largo = pNombreEscuela.length();
     String ini=" ";
@@ -107,6 +127,10 @@ public class Cursos extends javax.swing.JFrame {
       } return xx;
   }
   
+  /**
+   * Este Método genera un codigo para escuela no repetido
+   * @param pNombreEscuela
+   */   
   public String generarCodigoEscuelaCurso (String pNombreEscuela ){
     int largo = pNombreEscuela.length();
     String ini=" ";
@@ -124,11 +148,17 @@ public class Cursos extends javax.swing.JFrame {
     return xx;
   }
   
-  
+  /**
+   * metodo para limpiar los textbox
+   */ 
   private void limpiarCursos(){
     txtNombreCurso.setText("");
   }
   
+  /**
+   *Este metodo carga la consulta de cursos sql en la tabla
+   * y la muestra en la aplicacion
+   */  
   private void cargarTablaCursos (){
     DefaultTableModel modeloTabla = (DefaultTableModel) tblCursos.getModel();
     modeloTabla.setRowCount(0);
@@ -352,6 +382,11 @@ public class Cursos extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_comBxEscuelaOAreaCargoActionPerformed
 
+  /**
+   *Este metodo guarda la informacion administrada en la base de datos
+   * y la muestra en la aplicacion
+   * @param evt
+   */  
   private void btnGuardarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCursoActionPerformed
     String escuelaIng = comBxEscuelaOAreaCargo.getSelectedItem().toString();
     String codigoEscuelaIng = generarCodigoEscuelaCurso (escuelaIng);
@@ -381,11 +416,18 @@ public class Cursos extends javax.swing.JFrame {
      System.err.println(ex.getMessage());
     } 
   }//GEN-LAST:event_btnGuardarCursoActionPerformed
-
+  /**
+   * metodo para limpiar los textbox de curso
+   */ 
   private void btnLimpiarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCursoActionPerformed
     limpiarCursos();
   }//GEN-LAST:event_btnLimpiarCursoActionPerformed
-
+ 
+  /**
+   *Este metodo contiene un evento de accion que al apretarlo
+   * regresa al menu principal
+   * @param evt
+   */
   private void btnRegresarCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarCursosActionPerformed
     Menu verMenu = new Menu();    
     verMenu.setVisible(true);
@@ -397,6 +439,7 @@ public class Cursos extends javax.swing.JFrame {
   }//GEN-LAST:event_comBxHorasLectivasActionPerformed
 
   /**
+   * Metodo principal de la clase consulta
    * @param args the command line arguments
    */
   public static void main(String args[]) {
