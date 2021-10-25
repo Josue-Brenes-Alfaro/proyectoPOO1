@@ -1,4 +1,5 @@
 package aplicacion;
+
 import logicadenegocios.EscuelaOArea;
 import SQL.Conexion;
 import java.awt.Color;
